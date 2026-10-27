@@ -105,10 +105,416 @@
           }
         }
       }
+    },
+    "/api/shows/{show_id}/fate": {
+      "get": {
+        "tags": [
+          "shows"
+        ],
+        "summary": "Get Fate",
+        "operationId": "get_fate_api_shows__show_id__fate_get",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FateScript"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shows/{show_id}/reveal": {
+      "post": {
+        "tags": [
+          "shows"
+        ],
+        "summary": "Reveal",
+        "operationId": "reveal_api_shows__show_id__reveal_post",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reveal"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "Alliance": {
+        "properties": {
+          "a": {
+            "type": "string",
+            "title": "A"
+          },
+          "b": {
+            "type": "string",
+            "title": "B"
+          }
+        },
+        "type": "object",
+        "required": [
+          "a",
+          "b"
+        ],
+        "title": "Alliance"
+      },
+      "Beat": {
+        "properties": {
+          "index": {
+            "type": "integer",
+            "title": "Index"
+          },
+          "section": {
+            "type": "string",
+            "enum": [
+              "cold_open",
+              "act_1",
+              "act_2",
+              "act_3",
+              "coronation"
+            ],
+            "title": "Section"
+          },
+          "card": {
+            "type": "string",
+            "title": "Card"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "single",
+              "crowd",
+              "drama",
+              "structural"
+            ],
+            "title": "Kind"
+          },
+          "setting": {
+            "type": "string",
+            "enum": [
+              "throne_room",
+              "feast_hall",
+              "battlefield",
+              "ice_wall",
+              "forest",
+              "dungeon",
+              "harbor",
+              "city_streets",
+              "temple",
+              "bridge"
+            ],
+            "title": "Setting"
+          },
+          "roles": {
+            "items": {
+              "$ref": "#/components/schemas/Role"
+            },
+            "type": "array",
+            "title": "Roles"
+          },
+          "eliminations": {
+            "items": {
+              "$ref": "#/components/schemas/Elimination"
+            },
+            "type": "array",
+            "title": "Eliminations"
+          },
+          "resurrections": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Resurrections"
+          },
+          "alliances_formed": {
+            "items": {
+              "$ref": "#/components/schemas/Alliance"
+            },
+            "type": "array",
+            "title": "Alliances Formed"
+          },
+          "alliances_broken": {
+            "items": {
+              "$ref": "#/components/schemas/Alliance"
+            },
+            "type": "array",
+            "title": "Alliances Broken"
+          },
+          "facts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Facts",
+            "description": "Card-specific outcome tags, e.g. attempt_failed."
+          },
+          "prophecy_hints": {
+            "items": {
+              "$ref": "#/components/schemas/ProphecyHint"
+            },
+            "type": "array",
+            "title": "Prophecy Hints"
+          },
+          "budget_seconds": {
+            "type": "integer",
+            "title": "Budget Seconds"
+          },
+          "dramatic": {
+            "type": "boolean",
+            "title": "Dramatic"
+          }
+        },
+        "type": "object",
+        "required": [
+          "index",
+          "section",
+          "card",
+          "title",
+          "kind",
+          "setting",
+          "roles",
+          "eliminations",
+          "resurrections",
+          "alliances_formed",
+          "alliances_broken",
+          "facts",
+          "prophecy_hints",
+          "budget_seconds",
+          "dramatic"
+        ],
+        "title": "Beat"
+      },
+      "Character": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "Stable id: p01..p40 by canonical position, old_king, or npc_<role>."
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "participant",
+              "old_king",
+              "npc"
+            ],
+            "title": "Kind"
+          },
+          "house": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "House"
+          },
+          "archetype": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "schemer",
+                  "brute",
+                  "fool",
+                  "zealot",
+                  "honorable",
+                  "coward",
+                  "bard"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Archetype"
+          },
+          "npc_role": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Npc Role"
+          },
+          "is_old_king": {
+            "type": "boolean",
+            "title": "Is Old King",
+            "description": "True for the Old King, whether participant or not.",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "kind"
+        ],
+        "title": "Character"
+      },
+      "Elimination": {
+        "properties": {
+          "character": {
+            "type": "string",
+            "title": "Character"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "killed",
+              "forfeited",
+              "exiled"
+            ],
+            "title": "Mode"
+          }
+        },
+        "type": "object",
+        "required": [
+          "character",
+          "mode"
+        ],
+        "title": "Elimination"
+      },
+      "FateScript": {
+        "properties": {
+          "engine_version": {
+            "type": "string",
+            "title": "Engine Version"
+          },
+          "seal": {
+            "type": "string",
+            "title": "Seal"
+          },
+          "seed_mode": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "manual"
+            ],
+            "title": "Seed Mode"
+          },
+          "roster_size": {
+            "type": "integer",
+            "title": "Roster Size"
+          },
+          "characters": {
+            "items": {
+              "$ref": "#/components/schemas/Character"
+            },
+            "type": "array",
+            "title": "Characters"
+          },
+          "houses": {
+            "items": {
+              "$ref": "#/components/schemas/House"
+            },
+            "type": "array",
+            "title": "Houses"
+          },
+          "old_king": {
+            "type": "string",
+            "title": "Old King",
+            "description": "Character id of the Old King."
+          },
+          "winner": {
+            "type": "string",
+            "title": "Winner",
+            "description": "Character id of the participant who will be crowned."
+          },
+          "beats": {
+            "items": {
+              "$ref": "#/components/schemas/Beat"
+            },
+            "type": "array",
+            "title": "Beats"
+          },
+          "total_budget_seconds": {
+            "type": "integer",
+            "title": "Total Budget Seconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "engine_version",
+          "seal",
+          "seed_mode",
+          "roster_size",
+          "characters",
+          "houses",
+          "old_king",
+          "winner",
+          "beats",
+          "total_budget_seconds"
+        ],
+        "title": "FateScript",
+        "description": "The complete, fixed story timeline. Never contains the seed."
+      },
       "FoundryHealth": {
         "properties": {
           "api_key": {
@@ -157,6 +563,38 @@
         ],
         "title": "Health"
       },
+      "House": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "sigil": {
+            "type": "string",
+            "title": "Sigil"
+          },
+          "members": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Members",
+            "description": "Character ids of the house members."
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "sigil",
+          "members"
+        ],
+        "title": "House"
+      },
       "OldKing": {
         "properties": {
           "name": {
@@ -199,6 +637,76 @@
           "name"
         ],
         "title": "Participant"
+      },
+      "ProphecyHint": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "Machine-readable fact id, for example 'betrayed' or 'house:goat'."
+          },
+          "text": {
+            "type": "string",
+            "title": "Text",
+            "description": "Plain English hint that does not name the winner."
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "text"
+        ],
+        "title": "ProphecyHint"
+      },
+      "Reveal": {
+        "properties": {
+          "seed": {
+            "type": "string",
+            "title": "Seed"
+          },
+          "seed_mode": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "manual"
+            ],
+            "title": "Seed Mode"
+          },
+          "engine_version": {
+            "type": "string",
+            "title": "Engine Version"
+          },
+          "seal": {
+            "type": "string",
+            "title": "Seal"
+          }
+        },
+        "type": "object",
+        "required": [
+          "seed",
+          "seed_mode",
+          "engine_version",
+          "seal"
+        ],
+        "title": "Reveal"
+      },
+      "Role": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "character": {
+            "type": "string",
+            "title": "Character"
+          }
+        },
+        "type": "object",
+        "required": [
+          "role",
+          "character"
+        ],
+        "title": "Role"
       },
       "ShowRequest": {
         "properties": {

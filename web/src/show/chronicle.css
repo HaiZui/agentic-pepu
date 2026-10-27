@@ -1,0 +1,68 @@
+.chronicle {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.chronicle table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f6efe0;
+  border: 2px solid #2b1d0e;
+  font-size: 0.92rem;
+}
+
+.chronicle th,
+.chronicle td {
+  border-bottom: 1px solid #c9b48f;
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.chronicle th {
+  background: #2b1d0e;
+  color: #f6efe0;
+}
+
+.chronicle tr.dramatic td:first-child {
+  border-left: 5px solid #b3261e;
+}
+
+.chronicle .card-id {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  font-family: monospace;
+}
+
+.chronicle .outs {
+  color: #7a1712;
+  font-weight: bold;
+}
+
+.chronicle .num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.chronicle .hints {
+  margin: 0.25rem 0 0;
+  padding-left: 1rem;
+  font-style: italic;
+}
+
+.chronicle .spoiler {
+  padding: 0.5rem 0.75rem;
+  border: 2px dashed #b3261e;
+  color: #7a1712;
+}
+
+.chronicle .cast {
+  columns: 3 18rem;
+  padding-left: 1.2rem;
+}
+
+.seal-full {
+  font-family: monospace;
+  word-break: break-all;
+}

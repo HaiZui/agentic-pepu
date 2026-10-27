@@ -1,5 +1,6 @@
-import { ApiError, getShow, type ShowSession } from "../api/client";
+import { ApiError, getFate, getShow, type FateScript, type ShowSession } from "../api/client";
 import { el } from "../dom";
+import { shortSeal } from "./seal";
 
 export async function renderShow(
   root: HTMLElement,
@@ -15,8 +16,9 @@ export async function renderShow(
   root.replaceChildren(el("main", { class: "setup" }, el("p", {}, "Raising the curtain...")));
 
   let show: ShowSession;
+  let fate: FateScript;
   try {
-    show = await getShow(showId);
+    [show, fate] = await Promise.all([getShow(showId), getFate(showId)]);
   } catch (error) {
     const message =
       error instanceof ApiError && error.status === 404 ? "This show does not exist." : "Could not load the show.";
@@ -28,6 +30,12 @@ export async function renderShow(
     ? "The Mad King (no previous winner given)"
     : `${show.old_king.name}${show.old_king.is_participant ? " (also competing)" : ""}`;
 
+  const chronicle = el("a", { href: `/show/${encodeURIComponent(show.id)}/chronicle` }, "Chronicle (development view, contains spoilers)");
+  chronicle.addEventListener("click", (event) => {
+    event.preventDefault();
+    navigate(`/show/${encodeURIComponent(show.id)}/chronicle`);
+  });
+
   root.replaceChildren(
     el(
       "main",
@@ -36,6 +44,8 @@ export async function renderShow(
       el(
         "section",
         { class: "panel" },
+        el("p", { class: "seal" }, el("strong", {}, "Seal of Fate: "), shortSeal(fate.seal)),
+        el("p", { class: "hint seal-full" }, fate.seal),
         el("p", {}, el("strong", {}, "Old King: "), oldKingText),
         el("p", {}, el("strong", {}, "Seed: "), show.seed_mode === "manual" ? "manual" : "automatic"),
         el("p", {}, el("strong", {}, `${show.participants.length} peasants:`)),
@@ -45,6 +55,7 @@ export async function renderShow(
           ...show.participants.map((p) => el("li", {}, p.is_old_king ? `${p.name} (Old King)` : p.name)),
         ),
         el("p", { class: "hint" }, "The stage is still being built. This placeholder shows the recorded show."),
+        chronicle,
         back,
       ),
     ),

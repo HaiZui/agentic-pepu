@@ -61,6 +61,32 @@ def dump_openapi(args: argparse.Namespace) -> int:
     return 0
 
 
+def verify(args: argparse.Namespace) -> int:
+    from bottle_throne.fate.characters import resolve_old_king_name
+    from bottle_throne.fate.fairness import ENGINE_VERSION, canonical_roster, seal_of_fate, select_winner_index
+    from bottle_throne.models.show import clean_name
+
+    if args.engine != ENGINE_VERSION:
+        print(
+            f"This build implements engine {ENGINE_VERSION}; check out the release that matches {args.engine}.",
+            file=sys.stderr,
+        )
+        return 2
+    lines = Path(args.roster).read_text(encoding="utf-8-sig").splitlines()
+    roster = canonical_roster([name for name in (clean_name(line) for line in lines) if name])
+    if not roster:
+        print("The roster file contains no names.", file=sys.stderr)
+        return 2
+    old_king = clean_name(args.old_king) if args.old_king else None
+    seal_old_king, _ = resolve_old_king_name(roster, old_king or None)
+
+    print(f"Engine:       {ENGINE_VERSION}")
+    print(f"Participants: {len(roster)}")
+    print(f"Seal of Fate: {seal_of_fate(args.seed, roster, seal_old_king)}")
+    print(f"Winner:       {roster[select_winner_index(args.seed, roster)]}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="python -m bottle_throne", description="The Bottle Throne")
     parser.add_argument("--open", action="store_true", help="open the setup screen in the browser")
@@ -72,6 +98,13 @@ def build_parser() -> argparse.ArgumentParser:
     dump = commands.add_parser("dump-openapi", help="write the OpenAPI schema to a file")
     dump.add_argument("path")
     dump.set_defaults(handler=dump_openapi)
+
+    check = commands.add_parser("verify", help="recompute the Seal of Fate and the winner of a show (offline)")
+    check.add_argument("--seed", required=True, help="the seed revealed in the credits")
+    check.add_argument("--roster", required=True, help="text file with one participant name per line")
+    check.add_argument("--old-king", help="last week's winner, if one was entered")
+    check.add_argument("--engine", default="fate-1", help="engine version shown in the credits")
+    check.set_defaults(handler=verify)
     return parser
 
 

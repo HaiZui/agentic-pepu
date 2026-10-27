@@ -51,10 +51,168 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/shows/{show_id}/fate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Fate */
+        get: operations["get_fate_api_shows__show_id__fate_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/shows/{show_id}/reveal": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Reveal */
+        post: operations["reveal_api_shows__show_id__reveal_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** Alliance */
+        Alliance: {
+            /** A */
+            a: string;
+            /** B */
+            b: string;
+        };
+        /** Beat */
+        Beat: {
+            /** Index */
+            index: number;
+            /**
+             * Section
+             * @enum {string}
+             */
+            section: "cold_open" | "act_1" | "act_2" | "act_3" | "coronation";
+            /** Card */
+            card: string;
+            /** Title */
+            title: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "single" | "crowd" | "drama" | "structural";
+            /**
+             * Setting
+             * @enum {string}
+             */
+            setting: "throne_room" | "feast_hall" | "battlefield" | "ice_wall" | "forest" | "dungeon" | "harbor" | "city_streets" | "temple" | "bridge";
+            /** Roles */
+            roles: components["schemas"]["Role"][];
+            /** Eliminations */
+            eliminations: components["schemas"]["Elimination"][];
+            /** Resurrections */
+            resurrections: string[];
+            /** Alliances Formed */
+            alliances_formed: components["schemas"]["Alliance"][];
+            /** Alliances Broken */
+            alliances_broken: components["schemas"]["Alliance"][];
+            /**
+             * Facts
+             * @description Card-specific outcome tags, e.g. attempt_failed.
+             */
+            facts: string[];
+            /** Prophecy Hints */
+            prophecy_hints: components["schemas"]["ProphecyHint"][];
+            /** Budget Seconds */
+            budget_seconds: number;
+            /** Dramatic */
+            dramatic: boolean;
+        };
+        /** Character */
+        Character: {
+            /**
+             * Id
+             * @description Stable id: p01..p40 by canonical position, old_king, or npc_<role>.
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "participant" | "old_king" | "npc";
+            /** House */
+            house?: string | null;
+            /** Archetype */
+            archetype?: ("schemer" | "brute" | "fool" | "zealot" | "honorable" | "coward" | "bard") | null;
+            /** Npc Role */
+            npc_role?: string | null;
+            /**
+             * Is Old King
+             * @description True for the Old King, whether participant or not.
+             * @default false
+             */
+            is_old_king: boolean;
+        };
+        /** Elimination */
+        Elimination: {
+            /** Character */
+            character: string;
+            /**
+             * Mode
+             * @enum {string}
+             */
+            mode: "killed" | "forfeited" | "exiled";
+        };
+        /**
+         * FateScript
+         * @description The complete, fixed story timeline. Never contains the seed.
+         */
+        FateScript: {
+            /** Engine Version */
+            engine_version: string;
+            /** Seal */
+            seal: string;
+            /**
+             * Seed Mode
+             * @enum {string}
+             */
+            seed_mode: "auto" | "manual";
+            /** Roster Size */
+            roster_size: number;
+            /** Characters */
+            characters: components["schemas"]["Character"][];
+            /** Houses */
+            houses: components["schemas"]["House"][];
+            /**
+             * Old King
+             * @description Character id of the Old King.
+             */
+            old_king: string;
+            /**
+             * Winner
+             * @description Character id of the participant who will be crowned.
+             */
+            winner: string;
+            /** Beats */
+            beats: components["schemas"]["Beat"][];
+            /** Total Budget Seconds */
+            total_budget_seconds: number;
+        };
         /** FoundryHealth */
         FoundryHealth: {
             /** Api Key */
@@ -72,6 +230,20 @@ export interface components {
         /** Health */
         Health: {
             foundry: components["schemas"]["FoundryHealth"];
+        };
+        /** House */
+        House: {
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Sigil */
+            sigil: string;
+            /**
+             * Members
+             * @description Character ids of the house members.
+             */
+            members: string[];
         };
         /** OldKing */
         OldKing: {
@@ -97,6 +269,40 @@ export interface components {
              * @default false
              */
             is_old_king: boolean;
+        };
+        /** ProphecyHint */
+        ProphecyHint: {
+            /**
+             * Id
+             * @description Machine-readable fact id, for example 'betrayed' or 'house:goat'.
+             */
+            id: string;
+            /**
+             * Text
+             * @description Plain English hint that does not name the winner.
+             */
+            text: string;
+        };
+        /** Reveal */
+        Reveal: {
+            /** Seed */
+            seed: string;
+            /**
+             * Seed Mode
+             * @enum {string}
+             */
+            seed_mode: "auto" | "manual";
+            /** Engine Version */
+            engine_version: string;
+            /** Seal */
+            seal: string;
+        };
+        /** Role */
+        Role: {
+            /** Role */
+            role: string;
+            /** Character */
+            character: string;
         };
         /** ShowRequest */
         ShowRequest: {
@@ -225,6 +431,68 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ShowSession"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_fate_api_shows__show_id__fate_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                show_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FateScript"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    reveal_api_shows__show_id__reveal_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                show_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Reveal"];
                 };
             };
             /** @description Validation Error */

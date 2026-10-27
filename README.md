@@ -34,6 +34,19 @@ Options:
 - `BOTTLE_THRONE_PORT`: port to use, default `8765`.
 - `BOTTLE_THRONE_HOST`: interface to bind, default `127.0.0.1` (loopback only).
 
+## Fairness and verification
+
+The winner is decided before the story is written. It is a uniform random pick, driven by the seed, from the participants sorted alphabetically (ignoring case). The story is then built around that result, and the AI only narrates it.
+
+When the curtain rises, the show displays the **Seal of Fate**: a SHA-256 hash of the seed, the sorted roster, the Old King and the engine version. The seed itself is revealed in the credits. Anyone can recompute both values offline:
+
+```powershell
+# roster.txt: one participant name per line, in any order
+.\.venv\Scripts\python.exe -m bottle_throne verify --seed <seed from the credits> --roster roster.txt --old-king "<last winner>" --engine fate-1
+```
+
+The output must show the same Seal of Fate that was displayed at the start and the same winner that was crowned. Leave out `--old-king` if no previous winner was entered. A show started with a manual seed is labelled as such.
+
 ## Development
 
 ```powershell

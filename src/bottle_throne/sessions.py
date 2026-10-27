@@ -3,18 +3,29 @@ import threading
 from dataclasses import dataclass
 from typing import Literal
 
+from bottle_throne.fate.fairness import ENGINE_VERSION, canonical_roster, new_auto_seed
+from bottle_throne.fate.solver import generate_fate
+from bottle_throne.models.fate import FateScript, Reveal
 from bottle_throne.models.show import OldKing, Participant, ShowRequest, ShowSession, resolve_old_king
 
 
 @dataclass
 class SessionRecord:
-    """Server-side session state. Holds fields (like the manual seed) never sent to the browser."""
+    """Server-side session state. Holds fields (like the seed) never sent to the browser before the reveal."""
 
     id: str
     participants: list[Participant]
     old_king: OldKing
     seed_mode: Literal["auto", "manual"]
-    manual_seed: str | None
+    seed: str
+    fate: FateScript
+
+    @property
+    def canonical_roster(self) -> list[str]:
+        return canonical_roster([p.name for p in self.participants])
+
+    def reveal(self) -> Reveal:
+        return Reveal(seed=self.seed, seed_mode=self.seed_mode, engine_version=ENGINE_VERSION, seal=self.fate.seal)
 
     def public(self) -> ShowSession:
         return ShowSession(
@@ -32,6 +43,9 @@ class SessionStore:
 
     def create(self, request: ShowRequest) -> SessionRecord:
         participants, old_king = resolve_old_king(request.participants, request.old_king)
+        seed_mode: Literal["auto", "manual"] = "manual" if request.seed else "auto"
+        seed = request.seed or new_auto_seed()
+        fate = generate_fate(seed, request.participants, None if old_king.is_mad_king else old_king.name, seed_mode)
         with self._lock:
             show_id = secrets.token_urlsafe(9)
             while show_id in self._sessions:
@@ -40,8 +54,9 @@ class SessionStore:
                 id=show_id,
                 participants=participants,
                 old_king=old_king,
-                seed_mode="manual" if request.seed else "auto",
-                manual_seed=request.seed,
+                seed_mode=seed_mode,
+                seed=seed,
+                fate=fate,
             )
             self._sessions[show_id] = record
         return record
