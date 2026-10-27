@@ -187,3 +187,29 @@ button.start:not(:disabled):hover {
 .server-error {
   margin: 0.75rem 0 0;
 }
+
+.cast-preview {
+  margin-top: 1.5rem;
+}
+
+.cast-preview h2 {
+  margin: 0;
+  font-family: var(--bt-font-display);
+  letter-spacing: 0.05em;
+  color: #7a1712;
+}
+
+.cast-preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  justify-content: center;
+}
+
+.cast-preview-cell {
+  margin: 0;
+}
+
+.cast-preview button {
+  align-self: center;
+}

@@ -1,5 +1,6 @@
 import { ApiError, createShow, getHealth } from "../api/client";
 import { el } from "../dom";
+import { renderCastPreview } from "./preview";
 import "./setup.css";
 import { splitLines, validateRoster, type RosterValidation } from "./validation";
 
@@ -25,11 +26,8 @@ export function renderSetup(root: HTMLElement, navigate: (path: string) => void)
   const serverError = el("p", { class: "server-error", role: "alert", hidden: true });
   const configWarning = el("p", { class: "config-warning", role: "status", hidden: true });
 
-  const preview = el(
-    "button",
-    { type: "button", class: "secondary", disabled: true, title: "Arrives with the puppet renderer" },
-    "Preview cast",
-  );
+  const preview = el("button", { type: "button", class: "secondary", disabled: true }, "Preview cast");
+  const previewSlot = el("div", { class: "preview-slot" });
   const start = el("button", { type: "button", class: "start", disabled: true }, "START THE SHOW");
 
   const page = el(
@@ -72,6 +70,7 @@ export function renderSetup(root: HTMLElement, navigate: (path: string) => void)
         serverError,
       ),
     ),
+    previewSlot,
   );
 
   let current: RosterValidation = validateRoster([]);
@@ -97,6 +96,18 @@ export function renderSetup(root: HTMLElement, navigate: (path: string) => void)
     oldKing.classList.toggle("flagged", current.oldKingIssues.length > 0);
     issues.replaceChildren(...current.issues.map((issue) => el("li", {}, issue.message)));
     start.disabled = !current.valid || submitting;
+    preview.disabled = previewableNames().length === 0;
+  }
+
+  function previewableNames(): string[] {
+    return current.entries.filter((entry) => entry.issues.length === 0).map((entry) => entry.name);
+  }
+
+  function showPreview(): void {
+    const names = previewableNames();
+    if (names.length === 0) return;
+    previewSlot.replaceChildren(renderCastPreview(names, () => previewSlot.replaceChildren()));
+    previewSlot.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   async function submit(): Promise<void> {
@@ -125,6 +136,7 @@ export function renderSetup(root: HTMLElement, navigate: (path: string) => void)
   participants.addEventListener("input", refresh);
   oldKing.addEventListener("input", refresh);
   start.addEventListener("click", () => void submit());
+  preview.addEventListener("click", showPreview);
 
   root.replaceChildren(page);
   refresh();

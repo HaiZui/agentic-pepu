@@ -1,0 +1,123 @@
+.gallery {
+  padding: 1.5rem 2rem 4rem;
+  background: var(--bt-paper);
+}
+
+.gallery h1,
+.gallery h2 {
+  font-family: var(--bt-font-display);
+  letter-spacing: 0.04em;
+  color: #7a1712;
+}
+
+.gallery-section {
+  margin-bottom: 2.5rem;
+}
+
+.gallery .grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: flex-end;
+}
+
+.gallery .cell {
+  margin: 0;
+  text-align: center;
+}
+
+.gallery figcaption {
+  font-family: var(--bt-font-lettering);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.gallery .scenery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 1rem;
+}
+
+.gallery .stage-box {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 3px solid var(--bt-ink);
+  background: #000;
+}
+
+.gallery .banner-row,
+.gallery .crowd-row {
+  width: 100%;
+  max-width: 1100px;
+  display: block;
+}
+
+.gallery .sample-display {
+  font-family: var(--bt-font-display);
+  font-size: 3rem;
+  margin: 0;
+}
+
+.gallery .sample-lettering {
+  font-family: var(--bt-font-lettering);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.gallery .swatches {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.gallery .swatch {
+  width: 48px;
+  height: 48px;
+  border: 6px solid;
+  outline: 2px solid var(--bt-ink);
+}
+
+.articulation-demo [data-part="arm-right"] {
+  animation: bt-swing 1.6s ease-in-out infinite alternate;
+}
+
+.articulation-demo [data-part="head"] {
+  animation: bt-nod 2.2s ease-in-out infinite alternate;
+}
+
+.articulation-demo .pivot-marker {
+  fill: #ff2bd6;
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+
+/* Print mode is captured by a headless browser; endless animations would keep it from settling. */
+.bt-print .articulation-demo [data-part] {
+  animation: none;
+}
+
+@keyframes bt-swing {
+  from {
+    transform: rotate(-12deg);
+  }
+  to {
+    transform: rotate(-70deg);
+  }
+}
+
+@keyframes bt-nod {
+  from {
+    transform: rotate(-6deg);
+  }
+  to {
+    transform: rotate(6deg);
+  }
+}
+
+@media print {
+  .gallery-section {
+    break-inside: avoid;
+  }
+  .gallery button {
+    display: none;
+  }
+}

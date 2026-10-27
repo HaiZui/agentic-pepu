@@ -1,0 +1,152 @@
+@import "../assets/fonts/fonts.css";
+
+:root {
+  --bt-ink: #1b130b;
+  --bt-ink-width: 3px;
+  --bt-paper: #f2e4c4;
+  --bt-red: #c42a1f;
+  --bt-blue: #21508f;
+  --bt-yellow: #efbd2e;
+  --bt-gold: #d4a326;
+  --bt-green: #2f6e3b;
+  --bt-purple: #5a2d82;
+  --bt-steel: #8d99a6;
+  --bt-wood: #8a5a32;
+  --bt-bone: #efe6d2;
+  --bt-font-display: "Bangers", "Impact", sans-serif;
+  --bt-font-lettering: "Comic Neue", "Comic Sans MS", sans-serif;
+}
+
+.bt-print {
+  --bt-ink-width: 2.4px;
+}
+
+/* Ink and fills ------------------------------------------------------------------- */
+.ink {
+  stroke: var(--bt-ink);
+  stroke-width: var(--bt-ink-width);
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  paint-order: stroke;
+}
+.ink-thin {
+  stroke: var(--bt-ink);
+  stroke-width: calc(var(--bt-ink-width) * 0.6);
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.line {
+  fill: none;
+  stroke: var(--bt-ink);
+  stroke-width: var(--bt-ink-width);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.line-thin {
+  fill: none;
+  stroke: var(--bt-ink);
+  stroke-width: calc(var(--bt-ink-width) * 0.6);
+  stroke-linecap: round;
+}
+.texture {
+  fill: url(#bt-fibres);
+  pointer-events: none;
+}
+.halftone {
+  fill: url(#bt-halftone);
+  opacity: 0.28;
+  pointer-events: none;
+}
+.halftone-fine {
+  fill: url(#bt-halftone-fine);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.skin { fill: var(--skin); }
+.hair { fill: var(--hair); }
+.garment { fill: var(--garment); }
+.trim { fill: var(--trim); }
+.tabard { fill: var(--tabard); }
+.tabard-trim { fill: var(--tabard-trim); }
+.ink-fill { fill: var(--bt-ink); }
+.paper-fill { fill: var(--bt-paper); }
+.white { fill: #fffaf0; }
+.steel { fill: var(--bt-steel); }
+.wood { fill: var(--bt-wood); }
+.gold { fill: var(--bt-gold); }
+.red { fill: var(--bt-red); }
+.blue { fill: var(--bt-blue); }
+.teal { fill: #1e7a78; }
+.yellow { fill: var(--bt-yellow); }
+.bone { fill: var(--bt-bone); }
+.cheek { fill: #e0644f; opacity: 0.35; }
+.tear { fill: #7fb6e6; }
+
+/* Paper look: rough cut edges on stage; print relies on the vector fibre texture only. */
+.paper {
+  filter: url(#bt-paper);
+}
+.bt-print .paper {
+  filter: none;
+}
+.print-fibre-light {
+  fill: none;
+  stroke: #fff8e6;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+.print-fibre-dark {
+  fill: none;
+  stroke: #3a2a14;
+  stroke-width: 0.8;
+  stroke-linecap: round;
+  opacity: 0.22;
+}
+.print-halftone {
+  fill: var(--bt-ink);
+  opacity: 0.28;
+}
+.print-halftone-fine {
+  fill: var(--bt-ink);
+  opacity: 0.3;
+}
+
+/* Puppets --------------------------------------------------------------------------- */
+.puppet {
+  --skin: var(--base-skin);
+  --hair: var(--base-hair);
+  --garment: var(--base-garment);
+  --trim: var(--base-trim);
+  --tabard: var(--base-tabard);
+  --tabard-trim: var(--base-tabard-trim);
+}
+.puppet.ghost {
+  --skin: #dcebff;
+  --hair: #c2d6f2;
+  --garment: #a9c4ea;
+  --trim: #e8f2ff;
+  --tabard: #b7cdee;
+  --tabard-trim: #e8f2ff;
+  opacity: 0.75;
+}
+.puppet.ghost [data-part="rod"] {
+  display: none;
+}
+.puppet.ghost [data-badge] {
+  opacity: 0.35;
+}
+.puppet [data-part] {
+  transform-box: view-box;
+}
+
+/* Labels ---------------------------------------------------------------------------------- */
+.name-card {
+  font-family: var(--bt-font-display);
+  letter-spacing: 0.04em;
+}
+.lettering {
+  font-family: var(--bt-font-lettering);
+  font-weight: 700;
+}

@@ -1,0 +1,24 @@
+/* Bundled locally (SIL Open Font License, see OFL-*.txt) so the show never needs the network. */
+@font-face {
+  font-family: "Bangers";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("./bangers-latin-400-normal.woff2") format("woff2"), url("./bangers-latin-400-normal.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("./comic-neue-latin-400-normal.woff2") format("woff2"), url("./comic-neue-latin-400-normal.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("./comic-neue-latin-700-normal.woff2") format("woff2"), url("./comic-neue-latin-700-normal.woff") format("woff");
+}

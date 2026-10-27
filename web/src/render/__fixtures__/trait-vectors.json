@@ -1,0 +1,66 @@
+{
+  "Matti": {
+    "body": 5,
+    "head": 0,
+    "hair": 3,
+    "beard": 3,
+    "mark": 0,
+    "palette": 7
+  },
+  "Aino": {
+    "body": 2,
+    "head": 4,
+    "hair": 1,
+    "beard": 0,
+    "mark": 2,
+    "palette": 9
+  },
+  "Kalle": {
+    "body": 0,
+    "head": 2,
+    "hair": 8,
+    "beard": 1,
+    "mark": 4,
+    "palette": 1
+  },
+  "Jääskeläinen": {
+    "body": 2,
+    "head": 4,
+    "hair": 0,
+    "beard": 3,
+    "mark": 3,
+    "palette": 4
+  },
+  "Öhman": {
+    "body": 5,
+    "head": 4,
+    "hair": 7,
+    "beard": 1,
+    "mark": 2,
+    "palette": 9
+  },
+  "Åsa": {
+    "body": 1,
+    "head": 3,
+    "hair": 6,
+    "beard": 4,
+    "mark": 4,
+    "palette": 7
+  },
+  "Matti K.": {
+    "body": 3,
+    "head": 3,
+    "hair": 8,
+    "beard": 0,
+    "mark": 4,
+    "palette": 5
+  },
+  "Liisa": {
+    "body": 0,
+    "head": 4,
+    "hair": 9,
+    "beard": 4,
+    "mark": 3,
+    "palette": 7
+  }
+}
