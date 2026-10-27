@@ -33,5 +33,16 @@ test("a six-peasant fallback show plays to the credits and crowns the fate winne
   for (const name of others) await expect(page.getByTestId("fallen")).toContainText(name);
   await expect(page.getByTestId("seed")).not.toHaveText("revealing...");
 
+  // The comic book is printed in the background and offered in the credits.
+  const comic = page.getByTestId("comic");
+  await expect(comic).toHaveAttribute("data-status", "ready", { timeout: 120_000 });
+  await expect(comic).toContainText(/bottle-throne_\d{4}-\d{2}-\d{2}\.pdf/);
+  const opened = page.context().waitForEvent("page");
+  await page.getByTestId("comic-open").click();
+  expect((await opened).url()).toContain(`/api/shows/${id}/comic.pdf`);
+  const pdf = await request.get(`/api/shows/${id}/comic.pdf`);
+  expect(pdf.headers()["content-type"]).toBe("application/pdf");
+  expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
+
   expect(errors).toEqual([]);
 });

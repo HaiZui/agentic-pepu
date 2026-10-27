@@ -205,8 +205,9 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
   const captionSnapshots = new Map<number, StageState>();
   const pushCaptions = (i: number) => {
     for (const caption of captionsBefore(i)) {
-      const step = w.push({ kind: "caption", text: caption.text, readSeconds: readingSeconds(caption.text) }, 0);
-      captionSnapshots.set(scene.captions.indexOf(caption), step.stateAfter);
+      const index = scene.captions.indexOf(caption);
+      const step = w.push({ kind: "caption", text: caption.text, index, readSeconds: readingSeconds(caption.text) }, 0);
+      captionSnapshots.set(index, step.stateAfter);
     }
   };
 

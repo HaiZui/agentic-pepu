@@ -5,6 +5,7 @@ import { renderBanner, renderSigil, type HouseId } from "../render";
 import { SVG_NS } from "../render/svg";
 import { shortSeal } from "../show/seal";
 import type { CastSheet } from "./cast";
+import type { ComicLink } from "./comic-link";
 import { MOMENT } from "./timing";
 import type { FateScript } from "./types";
 
@@ -24,6 +25,8 @@ export interface ShowTexts {
   reveal: () => Promise<Reveal | null>;
   /** Required attributions for bundled audio, from the licence manifest. */
   attributions?: string[];
+  /** The comic book PDF of this show (absent on dev stages). */
+  comic?: ComicLink;
 }
 
 function svgEl(viewBox: string, className: string, ...children: SVGElement[]): SVGSVGElement {
@@ -42,6 +45,56 @@ export function sealMedallion(seal: string): HTMLElement {
     el("span", { class: "seal-label" }, "Seal of Fate"),
     el("span", { class: "seal-code" }, shortSeal(seal)),
   );
+}
+
+/** Comic status line with Open comic / Show in folder (or Retry); follows the status while it is on screen. */
+function comicBlock(comic: ComicLink): HTMLElement {
+  const block = el("div", { class: "credits-comic", "data-testid": "comic" });
+  const button = (label: string, testId: string, action: () => Promise<void> | void) => {
+    const b = el("button", { type: "button", "data-testid": testId }, label);
+    b.addEventListener("click", (event) => {
+      event.stopPropagation();
+      b.disabled = true;
+      Promise.resolve(action())
+        .catch(() => (note.textContent = "That did not work."))
+        .finally(() => (b.disabled = false));
+    });
+    return b;
+  };
+  const note = el("span", { class: "comic-note" });
+  const render = () => {
+    const info = comic.info;
+    block.dataset.status = info?.status ?? "pending";
+    note.textContent = "";
+    switch (info?.status) {
+      case "ready":
+        block.replaceChildren(
+          el("strong", {}, "Comic book: "),
+          el("span", { class: "comic-file" }, info.file_name ?? "ready"),
+          button("Open comic", "comic-open", () => comic.open()),
+          button("Show in folder", "comic-reveal", () => comic.reveal()),
+          note,
+        );
+        break;
+      case "failed":
+        block.replaceChildren(
+          el("strong", {}, "Comic book failed: "),
+          el("span", { class: "comic-error" }, info.error ?? "unknown error"),
+          button("Retry", "comic-retry", () => comic.retry()),
+          note,
+        );
+        break;
+      case "off":
+        block.replaceChildren(el("strong", {}, "Comic book: "), "switched off");
+        break;
+      default:
+        block.replaceChildren(el("strong", {}, "Comic book: "), "the scribes are inking the pages...");
+    }
+  };
+  render();
+  // Credits are rebuilt on seeks; the few detached blocks that keep listening are harmless.
+  comic.subscribe(render);
+  return block;
 }
 
 /** Full-stage overlays: title cards, seal, roll-call heading, coronation splash, credits, interlude. */
@@ -258,6 +311,7 @@ export class Overlays {
       attributions.length > 0
         ? el("div", { class: "credits-audio", "data-testid": "audio-credits" }, el("strong", {}, "Music & sound: "), attributions.join(" · "))
         : null,
+      this.texts.comic ? comicBlock(this.texts.comic) : null,
     );
   }
 

@@ -574,6 +574,42 @@
   font-size: 15px;
   color: #4a3a28;
 }
+.credits-comic {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  max-width: 470px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  font-size: 19px;
+  line-height: 1.25;
+  text-align: right;
+  justify-content: flex-end;
+  pointer-events: auto;
+}
+.credits-comic button {
+  padding: 4px 14px;
+  border: 3px solid var(--bt-ink);
+  border-radius: 10px;
+  background: var(--bt-yellow);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--bt-ink);
+}
+.credits-comic button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.credits-comic .comic-file {
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+}
+.credits-comic .comic-error {
+  color: var(--bt-red);
+}
 .seed-badge {
   margin-left: 8px;
   padding: 2px 10px;

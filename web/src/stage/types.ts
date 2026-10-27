@@ -81,7 +81,7 @@ export type StepBody =
       /** Music cuts to silence this long before the line's first impact cue (dramatic beats only). */
       preSilenceMs?: number;
     }
-  | { kind: "caption"; text: string; readSeconds: number }
+  | { kind: "caption"; text: string; index: number; readSeconds: number }
   | { kind: "action"; character: string; action: Action }
   | { kind: "panel_break"; panels: PanelShot[]; sounds: string[] }
   | { kind: "montage"; victims: { id: string; mode: EliminationMode }[] }

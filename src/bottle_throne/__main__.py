@@ -44,7 +44,7 @@ def serve(args: argparse.Namespace) -> int:
     if args.open:
         threading.Timer(1.5, webbrowser.open, args=(url,)).start()
 
-    uvicorn.run(create_app(settings), host=host, port=port, log_level="info")
+    uvicorn.run(create_app(settings.model_copy(update={"port": port})), host=host, port=port, log_level="info")
     return 0
 
 

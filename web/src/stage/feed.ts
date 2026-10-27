@@ -5,18 +5,22 @@ import {
   getStoryStatus,
   storyEventsUrl,
   type ChronicleTexts,
+  type ComicInfo,
   type GenerationStatus,
   type SceneScript,
   type ShowBible,
 } from "../api/client";
 
 type BeatStatus = GenerationStatus["beats"][number];
+const COMIC_FINAL = new Set<ComicInfo["status"]>(["ready", "failed", "off"]);
 
 export interface FeedHandlers {
   scene(scene: SceneScript, status: BeatStatus): void;
   bible?(bible: ShowBible): void;
   chronicle?(texts: ChronicleTexts): void;
   progress?(statuses: BeatStatus[]): void;
+  /** Comic PDF status; the stream stays open after the story completes until the comic is final. */
+  comic?(info: ComicInfo): void;
 }
 
 /** Follows story generation over SSE and hands every scene to the stage as soon as it is ready. */
@@ -56,8 +60,13 @@ export function followShow(showId: string, handlers: FeedHandlers): () => void {
   source.addEventListener("bible", () => void getBible(showId).then((b) => !closed && handlers.bible?.(b)));
   source.addEventListener("chronicle", () => void getChronicleTexts(showId).then((c) => !closed && handlers.chronicle?.(c)));
   source.addEventListener("complete", () => {
-    source.close();
+    if (!handlers.comic) source.close();
     void getStoryStatus(showId).then((s) => !closed && onStatus(s));
+  });
+  source.addEventListener("comic", (event) => {
+    const info = parse<ComicInfo>(event);
+    if (COMIC_FINAL.has(info.status)) source.close();
+    if (!closed) handlers.comic?.(info);
   });
 
   return () => {

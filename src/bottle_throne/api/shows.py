@@ -14,7 +14,10 @@ def _store(request: Request) -> SessionStore:
 @router.post("", response_model=ShowSession, status_code=status.HTTP_201_CREATED)
 def create_show(body: ShowRequest, request: Request) -> ShowSession:
     record = _store(request).create(body)
-    request.app.state.story_worker.start(record.story)
+    story = request.app.state.story_worker.start(record.story)
+    comic_worker = request.app.state.comic_worker
+    # The comic is printed once every scene and the chronicle texts are final.
+    story.add_done_callback(lambda _: comic_worker.start(record))
     return record.public()
 
 

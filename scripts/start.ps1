@@ -12,11 +12,19 @@ if (-not (Test-Path $python)) {
 }
 
 # Probe without writing to stderr: Windows PowerShell 5.1 treats redirected stderr as a terminating error here.
-& $python -c "import importlib.util, sys; sys.exit(0 if importlib.util.find_spec('bottle_throne') else 1)"
+& $python -c "import importlib.util, sys; sys.exit(0 if importlib.util.find_spec('bottle_throne') and importlib.util.find_spec('playwright') else 1)"
 if ($LASTEXITCODE -ne 0) {
     Write-Host 'Installing backend dependencies ...'
     & $python -m pip install -e .
     if ($LASTEXITCODE -ne 0) { throw 'pip install failed.' }
+}
+
+# The comic PDF is printed by Playwright's Chromium (Chrome or Edge is used if it is missing).
+& $python -c "import os, sys; from playwright.sync_api import sync_playwright; p = sync_playwright().start(); ok = os.path.exists(p.chromium.executable_path); p.stop(); sys.exit(0 if ok else 1)"
+if ($LASTEXITCODE -ne 0) {
+    Write-Host 'Installing Chromium for the comic PDF ...'
+    & $python -m playwright install chromium
+    if ($LASTEXITCODE -ne 0) { Write-Warning 'Chromium install failed; the comic will be printed with Chrome or Edge if available.' }
 }
 
 $web = Join-Path $root 'web'

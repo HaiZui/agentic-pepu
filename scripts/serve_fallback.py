@@ -19,6 +19,7 @@ def main() -> None:
         foundry_api_key=None,
         foundry_api_endpoint=None,
         foundry_llm_deployment_name=None,
+        port=port,
     )
     uvicorn.run(create_app(settings), host="127.0.0.1", port=port, log_level="warning")
 

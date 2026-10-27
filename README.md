@@ -25,14 +25,17 @@ Process environment variables override `.env`. The key stays on the backend and 
 
 The script:
 1. creates `.venv` and installs the backend if needed;
-2. builds the front end if `web/dist` is missing or out of date;
-3. starts the server on http://127.0.0.1:8765/ and opens the setup screen.
+2. installs Playwright's Chromium (`python -m playwright install chromium`) if it is missing, for the comic PDF;
+3. builds the front end if `web/dist` is missing or out of date;
+4. starts the server on http://127.0.0.1:8765/ and opens the setup screen.
 
 If PowerShell blocks the script, run `Set-ExecutionPolicy -Scope Process RemoteSigned` first. Alternatively, run the server directly with `.\.venv\Scripts\python.exe -m bottle_throne --open`.
 
 Options:
 - `BOTTLE_THRONE_PORT`: port to use, default `8765`.
 - `BOTTLE_THRONE_HOST`: interface to bind, default `127.0.0.1` (loopback only).
+- `BOTTLE_THRONE_COMIC`: set to `0` to skip the comic PDF.
+- `BOTTLE_THRONE_OUTPUT_DIR`: where comics are saved, default `output` in the repository.
 
 ### Presenter controls
 
@@ -67,6 +70,17 @@ All bundled sounds are synthesized by `scripts/gen_audio_assets.py` and released
 .\.venv\Scripts\python.exe -m pip install -e ".[assets]"
 .\.venv\Scripts\python.exe scripts\gen_audio_assets.py
 ```
+
+### Comic book
+
+While the show plays, the backend prints the whole story as an A4 comic book (16-32 pages, vector art). When every scene is written it renders `/comic/<show id>` in a headless browser and saves:
+
+```
+output/<YYYY-MM-DD_HHMM>/bottle-throne_<YYYY-MM-DD>.pdf
+output/<YYYY-MM-DD_HHMM>/show.json      # fate, scenes and chronicle texts
+```
+
+The credits show the comic status with **Open comic** and **Show in folder**. If printing fails, the show is unaffected; the credits show the reason and a **Retry** button. Printing uses Playwright's Chromium, falling back to the installed Chrome or Edge. Preview the layout with fixture shows at http://127.0.0.1:5173/dev/comic?fixture=15 (`6`, `15` or `40`; add `&worst=1` for the longest name and line).
 
 ### Future option: narrated voice
 

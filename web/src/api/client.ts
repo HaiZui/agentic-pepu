@@ -12,6 +12,7 @@ export type ShowBible = components["schemas"]["ShowBible"];
 export type ChronicleTexts = components["schemas"]["ChronicleTexts"];
 export type GenerationStatus = components["schemas"]["GenerationStatus"];
 export type Catalog = components["schemas"]["Catalog"];
+export type ComicInfo = components["schemas"]["ComicInfo"];
 
 export class ApiError extends Error {
   constructor(
@@ -63,3 +64,10 @@ export const getChronicleTexts = (id: string) => request<ChronicleTexts>(`${show
 export const getStoryStatus = (id: string) => request<GenerationStatus>(`${showPath(id)}/story`);
 export const getCatalog = () => request<Catalog>("/api/catalog");
 export const storyEventsUrl = (id: string) => `${showPath(id)}/events`;
+export const getComic = (id: string) => request<ComicInfo>(`${showPath(id)}/comic`);
+export const comicPdfUrl = (id: string) => `${showPath(id)}/comic.pdf`;
+export const retryComic = (id: string) => request<ComicInfo>(`${showPath(id)}/comic/retry`, { method: "POST" });
+export async function revealComic(id: string): Promise<void> {
+  const response = await fetch(`${showPath(id)}/comic/reveal`, { method: "POST" });
+  if (!response.ok) throw new ApiError(response.status, [`Request failed (${response.status}).`]);
+}

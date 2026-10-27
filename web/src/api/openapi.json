@@ -394,7 +394,7 @@
           "story"
         ],
         "summary": "Story Events",
-        "description": "Server-Sent Events: a status snapshot, then bible/beat/chronicle events, ending with 'complete'.",
+        "description": "Server-Sent Events: a status snapshot, bible/beat/chronicle events and 'complete', then 'comic'\nstatus events; the stream ends after the comic is final (ready, failed or off).",
         "operationId": "story_events_api_shows__show_id__events_get",
         "parameters": [
           {
@@ -410,6 +410,160 @@
         "responses": {
           "200": {
             "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shows/{show_id}/comic": {
+      "get": {
+        "tags": [
+          "comic"
+        ],
+        "summary": "Comic Status",
+        "operationId": "comic_status_api_shows__show_id__comic_get",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComicInfo"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shows/{show_id}/comic.pdf": {
+      "get": {
+        "tags": [
+          "comic"
+        ],
+        "summary": "Comic Pdf",
+        "operationId": "comic_pdf_api_shows__show_id__comic_pdf_get",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shows/{show_id}/comic/reveal": {
+      "post": {
+        "tags": [
+          "comic"
+        ],
+        "summary": "Comic Reveal",
+        "operationId": "comic_reveal_api_shows__show_id__comic_reveal_post",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shows/{show_id}/comic/retry": {
+      "post": {
+        "tags": [
+          "comic"
+        ],
+        "summary": "Comic Retry",
+        "operationId": "comic_retry_api_shows__show_id__comic_retry_post",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComicInfo"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -881,6 +1035,49 @@
           "blurb"
         ],
         "title": "ChronicleTexts"
+      },
+      "ComicInfo": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "generating",
+              "ready",
+              "failed",
+              "off"
+            ],
+            "title": "Status"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "file_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "File Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "ComicInfo",
+        "description": "Public comic status. The file's location on disk is never sent to the browser."
       },
       "Cue": {
         "properties": {
@@ -1600,6 +1797,12 @@
               "manual"
             ],
             "title": "Seed Mode"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At",
+            "description": "Local date and time the show was created (the comic's issue date)."
           }
         },
         "type": "object",
@@ -1607,7 +1810,8 @@
           "id",
           "participants",
           "old_king",
-          "seed_mode"
+          "seed_mode",
+          "created_at"
         ],
         "title": "ShowSession",
         "description": "Public view of a show session. The seed itself is never included."

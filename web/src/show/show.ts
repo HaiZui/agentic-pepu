@@ -1,6 +1,7 @@
 import { ApiError, getFate, getShow, revealSeed, type FateScript, type ShowSession } from "../api/client";
 import { unlockAudio } from "../audio/context";
 import { el } from "../dom";
+import { ComicLink } from "../stage/comic-link";
 import { followShow } from "../stage/feed";
 import { mountStage, testSpeed } from "../stage/mount";
 import { shortSeal } from "./seal";
@@ -36,9 +37,10 @@ export async function renderShow(
 
   const page = el("div", { class: "show-page" });
   root.replaceChildren(page);
+  const comic = new ComicLink(showId);
   const stage = mountStage(page, {
     fate,
-    texts: { reveal: () => revealSeed(showId).catch(() => null) },
+    texts: { reveal: () => revealSeed(showId).catch(() => null), comic },
     speed: testSpeed(),
     maxSpeed: 10,
   });
@@ -48,6 +50,7 @@ export async function renderShow(
     scene: (scene) => stage.addScene(scene),
     bible: (bible) => (stage.texts.bible = bible),
     chronicle: (texts) => (stage.texts.chronicle = texts),
+    comic: (info) => comic.update(info),
     progress: (statuses) => {
       const ready = statuses.filter((s) => s !== "pending").length;
       progress.textContent = `Scenes written: ${ready} of ${fate.beats.length}${

@@ -13,3 +13,10 @@ def test_stage_fixtures_are_current(size: int) -> None:
     assert path.read_text(encoding="utf-8") == generator["render"](size), (
         "Stage fixtures are stale; run scripts/gen_stage_fixtures.py"
     )
+
+
+def test_comic_shapes_are_current() -> None:
+    path = ROOT / "tests" / "fixtures" / "stage" / "comic-shapes.json"
+    assert path.read_text(encoding="utf-8") == generator["render_shapes"](), (
+        "Comic shapes are stale; run scripts/gen_stage_fixtures.py"
+    )

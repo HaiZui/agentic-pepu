@@ -33,6 +33,8 @@ class Settings(BaseSettings):
     foundry_api_version: str | None = Field(default=None, validation_alias="FOUNDRY_API_VERSION")
     host: str = Field(default="127.0.0.1", validation_alias="BOTTLE_THRONE_HOST")
     port: int = Field(default=8765, ge=1, le=65535, validation_alias="BOTTLE_THRONE_PORT")
+    comic_enabled: bool = Field(default=True, validation_alias="BOTTLE_THRONE_COMIC")
+    output_dir: Path = Field(default=REPO_ROOT / "output", validation_alias="BOTTLE_THRONE_OUTPUT_DIR")
 
     def foundry_presence(self) -> dict[str, bool]:
         return {

@@ -11,8 +11,8 @@ const GUTTER = 26;
 
 const MODE_LABEL: Record<EliminationMode, string> = { killed: "Fallen", forfeited: "Forfeited", exiled: "Exiled" };
 
-/** One framed comic panel: fresh scenery and figures, viewed through `frame()`. */
-function panelArt(shot: PanelShot, cast: CastSheet, width: number, height: number): SVGSVGElement {
+/** One framed comic panel: fresh scenery and figures, viewed through `frame()` (shared with the comic book). */
+export function panelArt(shot: PanelShot, cast: CastSheet, width: number, height: number): SVGSVGElement {
   const view = frame(shot.framing, shot.focus, shot.placements, width / height);
   const svg = document.createElementNS(SVG_NS, "svg");
   svg.setAttribute("viewBox", `${view.x} ${view.y} ${view.width} ${view.height}`);

@@ -179,11 +179,80 @@ export interface paths {
         };
         /**
          * Story Events
-         * @description Server-Sent Events: a status snapshot, then bible/beat/chronicle events, ending with 'complete'.
+         * @description Server-Sent Events: a status snapshot, bible/beat/chronicle events and 'complete', then 'comic'
+         *     status events; the stream ends after the comic is final (ready, failed or off).
          */
         get: operations["story_events_api_shows__show_id__events_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/shows/{show_id}/comic": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Comic Status */
+        get: operations["comic_status_api_shows__show_id__comic_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/shows/{show_id}/comic.pdf": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Comic Pdf */
+        get: operations["comic_pdf_api_shows__show_id__comic_pdf_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/shows/{show_id}/comic/reveal": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Comic Reveal */
+        post: operations["comic_reveal_api_shows__show_id__comic_reveal_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/shows/{show_id}/comic/retry": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Comic Retry */
+        post: operations["comic_retry_api_shows__show_id__comic_retry_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -332,6 +401,21 @@ export interface components {
              * @description Back-cover blurb, two or three sentences, no spoilers of the winner.
              */
             blurb: string;
+        };
+        /**
+         * ComicInfo
+         * @description Public comic status. The file's location on disk is never sent to the browser.
+         */
+        ComicInfo: {
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "pending" | "generating" | "ready" | "failed" | "off";
+            /** Error */
+            error?: string | null;
+            /** File Name */
+            file_name?: string | null;
         };
         /** Cue */
         Cue: {
@@ -636,6 +720,12 @@ export interface components {
              * @enum {string}
              */
             seed_mode: "auto" | "manual";
+            /**
+             * Created At
+             * Format: date-time
+             * @description Local date and time the show was created (the comic's issue date).
+             */
+            created_at: string;
         };
         /** StageDirection */
         StageDirection: {
@@ -985,6 +1075,126 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    comic_status_api_shows__show_id__comic_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                show_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ComicInfo"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    comic_pdf_api_shows__show_id__comic_pdf_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                show_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    comic_reveal_api_shows__show_id__comic_reveal_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                show_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    comic_retry_api_shows__show_id__comic_retry_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                show_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ComicInfo"];
+                };
             };
             /** @description Validation Error */
             422: {

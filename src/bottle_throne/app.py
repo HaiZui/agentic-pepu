@@ -5,7 +5,8 @@ from fastapi import APIRouter, FastAPI, HTTPException
 from fastapi.responses import FileResponse, HTMLResponse
 
 from bottle_throne import __version__
-from bottle_throne.api import catalog, health, shows, story
+from bottle_throne.api import catalog, comic, health, shows, story
+from bottle_throne.comic.job import ComicWorker
 from bottle_throne.config import REPO_ROOT, Settings, get_settings
 from bottle_throne.logging_utils import install_secret_masking
 from bottle_throne.sessions import SessionStore
@@ -24,6 +25,7 @@ or start the app with <code>scripts/start.ps1</code>.</p></body></html>"""
 async def _lifespan(app: FastAPI):
     yield
     app.state.story_worker.stop()
+    app.state.comic_worker.stop()
 
 
 def create_app(settings: Settings | None = None, static_dir: Path | None = None) -> FastAPI:
@@ -34,12 +36,16 @@ def create_app(settings: Settings | None = None, static_dir: Path | None = None)
     app.state.settings = settings
     app.state.sessions = SessionStore()
     app.state.story_worker = StoryWorker(create_llm(settings))
+    app.state.comic_worker = ComicWorker(
+        settings.output_dir, f"http://127.0.0.1:{settings.port}", enabled=settings.comic_enabled
+    )
 
     api = APIRouter(prefix="/api")
     api.include_router(health.router)
     api.include_router(catalog.router)
     api.include_router(shows.router)
     api.include_router(story.router)
+    api.include_router(comic.router)
     app.include_router(api)
 
     @app.api_route("/api/{_rest:path}", methods=["GET", "POST", "PUT", "PATCH", "DELETE"], include_in_schema=False)

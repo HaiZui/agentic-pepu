@@ -38,11 +38,52 @@ def render(size: int) -> str:
     return json.dumps(build(size), ensure_ascii=False, indent=1) + "\n"
 
 
+def shape(size: int) -> dict:
+    """Just enough of a show to plan comic pages: cast, houses, beats and each scene's panels and text."""
+    seed = f"comic-shape-{size}"
+    old_king = [None, "Jukka", NAMES[0]][size % 3]
+    fate = generate_fate(seed, NAMES[:size], old_king)
+    scenes = [fallback_scene(fate, beat, seed) for beat in fate.beats]
+    return {
+        "size": size,
+        "fate": {
+            "characters": [{"id": c.id, "name": c.name, "kind": c.kind, "house": c.house} for c in fate.characters],
+            "houses": [{"id": h.id, "members": h.members} for h in fate.houses],
+            "beats": [
+                {
+                    "index": b.index,
+                    "section": b.section,
+                    "card": b.card,
+                    "kind": b.kind,
+                    "dramatic": b.dramatic,
+                    "eliminations": [{"character": e.character, "mode": e.mode} for e in b.eliminations],
+                }
+                for b in fate.beats
+            ],
+        },
+        "scenes": [
+            {
+                "beat_index": s.beat_index,
+                "panels": [p.framing for p in s.panels],
+                "lines": [len(line.text) for line in s.lines],
+                "captions": [len(c.text) for c in s.captions],
+            }
+            for s in scenes
+        ],
+    }
+
+
+def render_shapes() -> str:
+    return json.dumps([shape(n) for n in range(3, 41)], ensure_ascii=False, separators=(",", ":")) + "\n"
+
+
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for size in SHOWS:
         (OUT_DIR / f"show-{size}.json").write_text(render(size), encoding="utf-8", newline="\n")
         print(f"wrote show-{size}.json")
+    (OUT_DIR / "comic-shapes.json").write_text(render_shapes(), encoding="utf-8", newline="\n")
+    print("wrote comic-shapes.json")
 
 
 if __name__ == "__main__":

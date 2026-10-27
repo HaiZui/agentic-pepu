@@ -1,8 +1,10 @@
 import secrets
 import threading
 from dataclasses import dataclass, field
+from datetime import datetime
 from typing import Literal
 
+from bottle_throne.comic.job import ComicState
 from bottle_throne.fate.fairness import ENGINE_VERSION, canonical_roster, new_auto_seed
 from bottle_throne.fate.solver import generate_fate
 from bottle_throne.models.fate import FateScript, Reveal
@@ -20,7 +22,9 @@ class SessionRecord:
     seed_mode: Literal["auto", "manual"]
     seed: str
     fate: FateScript
+    created_at: datetime = field(default_factory=lambda: datetime.now().replace(microsecond=0))
     story: StoryState = field(init=False)
+    comic: ComicState = field(default_factory=ComicState)
 
     def __post_init__(self) -> None:
         self.story = StoryState(fate=self.fate, seed=self.seed)
@@ -38,6 +42,7 @@ class SessionRecord:
             participants=self.participants,
             old_king=self.old_king,
             seed_mode=self.seed_mode,
+            created_at=self.created_at,
         )
 
 

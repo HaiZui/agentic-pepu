@@ -29,10 +29,15 @@ function render(): void {
   const path = location.pathname.replace(/\/$/, "");
   const chronicleMatch = path.match(/^\/show\/([^/]+)\/chronicle$/);
   const showMatch = path.match(/^\/show\/([^/]+)$/);
+  const comicMatch = path.match(/^\/comic\/([^/]+)$/);
   if (path === "/dev/gallery") {
     mount(() => renderGallery(app));
   } else if (path === "/dev/stage") {
     mount(() => import("./dev/stage").then((m) => m.renderStageDev(app)));
+  } else if (path === "/dev/comic") {
+    mount(() => import("./dev/comic").then((m) => m.renderComicDev(app)));
+  } else if (comicMatch) {
+    mount(() => import("./comic/page").then((m) => m.renderComicRoute(app, decodeURIComponent(comicMatch[1]))));
   } else if (chronicleMatch) {
     mount(() => renderChronicle(app, decodeURIComponent(chronicleMatch[1]), navigate));
   } else if (showMatch) {

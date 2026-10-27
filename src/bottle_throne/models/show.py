@@ -1,4 +1,5 @@
 import unicodedata
+from datetime import datetime
 from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
@@ -118,6 +119,7 @@ class ShowSession(BaseModel):
     participants: list[Participant]
     old_king: OldKing
     seed_mode: Literal["auto", "manual"]
+    created_at: datetime = Field(description="Local date and time the show was created (the comic's issue date).")
 
 
 def resolve_old_king(participants: list[str], old_king: str | None) -> tuple[list[Participant], OldKing]:

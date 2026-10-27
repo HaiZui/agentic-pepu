@@ -31,7 +31,8 @@ def test_events_then_identical_scene_fetches() -> None:
         events = read_events(client, show["id"])
 
         names = [name for name, _ in events]
-        assert names[0] == "status" and names[-1] == "complete"
+        assert names[0] == "status" and names[-2:] == ["complete", "comic"]
+        assert events[-1][1]["status"] == "off"
         beat_events = [data for name, data in events if name == "beat"]
         assert sorted(e["index"] for e in beat_events) == list(range(len(fate["beats"])))
         assert {e["status"] for e in beat_events} == {"fallback"}
