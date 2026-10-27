@@ -1,0 +1,321 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "The Bottle Throne",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shows": {
+      "post": {
+        "tags": [
+          "shows"
+        ],
+        "summary": "Create Show",
+        "operationId": "create_show_api_shows_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShowRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShowSession"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shows/{show_id}": {
+      "get": {
+        "tags": [
+          "shows"
+        ],
+        "summary": "Get Show",
+        "operationId": "get_show_api_shows__show_id__get",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShowSession"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FoundryHealth": {
+        "properties": {
+          "api_key": {
+            "type": "boolean",
+            "title": "Api Key"
+          },
+          "endpoint": {
+            "type": "boolean",
+            "title": "Endpoint"
+          },
+          "deployment": {
+            "type": "boolean",
+            "title": "Deployment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "api_key",
+          "endpoint",
+          "deployment"
+        ],
+        "title": "FoundryHealth"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Health": {
+        "properties": {
+          "foundry": {
+            "$ref": "#/components/schemas/FoundryHealth"
+          }
+        },
+        "type": "object",
+        "required": [
+          "foundry"
+        ],
+        "title": "Health"
+      },
+      "OldKing": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "is_mad_king": {
+            "type": "boolean",
+            "title": "Is Mad King",
+            "description": "True when no previous winner was given."
+          },
+          "is_participant": {
+            "type": "boolean",
+            "title": "Is Participant",
+            "description": "True when the previous winner also competes."
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "is_mad_king",
+          "is_participant"
+        ],
+        "title": "OldKing"
+      },
+      "Participant": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "is_old_king": {
+            "type": "boolean",
+            "title": "Is Old King",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "Participant"
+      },
+      "ShowRequest": {
+        "properties": {
+          "participants": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Participants",
+            "description": "Participant names, one per entry; blanks are ignored."
+          },
+          "old_king": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Old King",
+            "description": "Previous winner; empty means the Mad King."
+          },
+          "seed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seed",
+            "description": "Manual seed; empty means automatic."
+          }
+        },
+        "type": "object",
+        "required": [
+          "participants"
+        ],
+        "title": "ShowRequest"
+      },
+      "ShowSession": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "participants": {
+            "items": {
+              "$ref": "#/components/schemas/Participant"
+            },
+            "type": "array",
+            "title": "Participants"
+          },
+          "old_king": {
+            "$ref": "#/components/schemas/OldKing"
+          },
+          "seed_mode": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "manual"
+            ],
+            "title": "Seed Mode"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "participants",
+          "old_king",
+          "seed_mode"
+        ],
+        "title": "ShowSession",
+        "description": "Public view of a show session. The seed itself is never included."
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

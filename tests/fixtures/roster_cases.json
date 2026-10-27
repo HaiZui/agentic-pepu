@@ -1,0 +1,91 @@
+{
+  "description": "Shared roster validation vectors used by both pytest and vitest. Each invalid case violates exactly one rule.",
+  "cases": [
+    {
+      "name": "blank lines and surrounding whitespace are ignored",
+      "participants": ["Matti", "", "  Aino  ", "Kalle"],
+      "valid": true,
+      "roster": ["Matti", "Aino", "Kalle"]
+    },
+    {
+      "name": "finnish characters are preserved",
+      "participants": ["Jääskeläinen", "Öhman", "Åsa"],
+      "valid": true,
+      "roster": ["Jääskeläinen", "Öhman", "Åsa"]
+    },
+    {
+      "name": "two participants are too few",
+      "participants": ["Matti", "Aino"],
+      "valid": false,
+      "error": "roster_too_small",
+      "flagged": []
+    },
+    {
+      "name": "forty participants are allowed",
+      "participants": ["Peasant 01", "Peasant 02", "Peasant 03", "Peasant 04", "Peasant 05", "Peasant 06", "Peasant 07", "Peasant 08", "Peasant 09", "Peasant 10", "Peasant 11", "Peasant 12", "Peasant 13", "Peasant 14", "Peasant 15", "Peasant 16", "Peasant 17", "Peasant 18", "Peasant 19", "Peasant 20", "Peasant 21", "Peasant 22", "Peasant 23", "Peasant 24", "Peasant 25", "Peasant 26", "Peasant 27", "Peasant 28", "Peasant 29", "Peasant 30", "Peasant 31", "Peasant 32", "Peasant 33", "Peasant 34", "Peasant 35", "Peasant 36", "Peasant 37", "Peasant 38", "Peasant 39", "Peasant 40"],
+      "valid": true
+    },
+    {
+      "name": "forty-one participants are too many",
+      "participants": ["Peasant 01", "Peasant 02", "Peasant 03", "Peasant 04", "Peasant 05", "Peasant 06", "Peasant 07", "Peasant 08", "Peasant 09", "Peasant 10", "Peasant 11", "Peasant 12", "Peasant 13", "Peasant 14", "Peasant 15", "Peasant 16", "Peasant 17", "Peasant 18", "Peasant 19", "Peasant 20", "Peasant 21", "Peasant 22", "Peasant 23", "Peasant 24", "Peasant 25", "Peasant 26", "Peasant 27", "Peasant 28", "Peasant 29", "Peasant 30", "Peasant 31", "Peasant 32", "Peasant 33", "Peasant 34", "Peasant 35", "Peasant 36", "Peasant 37", "Peasant 38", "Peasant 39", "Peasant 40", "Peasant 41"],
+      "valid": false,
+      "error": "roster_too_large",
+      "flagged": []
+    },
+    {
+      "name": "names differing only by case are duplicates",
+      "participants": ["Matti", "matti", "Aino"],
+      "valid": false,
+      "error": "duplicate_name",
+      "flagged": ["Matti", "matti"]
+    },
+    {
+      "name": "names differing only by surrounding whitespace are duplicates",
+      "participants": ["Aino", "  Aino ", "Kalle"],
+      "valid": false,
+      "error": "duplicate_name",
+      "flagged": ["Aino", "Aino"]
+    },
+    {
+      "name": "composed and decomposed umlauts are duplicates",
+      "participants": ["\u00c4ij\u00e4", "A\u0308ij\u00e4", "Kalle"],
+      "valid": false,
+      "error": "duplicate_name",
+      "flagged": ["\u00c4ij\u00e4", "\u00c4ij\u00e4"]
+    },
+    {
+      "name": "distinguished duplicates are allowed",
+      "participants": ["Matti K.", "Matti V.", "Aino"],
+      "valid": true,
+      "roster": ["Matti K.", "Matti V.", "Aino"]
+    },
+    {
+      "name": "a thirty-character name is too long",
+      "participants": ["Matti", "Aino", "Abcdefghijklmnopqrstuvwxyzabcd"],
+      "valid": false,
+      "error": "name_too_long",
+      "flagged": ["Abcdefghijklmnopqrstuvwxyzabcd"]
+    },
+    {
+      "name": "a twenty-four-character finnish name is allowed",
+      "participants": ["Matti", "Aino", "Åsa Jääskeläinen-Öhmanen"],
+      "valid": true,
+      "roster": ["Matti", "Aino", "Åsa Jääskeläinen-Öhmanen"]
+    },
+    {
+      "name": "an overlong old king is rejected",
+      "participants": ["Matti", "Aino", "Kalle"],
+      "old_king": "Abcdefghijklmnopqrstuvwxyzabcd",
+      "valid": false,
+      "error": "old_king_too_long",
+      "flagged": []
+    },
+    {
+      "name": "old king may be empty",
+      "participants": ["Matti", "Aino", "Kalle"],
+      "old_king": "   ",
+      "valid": true,
+      "roster": ["Matti", "Aino", "Kalle"]
+    }
+  ]
+}
