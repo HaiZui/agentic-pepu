@@ -21,6 +21,11 @@ dev = [
     "pytest-asyncio>=1.2",
     "httpx>=0.28",
 ]
+# Only needed to regenerate the bundled audio (scripts/gen_audio_assets.py).
+assets = [
+    "numpy>=2.0",
+    "soundfile>=0.13",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/bottle_throne"]

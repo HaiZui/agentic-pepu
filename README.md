@@ -34,6 +34,47 @@ Options:
 - `BOTTLE_THRONE_PORT`: port to use, default `8765`.
 - `BOTTLE_THRONE_HOST`: interface to bind, default `127.0.0.1` (loopback only).
 
+### Presenter controls
+
+After **Raise the curtain** the show plays by itself. The controls appear when you move the mouse and hide again after three seconds.
+
+| Key | Action |
+| --- | --- |
+| Space | Pause / resume |
+| → / ← | Next / previous line |
+| Shift + → / ← | Next / previous scene |
+| + / − | Faster / slower (0.5x to 2x) |
+| N | Skip to the next act |
+| M | Mute / unmute sound |
+| ↑ / ↓ | Volume up / down |
+| F | Fullscreen |
+| H | Show / hide the controls |
+| ? | Shortcut help (pauses the show) |
+
+No control changes the outcome: skipped beats still happen, and the crowned winner is always the fate winner. If a scene is still being written when it is needed, the curtain closes for a short interlude.
+
+To rehearse without network access, run `.\.venv\Scripts\python.exe scripts\serve_fallback.py 8765`; every scene then uses its template.
+
+### Sound
+
+Pressing START unlocks the browser's audio, so the overture plays with the cold open. Each scene's music mood loops and crossfades, dialogue ducks the music, and sound effects land with the comic lettering. On dramatic beats the music drops out just before the first impact. If the browser still blocks audio, a "Click to enable sound" button appears; the show keeps playing either way.
+
+Open **Sound check** on the setup screen to see whether any sound file is missing and to play a test sound through the projector's speakers. A missing or broken file is skipped, never fatal.
+
+All bundled sounds are synthesized by `scripts/gen_audio_assets.py` and released as CC0; `web/public/audio/LICENSES.json` lists every file. If you replace a file with a third-party sound, add its licence there; entries with `attribution_required` appear in the show credits. To regenerate the bundled set:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -e ".[assets]"
+.\.venv\Scripts\python.exe scripts\gen_audio_assets.py
+```
+
+### Future option: narrated voice
+
+Not built yet. An Azure Speech voice could read the captions and narration, possibly with a distinct voice per archetype. It would need:
+- a separate **Azure Speech** resource and key (the Foundry key in `.env` does not cover it);
+- **pre-generation and caching** of the audio clips while the scenes are written, which adds time before the show is ready;
+- **ducking** on the reserved voice bus of the audio engine, so music and effects drop while the voice speaks.
+
 ## Fairness and verification
 
 The winner is decided before the story is written. It is a uniform random pick, driven by the seed, from the participants sorted alphabetically (ignoring case). The story is then built around that result, and the AI only narrates it.
@@ -60,7 +101,12 @@ Tests:
 ```powershell
 .\.venv\Scripts\python.exe -m pytest      # backend
 cd web; npm test                          # front end
+cd web; npm run test:e2e                  # build + Playwright: plays a fallback show to the credits
 ```
+
+The end-to-end test uses the installed Chrome (set `PW_CHANNEL=msedge` for Edge) and starts its own backend with Foundry switched off.
+
+Visual checks for the stage live at http://127.0.0.1:5173/dev/stage (one scene per action, panel break, montage, cold open, coronation, interlude and full fixture shows, with an fps meter). The fixture shows come from `tests/fixtures/stage`; regenerate them with `.\.venv\Scripts\python.exe scripts\gen_stage_fixtures.py` after changing the fate engine or fallback templates.
 
 ### API contract
 

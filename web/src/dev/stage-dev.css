@@ -1,0 +1,54 @@
+.stage-dev {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  height: 100vh;
+  background: #0b0705;
+}
+.stage-dev aside {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  overflow: hidden;
+  background: #e9dcc3;
+}
+.stage-dev h1 {
+  margin: 0;
+  font-size: 20px;
+}
+.stage-dev-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.stage-dev-list button {
+  padding: 3px 8px;
+  border: 1px solid #2b1d0e;
+  border-radius: 4px;
+  background: #fffaf0;
+  font-size: 12px;
+  cursor: pointer;
+}
+.stage-dev-list button.active {
+  background: #efbd2e;
+  font-weight: 700;
+}
+.stage-dev-meter {
+  font: 12px monospace;
+}
+.stage-dev-log {
+  flex: 1;
+  margin: 0;
+  padding-left: 22px;
+  overflow: auto;
+  font: 11px monospace;
+}
+.stage-dev-log .end {
+  font-weight: 700;
+  color: #c42a1f;
+}
+.stage-dev-host {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}

@@ -1,0 +1,2444 @@
+{
+ "seed": "stage-fixture-15",
+ "fate": {
+  "engine_version": "fate-1",
+  "seal": "63a453237be5847837b8d364a8e4b53fe70f09aa25a41cefbb761058fb11a48d",
+  "seed_mode": "auto",
+  "roster_size": 15,
+  "characters": [
+   {
+    "id": "p01",
+    "name": "Aino",
+    "kind": "participant",
+    "house": "boar",
+    "archetype": "bard",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p02",
+    "name": "Eero",
+    "kind": "participant",
+    "house": "wolf",
+    "archetype": "zealot",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p03",
+    "name": "Heli",
+    "kind": "participant",
+    "house": "eel",
+    "archetype": "coward",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p04",
+    "name": "Iiro",
+    "kind": "participant",
+    "house": "owl",
+    "archetype": "zealot",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p05",
+    "name": "Jääskeläinen",
+    "kind": "participant",
+    "house": "eel",
+    "archetype": "fool",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p06",
+    "name": "Kalle",
+    "kind": "participant",
+    "house": "boar",
+    "archetype": "bard",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p07",
+    "name": "Liisa",
+    "kind": "participant",
+    "house": "owl",
+    "archetype": "schemer",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p08",
+    "name": "Matti",
+    "kind": "participant",
+    "house": "owl",
+    "archetype": "zealot",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p09",
+    "name": "Pekka",
+    "kind": "participant",
+    "house": "wolf",
+    "archetype": "fool",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p10",
+    "name": "Sanna",
+    "kind": "participant",
+    "house": "wolf",
+    "archetype": "honorable",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p11",
+    "name": "Timo",
+    "kind": "participant",
+    "house": "boar",
+    "archetype": "honorable",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p12",
+    "name": "Ulla",
+    "kind": "participant",
+    "house": "eel",
+    "archetype": "fool",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p13",
+    "name": "Ville",
+    "kind": "participant",
+    "house": "eel",
+    "archetype": "zealot",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p14",
+    "name": "Åsa",
+    "kind": "participant",
+    "house": "boar",
+    "archetype": "honorable",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p15",
+    "name": "Öhman",
+    "kind": "participant",
+    "house": "wolf",
+    "archetype": "bard",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "old_king",
+    "name": "the Mad King",
+    "kind": "old_king",
+    "house": null,
+    "archetype": null,
+    "npc_role": null,
+    "is_old_king": true
+   }
+  ],
+  "houses": [
+   {
+    "id": "boar",
+    "name": "House Boar",
+    "sigil": "Boar",
+    "members": [
+     "p01",
+     "p06",
+     "p11",
+     "p14"
+    ]
+   },
+   {
+    "id": "eel",
+    "name": "House Eel",
+    "sigil": "Eel",
+    "members": [
+     "p03",
+     "p05",
+     "p12",
+     "p13"
+    ]
+   },
+   {
+    "id": "wolf",
+    "name": "House Wolf",
+    "sigil": "Wolf",
+    "members": [
+     "p02",
+     "p09",
+     "p10",
+     "p15"
+    ]
+   },
+   {
+    "id": "owl",
+    "name": "House Owl",
+    "sigil": "Owl",
+    "members": [
+     "p04",
+     "p07",
+     "p08"
+    ]
+   }
+  ],
+  "old_king": "old_king",
+  "winner": "p02",
+  "beats": [
+   {
+    "index": 0,
+    "section": "cold_open",
+    "card": "cold_open",
+    "title": "The Old King's Court",
+    "kind": "structural",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "old_king",
+      "character": "old_king"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 46,
+    "dramatic": false
+   },
+   {
+    "index": 1,
+    "section": "act_1",
+    "card": "decree",
+    "title": "The Old King's Decree",
+    "kind": "drama",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "old_king",
+      "character": "old_king"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 22,
+    "dramatic": false
+   },
+   {
+    "index": 2,
+    "section": "act_1",
+    "card": "faceless_contract",
+    "title": "The Faceless Contract",
+    "kind": "drama",
+    "setting": "temple",
+    "roles": [
+     {
+      "role": "client",
+      "character": "p08"
+     },
+     {
+      "role": "target",
+      "character": "p10"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 20,
+    "dramatic": false
+   },
+   {
+    "index": 3,
+    "section": "act_1",
+    "card": "prophecy",
+    "title": "The Prophecy",
+    "kind": "drama",
+    "setting": "forest",
+    "roles": [
+     {
+      "role": "listener",
+      "character": "p14"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [
+     {
+      "id": "betrayed",
+      "text": "One who was betrayed by a sworn ally"
+     },
+     {
+      "id": "house:wolf",
+      "text": "One who bears the sign of the Wolf"
+     },
+     {
+      "id": "final_rival:zealot",
+      "text": "One who faces a Zealot at the last"
+     }
+    ],
+    "budget_seconds": 26,
+    "dramatic": true
+   },
+   {
+    "index": 4,
+    "section": "act_1",
+    "card": "poisoned_goblet",
+    "title": "The Poisoned Goblet",
+    "kind": "single",
+    "setting": "feast_hall",
+    "roles": [
+     {
+      "role": "poisoner",
+      "character": "p09"
+     },
+     {
+      "role": "victim",
+      "character": "p01"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p01",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [
+     "first_blood"
+    ],
+    "prophecy_hints": [],
+    "budget_seconds": 28,
+    "dramatic": true
+   },
+   {
+    "index": 5,
+    "section": "act_1",
+    "card": "faceless_strike",
+    "title": "The Faceless Strike",
+    "kind": "single",
+    "setting": "dungeon",
+    "roles": [
+     {
+      "role": "target",
+      "character": "p10"
+     },
+     {
+      "role": "client",
+      "character": "p08"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p10",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 28,
+    "dramatic": true
+   },
+   {
+    "index": 6,
+    "section": "act_2",
+    "card": "muddy_field_battle",
+    "title": "Battle of the Muddy Field",
+    "kind": "crowd",
+    "setting": "battlefield",
+    "roles": [
+     {
+      "role": "commander",
+      "character": "p13"
+     },
+     {
+      "role": "commander",
+      "character": "p07"
+     },
+     {
+      "role": "fallen",
+      "character": "p03"
+     },
+     {
+      "role": "fallen",
+      "character": "p09"
+     },
+     {
+      "role": "survivor",
+      "character": "p14"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p03",
+      "mode": "killed"
+     },
+     {
+      "character": "p09",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 37,
+    "dramatic": false
+   },
+   {
+    "index": 7,
+    "section": "act_2",
+    "card": "grey_cloak",
+    "title": "Taking the Grey Cloak",
+    "kind": "single",
+    "setting": "ice_wall",
+    "roles": [
+     {
+      "role": "deserter",
+      "character": "p14"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p14",
+      "mode": "forfeited"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 28,
+    "dramatic": false
+   },
+   {
+    "index": 8,
+    "section": "act_2",
+    "card": "old_kings_gambit",
+    "title": "The Old King's Gambit",
+    "kind": "single",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "old_king",
+      "character": "old_king"
+     },
+     {
+      "role": "banished",
+      "character": "p15"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p15",
+      "mode": "exiled"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 28,
+    "dramatic": false
+   },
+   {
+    "index": 9,
+    "section": "act_2",
+    "card": "trial_by_combat",
+    "title": "Trial by Combat",
+    "kind": "single",
+    "setting": "battlefield",
+    "roles": [
+     {
+      "role": "challenger",
+      "character": "p13"
+     },
+     {
+      "role": "fallen",
+      "character": "p06"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p06",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 27,
+    "dramatic": true
+   },
+   {
+    "index": 10,
+    "section": "act_2",
+    "card": "iron_vault_debt",
+    "title": "Debt to the Iron Vault",
+    "kind": "single",
+    "setting": "city_streets",
+    "roles": [
+     {
+      "role": "debtor",
+      "character": "p12"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p12",
+      "mode": "exiled"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 27,
+    "dramatic": false
+   },
+   {
+    "index": 11,
+    "section": "act_2",
+    "card": "trial_by_combat",
+    "title": "Trial by Combat",
+    "kind": "single",
+    "setting": "battlefield",
+    "roles": [
+     {
+      "role": "challenger",
+      "character": "p11"
+     },
+     {
+      "role": "fallen",
+      "character": "p05"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p05",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 27,
+    "dramatic": true
+   },
+   {
+    "index": 12,
+    "section": "act_2",
+    "card": "kingsmoot_exile",
+    "title": "The Kingsmoot Exile",
+    "kind": "crowd",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "fallen",
+      "character": "p04"
+     },
+     {
+      "role": "fallen",
+      "character": "p07"
+     },
+     {
+      "role": "fallen",
+      "character": "p11"
+     },
+     {
+      "role": "survivor",
+      "character": "p02"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p04",
+      "mode": "exiled"
+     },
+     {
+      "character": "p07",
+      "mode": "exiled"
+     },
+     {
+      "character": "p11",
+      "mode": "exiled"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 37,
+    "dramatic": false
+   },
+   {
+    "index": 13,
+    "section": "act_2",
+    "card": "red_priestess",
+    "title": "The Red Priestess",
+    "kind": "structural",
+    "setting": "temple",
+    "roles": [
+     {
+      "role": "risen",
+      "character": "p01"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [
+     "p01"
+    ],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 27,
+    "dramatic": true
+   },
+   {
+    "index": 14,
+    "section": "act_2",
+    "card": "iron_vault_debt",
+    "title": "Debt to the Iron Vault",
+    "kind": "single",
+    "setting": "city_streets",
+    "roles": [
+     {
+      "role": "debtor",
+      "character": "p13"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p13",
+      "mode": "exiled"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 27,
+    "dramatic": false
+   },
+   {
+    "index": 15,
+    "section": "act_2",
+    "card": "near_miss",
+    "title": "A Near Miss",
+    "kind": "drama",
+    "setting": "city_streets",
+    "roles": [
+     {
+      "role": "survivor",
+      "character": "p02"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 20,
+    "dramatic": false
+   },
+   {
+    "index": 16,
+    "section": "act_3",
+    "card": "old_kings_gambit",
+    "title": "The Old King's Gambit",
+    "kind": "single",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "old_king",
+      "character": "old_king"
+     },
+     {
+      "role": "banished",
+      "character": "p01"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p01",
+      "mode": "exiled"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 27,
+    "dramatic": false
+   },
+   {
+    "index": 17,
+    "section": "act_3",
+    "card": "sworn_alliance",
+    "title": "A Sworn Alliance",
+    "kind": "drama",
+    "setting": "temple",
+    "roles": [
+     {
+      "role": "ally",
+      "character": "p02"
+     },
+     {
+      "role": "ally",
+      "character": "p08"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [
+     {
+      "a": "p02",
+      "b": "p08"
+     }
+    ],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 20,
+    "dramatic": false
+   },
+   {
+    "index": 18,
+    "section": "act_3",
+    "card": "knife_foiled",
+    "title": "A Knife in the Dark, Foiled",
+    "kind": "drama",
+    "setting": "forest",
+    "roles": [
+     {
+      "role": "betrayer",
+      "character": "p08"
+     },
+     {
+      "role": "victim",
+      "character": "p02"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [
+     {
+      "a": "p08",
+      "b": "p02"
+     }
+    ],
+    "facts": [
+     "attempt_failed"
+    ],
+    "prophecy_hints": [],
+    "budget_seconds": 20,
+    "dramatic": true
+   },
+   {
+    "index": 19,
+    "section": "act_3",
+    "card": "final_duel",
+    "title": "The Last Duel",
+    "kind": "structural",
+    "setting": "ice_wall",
+    "roles": [
+     {
+      "role": "champion",
+      "character": "p02"
+     },
+     {
+      "role": "rival",
+      "character": "p08"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p08",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 37,
+    "dramatic": true
+   },
+   {
+    "index": 20,
+    "section": "coronation",
+    "card": "coronation",
+    "title": "The Coronation",
+    "kind": "structural",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "crowned",
+      "character": "p02"
+     },
+     {
+      "role": "old_king",
+      "character": "old_king"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 41,
+    "dramatic": false
+   }
+  ],
+  "total_budget_seconds": 600
+ },
+ "scenes": [
+  {
+   "music": "overture",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Hear ye! The bottle awaits a worthy hand."
+    },
+    {
+     "speaker": "old_king",
+     "emotion": "smug",
+     "action": "point",
+     "text": "I am the Mad King, and this throne is still warm."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Let the peasants step forward!"
+    }
+   ],
+   "captions": [
+    {
+     "text": "A KINGDOM HOLDS ITS BREATH...",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "curtain",
+     "line": 0
+    },
+    {
+     "sfx": "horn",
+     "line": 2
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "old_king"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "old_king"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 0,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "old_king",
+     "emotion": "furious",
+     "action": null,
+     "text": "New rules: no sulking, no mercy, no refunds."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Nobody dares to ask what the old rules were."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE THRONE ROOM",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "gong",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "old_king"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 1,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p08",
+     "emotion": "scheming",
+     "action": null,
+     "text": "One name. One coin. No questions."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The name on the parchment reads: Sanna."
+    }
+   ],
+   "captions": [
+    {
+     "text": "A COIN FOR THE FACELESS",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "bell_toll",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p08"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 2,
+   "setting": "temple",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "dread",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "scheming",
+     "action": null,
+     "text": "Hear the prophecy, little ones!"
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "terrified",
+     "action": null,
+     "text": "One who was betrayed by a sworn ally..."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "terrified",
+     "action": null,
+     "text": "One who bears the sign of the Wolf..."
+    },
+    {
+     "speaker": "p14",
+     "emotion": "terrified",
+     "action": null,
+     "text": "That could be anyone!"
+    }
+   ],
+   "captions": [
+    {
+     "text": "A VOICE FROM THE SMOKE...",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "wind",
+     "line": 0
+    },
+    {
+     "sfx": "bell_toll",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p14"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 3,
+     "focus": [
+      "p14"
+     ]
+    }
+   ],
+   "beat_index": 3,
+   "setting": "forest",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "feast",
+   "lines": [
+    {
+     "speaker": "p01",
+     "emotion": "neutral",
+     "action": "drink",
+     "text": "Strange vintage..."
+    },
+    {
+     "speaker": "p09",
+     "emotion": "scheming",
+     "action": null,
+     "text": "Very rare. Very final."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE FEAST GROWS QUIET",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p01",
+     "action": "fall",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "gulp",
+     "line": 0
+    },
+    {
+     "sfx": "crowd_gasp",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p01",
+      "p09"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p09"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p09"
+     ]
+    }
+   ],
+   "beat_index": 4,
+   "setting": "feast_hall",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "dread",
+   "lines": [
+    {
+     "speaker": "p08",
+     "emotion": "scheming",
+     "action": null,
+     "text": "Money well spent."
+    },
+    {
+     "speaker": "p10",
+     "emotion": "terrified",
+     "action": null,
+     "text": "Who is standing behind me?"
+    }
+   ],
+   "captions": [
+    {
+     "text": "A DEBT IS COLLECTED",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p10",
+     "action": "fall",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "SHINK!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "heartbeat",
+     "line": 0
+    },
+    {
+     "sfx": "shink",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p08",
+      "p10"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p10"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p10"
+     ]
+    }
+   ],
+   "beat_index": 5,
+   "setting": "dungeon",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "battle",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Two banners, one very muddy field."
+    },
+    {
+     "speaker": "p13",
+     "emotion": "triumphant",
+     "action": "strike",
+     "text": "Hold the line!"
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "grieving",
+     "action": null,
+     "text": "Heli and Pekka fall in the muck."
+    }
+   ],
+   "captions": [
+    {
+     "text": "MUD AND BANNERS",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p03",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p09",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "sword_clash",
+     "line": 1
+    },
+    {
+     "sfx": "thud",
+     "line": 2
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p13"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p13"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 6,
+   "setting": "battlefield",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "winter",
+   "lines": [
+    {
+     "speaker": "p14",
+     "emotion": "grieving",
+     "action": null,
+     "text": "I renounce the crown. The Wall needs me."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Åsa walks north, wrapped in grey."
+    }
+   ],
+   "captions": [
+    {
+     "text": "TAKING THE GREY CLOAK",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p14",
+     "action": "exit",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "wind",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p14"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 7,
+   "setting": "ice_wall",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "old_king",
+     "emotion": "scheming",
+     "action": "point",
+     "text": "Öhman, you are banished. Today."
+    },
+    {
+     "speaker": "p15",
+     "emotion": "furious",
+     "action": null,
+     "text": "You cannot do this!"
+    },
+    {
+     "speaker": "old_king",
+     "emotion": "smug",
+     "action": null,
+     "text": "Crown says I can."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE OLD KING'S GAMBIT",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p15",
+     "action": "exit",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "gong",
+     "line": 0
+    },
+    {
+     "sfx": "crowd_gasp",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "old_king",
+      "p15",
+      "old_king"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p15"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": [
+      "old_king"
+     ]
+    }
+   ],
+   "beat_index": 8,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "battle",
+   "lines": [
+    {
+     "speaker": "p06",
+     "emotion": "furious",
+     "action": "strike",
+     "text": "Have at thee!"
+    },
+    {
+     "speaker": "p13",
+     "emotion": "triumphant",
+     "action": "strike",
+     "text": "Have at thee harder!"
+    }
+   ],
+   "captions": [
+    {
+     "text": "STEEL DECIDES",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p06",
+     "action": "fall",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "KRANG!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "sword_clash",
+     "line": 0
+    },
+    {
+     "sfx": "crowd_cheer",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p06",
+      "p13"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p13"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p13"
+     ]
+    }
+   ],
+   "beat_index": 9,
+   "setting": "battlefield",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p12",
+     "emotion": "grieving",
+     "action": null,
+     "text": "I only borrowed a little crown money."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The Vault exiles Ulla with interest."
+    }
+   ],
+   "captions": [
+    {
+     "text": "DEBTS ARE PAID",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p12",
+     "action": "exit",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "bell_toll",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p12"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 10,
+   "setting": "city_streets",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "battle",
+   "lines": [
+    {
+     "speaker": "p11",
+     "emotion": "furious",
+     "action": "draw_weapon",
+     "text": "Let the gods decide, Jääskeläinen!"
+    },
+    {
+     "speaker": "p05",
+     "emotion": "smug",
+     "action": "draw_weapon",
+     "text": "The gods owe me money."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The gods do not pay. Jääskeläinen goes down."
+    }
+   ],
+   "captions": [
+    {
+     "text": "TRIAL BY COMBAT",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p05",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "CLANG!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "sword_draw",
+     "line": 0
+    },
+    {
+     "sfx": "sword_clash",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p11",
+      "p05"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p05"
+     ]
+    },
+    {
+     "framing": "splash",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 11,
+   "setting": "battlefield",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Stones are counted. Feelings are hurt."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "grieving",
+     "action": null,
+     "text": "Iiro, Liisa and 1 more must leave the realm."
+    }
+   ],
+   "captions": [
+    {
+     "text": "VOTED OFF THE ISLAND",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p04",
+     "action": "exit",
+     "line": 1
+    },
+    {
+     "character": "p07",
+     "action": "exit",
+     "line": 1
+    },
+    {
+     "character": "p11",
+     "action": "exit",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "gong",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": []
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 12,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "dread",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Flames rise. The Red Priestess whispers old words."
+    },
+    {
+     "speaker": "p01",
+     "emotion": "terrified",
+     "action": "enter",
+     "text": "I... was dead? Did I miss lunch?"
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE RED PRIESTESS PRAYS",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [
+    {
+     "text": "FWOOOM!",
+     "line": 0
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "fire_whoosh",
+     "line": 0
+    },
+    {
+     "sfx": "choir",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p01"
+     ]
+    },
+    {
+     "framing": "splash",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p01"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p01"
+     ]
+    }
+   ],
+   "beat_index": 13,
+   "setting": "temple",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The Iron Vault sends its regards, and its bill."
+    },
+    {
+     "speaker": "p13",
+     "emotion": "terrified",
+     "action": null,
+     "text": "Can I pay in compliments?"
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Ville is escorted to the harbor. One way."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE IRON VAULT COLLECTS",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p13",
+     "action": "exit",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "horn",
+     "line": 0
+    },
+    {
+     "sfx": "splash",
+     "line": 2
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p13"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p13"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 14,
+   "setting": "city_streets",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "A falling gargoyle misses Eero by a hair."
+    },
+    {
+     "speaker": "p02",
+     "emotion": "terrified",
+     "action": "flee",
+     "text": "I meant to do that!"
+    }
+   ],
+   "captions": [
+    {
+     "text": "A CLOSE CALL",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [
+    {
+     "text": "WHOOSH!",
+     "line": 0
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "thud",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p02"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p02"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p02"
+     ]
+    }
+   ],
+   "beat_index": 15,
+   "setting": "city_streets",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "old_king",
+     "emotion": "scheming",
+     "action": "point",
+     "text": "Aino, you are banished. Today."
+    },
+    {
+     "speaker": "p01",
+     "emotion": "furious",
+     "action": null,
+     "text": "You cannot do this!"
+    },
+    {
+     "speaker": "old_king",
+     "emotion": "smug",
+     "action": null,
+     "text": "Crown says I can."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE OLD KING'S GAMBIT",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p01",
+     "action": "exit",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "gong",
+     "line": 0
+    },
+    {
+     "sfx": "crowd_gasp",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "old_king",
+      "p01",
+      "old_king"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p01"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": [
+      "old_king"
+     ]
+    }
+   ],
+   "beat_index": 16,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p02",
+     "emotion": "scheming",
+     "action": null,
+     "text": "Together we rise, Matti."
+    },
+    {
+     "speaker": "p08",
+     "emotion": "smug",
+     "action": "embrace",
+     "text": "Together. Until it is inconvenient."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "They shake on it. Both count their fingers after."
+    }
+   ],
+   "captions": [
+    {
+     "text": "AN ALLIANCE IS SWORN",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "goblet_clink",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p02",
+      "p08"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p08"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 17,
+   "setting": "temple",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "dread",
+   "lines": [
+    {
+     "speaker": "p02",
+     "emotion": "smug",
+     "action": "point",
+     "text": "I saw that coming, Matti."
+    },
+    {
+     "speaker": "p08",
+     "emotion": "terrified",
+     "action": "flee",
+     "text": "Saw what? I was... sharpening a spoon."
+    }
+   ],
+   "captions": [
+    {
+     "text": "FOILED!",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "crowd_gasp",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p02",
+      "p08"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p08"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p08"
+     ]
+    }
+   ],
+   "beat_index": 18,
+   "setting": "forest",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "battle",
+   "lines": [
+    {
+     "speaker": "p08",
+     "emotion": "furious",
+     "action": "draw_weapon",
+     "text": "Only one of us leaves this place, Eero."
+    },
+    {
+     "speaker": "p02",
+     "emotion": "smug",
+     "action": "strike",
+     "text": "Then I will hold the door for you."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Steel rings. The rival's rod snaps. It is over."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE LAST DUEL",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p08",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "KRAKOOM!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "sword_draw",
+     "line": 0
+    },
+    {
+     "sfx": "sword_clash",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p08",
+      "p02"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p02"
+     ]
+    },
+    {
+     "framing": "splash",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 19,
+   "setting": "ice_wall",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "triumph",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "And so the prophecy is fulfilled."
+    },
+    {
+     "speaker": "p02",
+     "emotion": "triumphant",
+     "action": "crown",
+     "text": "The bottle is mine!"
+    },
+    {
+     "speaker": "old_king",
+     "emotion": "grieving",
+     "action": "kneel",
+     "text": "Take good care of it."
+    }
+   ],
+   "captions": [
+    {
+     "text": "LONG LIVE THE MONARCH!",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [
+    {
+     "text": "HUZZAH!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "choir",
+     "line": 0
+    },
+    {
+     "sfx": "crowd_cheer",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p02",
+      "old_king"
+     ]
+    },
+    {
+     "framing": "splash",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p02"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": [
+      "old_king"
+     ]
+    }
+   ],
+   "beat_index": 20,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  }
+ ],
+ "bible": {
+  "title": "The Bottle Throne: Knives Out at the Pub",
+  "prophecy": "One who was betrayed by a sworn ally / One who bears the sign of the Wolf / One who faces a Zealot at the last",
+  "motifs": [
+   "the bottle",
+   "a suspicious goat",
+   "paper crowns"
+  ],
+  "beats": [
+   {
+    "index": 0,
+    "synopsis": "The Old King's Court"
+   },
+   {
+    "index": 1,
+    "synopsis": "The Old King's Decree"
+   },
+   {
+    "index": 2,
+    "synopsis": "The Faceless Contract"
+   },
+   {
+    "index": 3,
+    "synopsis": "The Prophecy"
+   },
+   {
+    "index": 4,
+    "synopsis": "The Poisoned Goblet"
+   },
+   {
+    "index": 5,
+    "synopsis": "The Faceless Strike"
+   },
+   {
+    "index": 6,
+    "synopsis": "Battle of the Muddy Field"
+   },
+   {
+    "index": 7,
+    "synopsis": "Taking the Grey Cloak"
+   },
+   {
+    "index": 8,
+    "synopsis": "The Old King's Gambit"
+   },
+   {
+    "index": 9,
+    "synopsis": "Trial by Combat"
+   },
+   {
+    "index": 10,
+    "synopsis": "Debt to the Iron Vault"
+   },
+   {
+    "index": 11,
+    "synopsis": "Trial by Combat"
+   },
+   {
+    "index": 12,
+    "synopsis": "The Kingsmoot Exile"
+   },
+   {
+    "index": 13,
+    "synopsis": "The Red Priestess"
+   },
+   {
+    "index": 14,
+    "synopsis": "Debt to the Iron Vault"
+   },
+   {
+    "index": 15,
+    "synopsis": "A Near Miss"
+   },
+   {
+    "index": 16,
+    "synopsis": "The Old King's Gambit"
+   },
+   {
+    "index": 17,
+    "synopsis": "A Sworn Alliance"
+   },
+   {
+    "index": 18,
+    "synopsis": "A Knife in the Dark, Foiled"
+   },
+   {
+    "index": 19,
+    "synopsis": "The Last Duel"
+   },
+   {
+    "index": 20,
+    "synopsis": "The Coronation"
+   }
+  ]
+ },
+ "chronicle": {
+  "act_titles": {
+   "act_1": "A Crown Unclaimed",
+   "act_2": "Knives and Goblets",
+   "act_3": "The Last Ones Standing"
+  },
+  "epilogue": "When the dust settled, Eero the Zealot sat upon the Bottle Throne. 15 rivals fell, fled or were sent away along the way. The old crown passed on, the prophecy came true, and the bottle was finally opened. Long may Eero reign, at least until next Friday.",
+  "cover_title": "The Bottle Throne: Knives Out at the Pub",
+  "blurb": "15 peasants. One bottle. Alliances, betrayals and a very suspicious goat. Who will be crowned when the curtain falls?"
+ }
+}

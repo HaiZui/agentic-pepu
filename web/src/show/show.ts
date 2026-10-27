@@ -1,17 +1,25 @@
-import { ApiError, getFate, getShow, type FateScript, type ShowSession } from "../api/client";
+import { ApiError, getFate, getShow, revealSeed, type FateScript, type ShowSession } from "../api/client";
+import { unlockAudio } from "../audio/context";
 import { el } from "../dom";
+import { followShow } from "../stage/feed";
+import { mountStage, testSpeed } from "../stage/mount";
 import { shortSeal } from "./seal";
+import "./show.css";
 
+/** The show page: a lobby card over the closed curtain, then the live stage. Returns a cleanup. */
 export async function renderShow(
   root: HTMLElement,
   showId: string,
   navigate: (path: string) => void,
-): Promise<void> {
-  const back = el("a", { href: "/", class: "back" }, "New show");
-  back.addEventListener("click", (event) => {
-    event.preventDefault();
-    navigate("/");
-  });
+): Promise<() => void> {
+  const link = (text: string, path: string) => {
+    const a = el("a", { href: path }, text);
+    a.addEventListener("click", (event) => {
+      event.preventDefault();
+      navigate(path);
+    });
+    return a;
+  };
 
   root.replaceChildren(el("main", { class: "setup" }, el("p", {}, "Raising the curtain...")));
 
@@ -22,42 +30,61 @@ export async function renderShow(
   } catch (error) {
     const message =
       error instanceof ApiError && error.status === 404 ? "This show does not exist." : "Could not load the show.";
-    root.replaceChildren(el("main", { class: "setup" }, el("p", { role: "alert" }, message), back));
-    return;
+    root.replaceChildren(el("main", { class: "setup" }, el("p", { role: "alert" }, message), link("New show", "/")));
+    return () => undefined;
   }
 
-  const oldKingText = show.old_king.is_mad_king
-    ? "The Mad King (no previous winner given)"
-    : `${show.old_king.name}${show.old_king.is_participant ? " (also competing)" : ""}`;
-
-  const chronicle = el("a", { href: `/show/${encodeURIComponent(show.id)}/chronicle` }, "Chronicle (development view, contains spoilers)");
-  chronicle.addEventListener("click", (event) => {
-    event.preventDefault();
-    navigate(`/show/${encodeURIComponent(show.id)}/chronicle`);
+  const page = el("div", { class: "show-page" });
+  root.replaceChildren(page);
+  const stage = mountStage(page, {
+    fate,
+    texts: { reveal: () => revealSeed(showId).catch(() => null) },
+    speed: testSpeed(),
+    maxSpeed: 10,
   });
 
-  root.replaceChildren(
+  const progress = el("p", { class: "lobby-progress", "aria-live": "polite", "data-testid": "lobby-progress" }, "Summoning the scribes...");
+  const stopFeed = followShow(showId, {
+    scene: (scene) => stage.addScene(scene),
+    bible: (bible) => (stage.texts.bible = bible),
+    chronicle: (texts) => (stage.texts.chronicle = texts),
+    progress: (statuses) => {
+      const ready = statuses.filter((s) => s !== "pending").length;
+      progress.textContent = `Scenes written: ${ready} of ${fate.beats.length}${
+        ready < fate.beats.length ? " (you can start now; the rest arrive during the show)" : ""
+      }`;
+    },
+  });
+
+  const oldKing = show.old_king.is_mad_king ? "the Mad King" : show.old_king.name;
+  const start = el("button", { type: "button", class: "lobby-start", "data-testid": "start" }, "Raise the curtain");
+  const lobby = el(
+    "div",
+    { class: "lobby", "data-testid": "lobby" },
+    el("h1", {}, "The Bottle Throne"),
+    el("p", { class: "lobby-meta" }, `${show.participants.length} peasants · Old King: ${oldKing}`),
+    el("p", { class: "lobby-seal" }, "Seal of Fate ", el("strong", {}, shortSeal(fate.seal))),
+    progress,
+    start,
+    el("p", { class: "lobby-hint" }, "Press ? during the show for the presenter shortcuts."),
     el(
-      "main",
-      { class: "setup" },
-      el("header", {}, el("h1", {}, "The Bottle Throne"), el("p", { class: "subtitle" }, `Show ${show.id}`)),
-      el(
-        "section",
-        { class: "panel" },
-        el("p", { class: "seal" }, el("strong", {}, "Seal of Fate: "), shortSeal(fate.seal)),
-        el("p", { class: "hint seal-full" }, fate.seal),
-        el("p", {}, el("strong", {}, "Old King: "), oldKingText),
-        el("p", {}, el("strong", {}, "Seed: "), show.seed_mode === "manual" ? "manual" : "automatic"),
-        el("p", {}, el("strong", {}, `${show.participants.length} peasants:`)),
-        el(
-          "ul",
-          { class: "roster-chips" },
-          ...show.participants.map((p) => el("li", {}, p.is_old_king ? `${p.name} (Old King)` : p.name)),
-        ),
-        el("p", { class: "hint" }, "The stage is still being built. This placeholder shows the recorded show."),
-        chronicle,
-        back,
-      ),
+      "p",
+      { class: "lobby-links" },
+      link("New show", "/"),
+      " · ",
+      link("Chronicle (spoilers)", `/show/${encodeURIComponent(show.id)}/chronicle`),
     ),
   );
+  stage.renderer.layers.viewport.append(lobby);
+  start.addEventListener("click", () => {
+    unlockAudio();
+    lobby.remove();
+    void stage.player.run();
+  });
+  start.focus();
+
+  return () => {
+    stopFeed();
+    stage.destroy();
+  };
 }

@@ -5,23 +5,40 @@ import { renderChronicle } from "./show/chronicle";
 import { renderShow } from "./show/show";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
+let cleanup: (() => void) | null = null;
+let generation = 0;
 
 function navigate(path: string): void {
   history.pushState({}, "", path);
   render();
 }
 
+/** Runs the previous page's cleanup (stops a playing stage) before the next page renders. */
+function mount(page: () => void | (() => void) | Promise<void | (() => void)>): void {
+  const current = ++generation;
+  cleanup?.();
+  cleanup = null;
+  void Promise.resolve(page()).then((done) => {
+    if (typeof done !== "function") return;
+    if (current === generation) cleanup = done;
+    else done();
+  });
+}
+
 function render(): void {
-  const chronicleMatch = location.pathname.match(/^\/show\/([^/]+)\/chronicle\/?$/);
-  const showMatch = location.pathname.match(/^\/show\/([^/]+)\/?$/);
-  if (location.pathname.replace(/\/$/, "") === "/dev/gallery") {
-    renderGallery(app);
+  const path = location.pathname.replace(/\/$/, "");
+  const chronicleMatch = path.match(/^\/show\/([^/]+)\/chronicle$/);
+  const showMatch = path.match(/^\/show\/([^/]+)$/);
+  if (path === "/dev/gallery") {
+    mount(() => renderGallery(app));
+  } else if (path === "/dev/stage") {
+    mount(() => import("./dev/stage").then((m) => m.renderStageDev(app)));
   } else if (chronicleMatch) {
-    void renderChronicle(app, decodeURIComponent(chronicleMatch[1]), navigate);
+    mount(() => renderChronicle(app, decodeURIComponent(chronicleMatch[1]), navigate));
   } else if (showMatch) {
-    void renderShow(app, decodeURIComponent(showMatch[1]), navigate);
+    mount(() => renderShow(app, decodeURIComponent(showMatch[1]), navigate));
   } else {
-    renderSetup(app, navigate);
+    mount(() => renderSetup(app, navigate));
   }
 }
 

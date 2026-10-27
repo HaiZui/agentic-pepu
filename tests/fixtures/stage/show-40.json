@@ -1,0 +1,2993 @@
+{
+ "seed": "stage-fixture-40",
+ "fate": {
+  "engine_version": "fate-1",
+  "seal": "20fe66a9cf49be956e657359998b81803823b13552867de9a6e9449ee855dac1",
+  "seed_mode": "auto",
+  "roster_size": 40,
+  "characters": [
+   {
+    "id": "p01",
+    "name": "Aino",
+    "kind": "participant",
+    "house": "raven",
+    "archetype": "coward",
+    "npc_role": null,
+    "is_old_king": true
+   },
+   {
+    "id": "p02",
+    "name": "Aleksi",
+    "kind": "participant",
+    "house": "stag",
+    "archetype": "zealot",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p03",
+    "name": "Bea",
+    "kind": "participant",
+    "house": "stag",
+    "archetype": "bard",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p04",
+    "name": "Cecilia",
+    "kind": "participant",
+    "house": "crab",
+    "archetype": "zealot",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p05",
+    "name": "Daniel",
+    "kind": "participant",
+    "house": "crab",
+    "archetype": "coward",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p06",
+    "name": "Eero",
+    "kind": "participant",
+    "house": "goat",
+    "archetype": "brute",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p07",
+    "name": "Elina",
+    "kind": "participant",
+    "house": "crab",
+    "archetype": "schemer",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p08",
+    "name": "Fredrik",
+    "kind": "participant",
+    "house": "eel",
+    "archetype": "zealot",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p09",
+    "name": "Greta",
+    "kind": "participant",
+    "house": "raven",
+    "archetype": "brute",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p10",
+    "name": "Hannu",
+    "kind": "participant",
+    "house": "eel",
+    "archetype": "coward",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p11",
+    "name": "Heli",
+    "kind": "participant",
+    "house": "goat",
+    "archetype": "bard",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p12",
+    "name": "Iiro",
+    "kind": "participant",
+    "house": "raven",
+    "archetype": "zealot",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p13",
+    "name": "Inka",
+    "kind": "participant",
+    "house": "crab",
+    "archetype": "zealot",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p14",
+    "name": "Jari",
+    "kind": "participant",
+    "house": "eel",
+    "archetype": "zealot",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p15",
+    "name": "Joonas",
+    "kind": "participant",
+    "house": "goat",
+    "archetype": "schemer",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p16",
+    "name": "Jääskeläinen",
+    "kind": "participant",
+    "house": "eel",
+    "archetype": "zealot",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p17",
+    "name": "Kaisa",
+    "kind": "participant",
+    "house": "eel",
+    "archetype": "coward",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p18",
+    "name": "Kalle",
+    "kind": "participant",
+    "house": "raven",
+    "archetype": "fool",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p19",
+    "name": "Kirsi",
+    "kind": "participant",
+    "house": "stag",
+    "archetype": "bard",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p20",
+    "name": "Lauri",
+    "kind": "participant",
+    "house": "stag",
+    "archetype": "bard",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p21",
+    "name": "Leevi",
+    "kind": "participant",
+    "house": "goat",
+    "archetype": "brute",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p22",
+    "name": "Liisa",
+    "kind": "participant",
+    "house": "crab",
+    "archetype": "brute",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p23",
+    "name": "Matti",
+    "kind": "participant",
+    "house": "eel",
+    "archetype": "coward",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p24",
+    "name": "Minna",
+    "kind": "participant",
+    "house": "goat",
+    "archetype": "schemer",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p25",
+    "name": "Niko",
+    "kind": "participant",
+    "house": "raven",
+    "archetype": "fool",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p26",
+    "name": "Outi",
+    "kind": "participant",
+    "house": "stag",
+    "archetype": "schemer",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p27",
+    "name": "Paavo",
+    "kind": "participant",
+    "house": "crab",
+    "archetype": "coward",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p28",
+    "name": "Pekka",
+    "kind": "participant",
+    "house": "eel",
+    "archetype": "coward",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p29",
+    "name": "Riikka",
+    "kind": "participant",
+    "house": "stag",
+    "archetype": "brute",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p30",
+    "name": "Saku",
+    "kind": "participant",
+    "house": "stag",
+    "archetype": "brute",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p31",
+    "name": "Sanna",
+    "kind": "participant",
+    "house": "raven",
+    "archetype": "bard",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p32",
+    "name": "Tiina",
+    "kind": "participant",
+    "house": "stag",
+    "archetype": "fool",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p33",
+    "name": "Timo",
+    "kind": "participant",
+    "house": "raven",
+    "archetype": "fool",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p34",
+    "name": "Ulla",
+    "kind": "participant",
+    "house": "crab",
+    "archetype": "brute",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p35",
+    "name": "Urho",
+    "kind": "participant",
+    "house": "eel",
+    "archetype": "fool",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p36",
+    "name": "Veera",
+    "kind": "participant",
+    "house": "crab",
+    "archetype": "fool",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p37",
+    "name": "Ville",
+    "kind": "participant",
+    "house": "goat",
+    "archetype": "fool",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p38",
+    "name": "Ykä",
+    "kind": "participant",
+    "house": "goat",
+    "archetype": "zealot",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p39",
+    "name": "Åsa",
+    "kind": "participant",
+    "house": "raven",
+    "archetype": "bard",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p40",
+    "name": "Öhman",
+    "kind": "participant",
+    "house": "goat",
+    "archetype": "bard",
+    "npc_role": null,
+    "is_old_king": false
+   }
+  ],
+  "houses": [
+   {
+    "id": "eel",
+    "name": "House Eel",
+    "sigil": "Eel",
+    "members": [
+     "p08",
+     "p10",
+     "p14",
+     "p16",
+     "p17",
+     "p23",
+     "p28",
+     "p35"
+    ]
+   },
+   {
+    "id": "stag",
+    "name": "House Stag",
+    "sigil": "Stag",
+    "members": [
+     "p02",
+     "p03",
+     "p19",
+     "p20",
+     "p26",
+     "p29",
+     "p30",
+     "p32"
+    ]
+   },
+   {
+    "id": "raven",
+    "name": "House Raven",
+    "sigil": "Raven",
+    "members": [
+     "p01",
+     "p09",
+     "p12",
+     "p18",
+     "p25",
+     "p31",
+     "p33",
+     "p39"
+    ]
+   },
+   {
+    "id": "crab",
+    "name": "House Crab",
+    "sigil": "Crab",
+    "members": [
+     "p04",
+     "p05",
+     "p07",
+     "p13",
+     "p22",
+     "p27",
+     "p34",
+     "p36"
+    ]
+   },
+   {
+    "id": "goat",
+    "name": "House Goat",
+    "sigil": "Goat",
+    "members": [
+     "p06",
+     "p11",
+     "p15",
+     "p21",
+     "p24",
+     "p37",
+     "p38",
+     "p40"
+    ]
+   }
+  ],
+  "old_king": "p01",
+  "winner": "p30",
+  "beats": [
+   {
+    "index": 0,
+    "section": "cold_open",
+    "card": "cold_open",
+    "title": "The Old King's Court",
+    "kind": "structural",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "old_king",
+      "character": "p01"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 43,
+    "dramatic": false
+   },
+   {
+    "index": 1,
+    "section": "act_1",
+    "card": "decree",
+    "title": "The Old King's Decree",
+    "kind": "drama",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "old_king",
+      "character": "p01"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 20,
+    "dramatic": false
+   },
+   {
+    "index": 2,
+    "section": "act_1",
+    "card": "old_kings_gambit",
+    "title": "The Old King's Gambit",
+    "kind": "single",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "old_king",
+      "character": "p01"
+     },
+     {
+      "role": "banished",
+      "character": "p19"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p19",
+      "mode": "exiled"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 26,
+    "dramatic": false
+   },
+   {
+    "index": 3,
+    "section": "act_1",
+    "card": "prophecy",
+    "title": "The Prophecy",
+    "kind": "drama",
+    "setting": "forest",
+    "roles": [
+     {
+      "role": "listener",
+      "character": "p12"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [
+     {
+      "id": "house:stag",
+      "text": "One who bears the sign of the Stag"
+     },
+     {
+      "id": "final_rival:fool",
+      "text": "One who faces a Fool at the last"
+     },
+     {
+      "id": "survived_crowd:grey_cloak_mutiny",
+      "text": "One who walked out of the Mutiny of the Grey Cloaks"
+     }
+    ],
+    "budget_seconds": 24,
+    "dramatic": true
+   },
+   {
+    "index": 4,
+    "section": "act_1",
+    "card": "faceless_contract",
+    "title": "The Faceless Contract",
+    "kind": "drama",
+    "setting": "temple",
+    "roles": [
+     {
+      "role": "client",
+      "character": "p25"
+     },
+     {
+      "role": "target",
+      "character": "p07"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 19,
+    "dramatic": false
+   },
+   {
+    "index": 5,
+    "section": "act_1",
+    "card": "iron_vault_debt",
+    "title": "Debt to the Iron Vault",
+    "kind": "single",
+    "setting": "city_streets",
+    "roles": [
+     {
+      "role": "debtor",
+      "character": "p24"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p24",
+      "mode": "exiled"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 26,
+    "dramatic": false
+   },
+   {
+    "index": 6,
+    "section": "act_1",
+    "card": "faceless_strike",
+    "title": "The Faceless Strike",
+    "kind": "single",
+    "setting": "city_streets",
+    "roles": [
+     {
+      "role": "target",
+      "character": "p07"
+     },
+     {
+      "role": "client",
+      "character": "p25"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p07",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 25,
+    "dramatic": true
+   },
+   {
+    "index": 7,
+    "section": "act_2",
+    "card": "sworn_alliance",
+    "title": "A Sworn Alliance",
+    "kind": "drama",
+    "setting": "forest",
+    "roles": [
+     {
+      "role": "ally",
+      "character": "p15"
+     },
+     {
+      "role": "ally",
+      "character": "p40"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [
+     {
+      "a": "p15",
+      "b": "p40"
+     }
+    ],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 19,
+    "dramatic": false
+   },
+   {
+    "index": 8,
+    "section": "act_2",
+    "card": "wildfire",
+    "title": "Wildfire Below the City",
+    "kind": "crowd",
+    "setting": "harbor",
+    "roles": [
+     {
+      "role": "fallen",
+      "character": "p25"
+     },
+     {
+      "role": "fallen",
+      "character": "p31"
+     },
+     {
+      "role": "fallen",
+      "character": "p32"
+     },
+     {
+      "role": "fallen",
+      "character": "p37"
+     },
+     {
+      "role": "fallen",
+      "character": "p39"
+     },
+     {
+      "role": "survivor",
+      "character": "p30"
+     },
+     {
+      "role": "survivor",
+      "character": "p38"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p25",
+      "mode": "killed"
+     },
+     {
+      "character": "p31",
+      "mode": "killed"
+     },
+     {
+      "character": "p32",
+      "mode": "killed"
+     },
+     {
+      "character": "p37",
+      "mode": "killed"
+     },
+     {
+      "character": "p39",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 34,
+    "dramatic": false
+   },
+   {
+    "index": 9,
+    "section": "act_2",
+    "card": "crimson_feast",
+    "title": "The Crimson Feast",
+    "kind": "crowd",
+    "setting": "feast_hall",
+    "roles": [
+     {
+      "role": "host",
+      "character": "p28"
+     },
+     {
+      "role": "fallen",
+      "character": "p01"
+     },
+     {
+      "role": "fallen",
+      "character": "p04"
+     },
+     {
+      "role": "fallen",
+      "character": "p26"
+     },
+     {
+      "role": "fallen",
+      "character": "p34"
+     },
+     {
+      "role": "survivor",
+      "character": "p13"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p01",
+      "mode": "killed"
+     },
+     {
+      "character": "p04",
+      "mode": "killed"
+     },
+     {
+      "character": "p26",
+      "mode": "killed"
+     },
+     {
+      "character": "p34",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 34,
+    "dramatic": false
+   },
+   {
+    "index": 10,
+    "section": "act_2",
+    "card": "knife_in_the_back",
+    "title": "The Knife in the Back",
+    "kind": "single",
+    "setting": "city_streets",
+    "roles": [
+     {
+      "role": "betrayer",
+      "character": "p15"
+     },
+     {
+      "role": "victim",
+      "character": "p40"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p40",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [
+     {
+      "a": "p15",
+      "b": "p40"
+     }
+    ],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 25,
+    "dramatic": true
+   },
+   {
+    "index": 11,
+    "section": "act_2",
+    "card": "march_of_pale_ones",
+    "title": "March of the Pale Ones",
+    "kind": "crowd",
+    "setting": "ice_wall",
+    "roles": [
+     {
+      "role": "fallen",
+      "character": "p03"
+     },
+     {
+      "role": "fallen",
+      "character": "p08"
+     },
+     {
+      "role": "fallen",
+      "character": "p09"
+     },
+     {
+      "role": "fallen",
+      "character": "p11"
+     },
+     {
+      "role": "fallen",
+      "character": "p17"
+     },
+     {
+      "role": "survivor",
+      "character": "p10"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p03",
+      "mode": "killed"
+     },
+     {
+      "character": "p08",
+      "mode": "killed"
+     },
+     {
+      "character": "p09",
+      "mode": "killed"
+     },
+     {
+      "character": "p11",
+      "mode": "killed"
+     },
+     {
+      "character": "p17",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 34,
+    "dramatic": false
+   },
+   {
+    "index": 12,
+    "section": "act_2",
+    "card": "wildfire",
+    "title": "Wildfire Below the City",
+    "kind": "crowd",
+    "setting": "city_streets",
+    "roles": [
+     {
+      "role": "fallen",
+      "character": "p15"
+     },
+     {
+      "role": "fallen",
+      "character": "p16"
+     },
+     {
+      "role": "fallen",
+      "character": "p20"
+     },
+     {
+      "role": "fallen",
+      "character": "p22"
+     },
+     {
+      "role": "fallen",
+      "character": "p33"
+     },
+     {
+      "role": "survivor",
+      "character": "p13"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p15",
+      "mode": "killed"
+     },
+     {
+      "character": "p16",
+      "mode": "killed"
+     },
+     {
+      "character": "p20",
+      "mode": "killed"
+     },
+     {
+      "character": "p22",
+      "mode": "killed"
+     },
+     {
+      "character": "p33",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 34,
+    "dramatic": false
+   },
+   {
+    "index": 13,
+    "section": "act_2",
+    "card": "bridge_gives_way",
+    "title": "The Bridge Gives Way",
+    "kind": "crowd",
+    "setting": "bridge",
+    "roles": [
+     {
+      "role": "fallen",
+      "character": "p10"
+     },
+     {
+      "role": "fallen",
+      "character": "p13"
+     },
+     {
+      "role": "fallen",
+      "character": "p21"
+     },
+     {
+      "role": "fallen",
+      "character": "p23"
+     },
+     {
+      "role": "survivor",
+      "character": "p29"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p10",
+      "mode": "killed"
+     },
+     {
+      "character": "p13",
+      "mode": "killed"
+     },
+     {
+      "character": "p21",
+      "mode": "killed"
+     },
+     {
+      "character": "p23",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 34,
+    "dramatic": false
+   },
+   {
+    "index": 14,
+    "section": "act_2",
+    "card": "poisoned_goblet",
+    "title": "The Poisoned Goblet",
+    "kind": "single",
+    "setting": "feast_hall",
+    "roles": [
+     {
+      "role": "poisoner",
+      "character": "p14"
+     },
+     {
+      "role": "victim",
+      "character": "p28"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p28",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 25,
+    "dramatic": true
+   },
+   {
+    "index": 15,
+    "section": "act_2",
+    "card": "grey_cloak_mutiny",
+    "title": "Mutiny of the Grey Cloaks",
+    "kind": "crowd",
+    "setting": "ice_wall",
+    "roles": [
+     {
+      "role": "fallen",
+      "character": "p02"
+     },
+     {
+      "role": "fallen",
+      "character": "p05"
+     },
+     {
+      "role": "fallen",
+      "character": "p06"
+     },
+     {
+      "role": "fallen",
+      "character": "p18"
+     },
+     {
+      "role": "fallen",
+      "character": "p36"
+     },
+     {
+      "role": "survivor",
+      "character": "p30"
+     },
+     {
+      "role": "survivor",
+      "character": "p27"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p02",
+      "mode": "forfeited"
+     },
+     {
+      "character": "p05",
+      "mode": "forfeited"
+     },
+     {
+      "character": "p06",
+      "mode": "forfeited"
+     },
+     {
+      "character": "p18",
+      "mode": "forfeited"
+     },
+     {
+      "character": "p36",
+      "mode": "forfeited"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 34,
+    "dramatic": false
+   },
+   {
+    "index": 16,
+    "section": "act_2",
+    "card": "muddy_field_battle",
+    "title": "Battle of the Muddy Field",
+    "kind": "crowd",
+    "setting": "battlefield",
+    "roles": [
+     {
+      "role": "commander",
+      "character": "p35"
+     },
+     {
+      "role": "commander",
+      "character": "p30"
+     },
+     {
+      "role": "fallen",
+      "character": "p12"
+     },
+     {
+      "role": "fallen",
+      "character": "p14"
+     },
+     {
+      "role": "fallen",
+      "character": "p27"
+     },
+     {
+      "role": "fallen",
+      "character": "p29"
+     },
+     {
+      "role": "fallen",
+      "character": "p38"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p12",
+      "mode": "killed"
+     },
+     {
+      "character": "p14",
+      "mode": "killed"
+     },
+     {
+      "character": "p27",
+      "mode": "killed"
+     },
+     {
+      "character": "p29",
+      "mode": "killed"
+     },
+     {
+      "character": "p38",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 34,
+    "dramatic": false
+   },
+   {
+    "index": 17,
+    "section": "act_3",
+    "card": "near_miss",
+    "title": "A Near Miss",
+    "kind": "drama",
+    "setting": "bridge",
+    "roles": [
+     {
+      "role": "survivor",
+      "character": "p35"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 19,
+    "dramatic": false
+   },
+   {
+    "index": 18,
+    "section": "act_3",
+    "card": "near_miss",
+    "title": "A Near Miss",
+    "kind": "drama",
+    "setting": "bridge",
+    "roles": [
+     {
+      "role": "survivor",
+      "character": "p35"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 19,
+    "dramatic": false
+   },
+   {
+    "index": 19,
+    "section": "act_3",
+    "card": "final_duel",
+    "title": "The Last Duel",
+    "kind": "structural",
+    "setting": "battlefield",
+    "roles": [
+     {
+      "role": "champion",
+      "character": "p30"
+     },
+     {
+      "role": "rival",
+      "character": "p35"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p35",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 34,
+    "dramatic": true
+   },
+   {
+    "index": 20,
+    "section": "coronation",
+    "card": "coronation",
+    "title": "The Coronation",
+    "kind": "structural",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "crowned",
+      "character": "p30"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 38,
+    "dramatic": false
+   }
+  ],
+  "total_budget_seconds": 600
+ },
+ "scenes": [
+  {
+   "music": "overture",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "In a realm of dust and ambition, a crown gathers dust."
+    },
+    {
+     "speaker": "p01",
+     "emotion": "scheming",
+     "action": null,
+     "text": "Who dares to want my bottle? Come, then."
+    }
+   ],
+   "captions": [
+    {
+     "text": "ONCE UPON A FRIDAY...",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "curtain",
+     "line": 0
+    },
+    {
+     "sfx": "gong",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p01"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p01"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p01"
+     ]
+    }
+   ],
+   "beat_index": 0,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p01",
+     "emotion": "furious",
+     "action": null,
+     "text": "New rules: no sulking, no mercy, no refunds."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Nobody dares to ask what the old rules were."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE THRONE ROOM",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "gong",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p01"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 1,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p01",
+     "emotion": "scheming",
+     "action": "point",
+     "text": "Kirsi, you are banished. Today."
+    },
+    {
+     "speaker": "p19",
+     "emotion": "furious",
+     "action": null,
+     "text": "You cannot do this!"
+    },
+    {
+     "speaker": "p01",
+     "emotion": "smug",
+     "action": null,
+     "text": "Crown says I can."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE OLD KING'S GAMBIT",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p19",
+     "action": "exit",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "gong",
+     "line": 0
+    },
+    {
+     "sfx": "crowd_gasp",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p01",
+      "p19",
+      "p01"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p19"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": [
+      "p01"
+     ]
+    }
+   ],
+   "beat_index": 2,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "dread",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "scheming",
+     "action": null,
+     "text": "Hear the prophecy, little ones!"
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "terrified",
+     "action": null,
+     "text": "One who bears the sign of the Stag..."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "terrified",
+     "action": null,
+     "text": "One who faces a Fool at the last..."
+    },
+    {
+     "speaker": "p12",
+     "emotion": "terrified",
+     "action": null,
+     "text": "That could be anyone!"
+    }
+   ],
+   "captions": [
+    {
+     "text": "A VOICE FROM THE SMOKE...",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "wind",
+     "line": 0
+    },
+    {
+     "sfx": "bell_toll",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p12"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 3,
+     "focus": [
+      "p12"
+     ]
+    }
+   ],
+   "beat_index": 3,
+   "setting": "forest",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p25",
+     "emotion": "scheming",
+     "action": null,
+     "text": "One name. One coin. No questions."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The name on the parchment reads: Elina."
+    }
+   ],
+   "captions": [
+    {
+     "text": "A COIN FOR THE FACELESS",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "bell_toll",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p25"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 4,
+   "setting": "temple",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p24",
+     "emotion": "grieving",
+     "action": null,
+     "text": "I only borrowed a little crown money."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The Vault exiles Minna with interest."
+    }
+   ],
+   "captions": [
+    {
+     "text": "DEBTS ARE PAID",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p24",
+     "action": "exit",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "bell_toll",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p24"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 5,
+   "setting": "city_streets",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "dread",
+   "lines": [
+    {
+     "speaker": "p07",
+     "emotion": "smug",
+     "action": null,
+     "text": "I fear no shadows."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "A shadow politely disagrees. Elina is out."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE FACELESS STRIKE",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p07",
+     "action": "fall",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "SNIKT!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "shink",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p07"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 6,
+   "setting": "city_streets",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p15",
+     "emotion": "scheming",
+     "action": null,
+     "text": "Together we rise, Öhman."
+    },
+    {
+     "speaker": "p40",
+     "emotion": "smug",
+     "action": "embrace",
+     "text": "Together. Until it is inconvenient."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "They shake on it. Both count their fingers after."
+    }
+   ],
+   "captions": [
+    {
+     "text": "AN ALLIANCE IS SWORN",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "goblet_clink",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p15",
+      "p40"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p40"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 7,
+   "setting": "forest",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "battle",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Green fire bursts from the cellars."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "grieving",
+     "action": null,
+     "text": "Niko, Sanna and 3 more are lost in the blaze."
+    },
+    {
+     "speaker": "p30",
+     "emotion": "terrified",
+     "action": "flee",
+     "text": "Run!"
+    }
+   ],
+   "captions": [
+    {
+     "text": "WILDFIRE BELOW THE CITY",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p25",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p31",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p32",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p37",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p39",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "FWOOSH!",
+     "line": 0
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "fire_whoosh",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "splash",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p30"
+     ]
+    },
+    {
+     "framing": "wide",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": [
+      "p30"
+     ]
+    }
+   ],
+   "beat_index": 8,
+   "setting": "harbor",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "feast",
+   "lines": [
+    {
+     "speaker": "p28",
+     "emotion": "smug",
+     "action": null,
+     "text": "Welcome, friends! Lock the doors."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The music stops. The doors do not open."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "grieving",
+     "action": null,
+     "text": "Aino, Cecilia and 2 more never leave the hall."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE CRIMSON FEAST",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p01",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p04",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p26",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p34",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "goblet_clink",
+     "line": 0
+    },
+    {
+     "sfx": "crowd_gasp",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p28"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "splash",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 9,
+   "setting": "feast_hall",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "dread",
+   "lines": [
+    {
+     "speaker": "p40",
+     "emotion": "smug",
+     "action": null,
+     "text": "Watch my back, friend."
+    },
+    {
+     "speaker": "p15",
+     "emotion": "scheming",
+     "action": "strike",
+     "text": "Oh, I am watching it closely."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Öhman's rod snaps. The alliance is over."
+    }
+   ],
+   "captions": [
+    {
+     "text": "A KNIFE IN THE BACK",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p40",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "SHINK!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "shink",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "medium",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p40",
+      "p15"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p15"
+     ]
+    },
+    {
+     "framing": "extreme_close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 10,
+   "setting": "city_streets",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "winter",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Blue eyes glow beyond the ice wall."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "grieving",
+     "action": null,
+     "text": "The cold takes Bea, Fredrik and 3 more."
+    },
+    {
+     "speaker": "p10",
+     "emotion": "terrified",
+     "action": "flee",
+     "text": "I am not built for winter!"
+    }
+   ],
+   "captions": [
+    {
+     "text": "MARCH OF THE PALE ONES",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p03",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p08",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p09",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p11",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p17",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "wind",
+     "line": 0
+    },
+    {
+     "sfx": "horn",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p10"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": [
+      "p10"
+     ]
+    }
+   ],
+   "beat_index": 11,
+   "setting": "ice_wall",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "battle",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Green fire bursts from the cellars."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "grieving",
+     "action": null,
+     "text": "Joonas, Jääskeläinen and 3 more are lost in the blaze."
+    },
+    {
+     "speaker": "p13",
+     "emotion": "terrified",
+     "action": "flee",
+     "text": "Run!"
+    }
+   ],
+   "captions": [
+    {
+     "text": "WILDFIRE BELOW THE CITY",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p15",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p16",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p20",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p22",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p33",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "FWOOSH!",
+     "line": 0
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "fire_whoosh",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "splash",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p13"
+     ]
+    },
+    {
+     "framing": "wide",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": [
+      "p13"
+     ]
+    }
+   ],
+   "beat_index": 12,
+   "setting": "city_streets",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The rope bridge creaks. Then it does not."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "grieving",
+     "action": null,
+     "text": "Hannu, Inka and 2 more drop into the gorge."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE BRIDGE GIVES WAY",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p10",
+     "action": "fall",
+     "line": 1
+    },
+    {
+     "character": "p13",
+     "action": "fall",
+     "line": 1
+    },
+    {
+     "character": "p21",
+     "action": "fall",
+     "line": 1
+    },
+    {
+     "character": "p23",
+     "action": "fall",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "SNAP!",
+     "line": 0
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "thud",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": []
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 13,
+   "setting": "bridge",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "feast",
+   "lines": [
+    {
+     "speaker": "p14",
+     "emotion": "smug",
+     "action": null,
+     "text": "A toast to you, Pekka!"
+    },
+    {
+     "speaker": "p28",
+     "emotion": "triumphant",
+     "action": "drink",
+     "text": "How kind! It tastes of almonds."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The goblet rolls across the table."
+    }
+   ],
+   "captions": [
+    {
+     "text": "A TOAST!",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p28",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "GLUG!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "goblet_clink",
+     "line": 0
+    },
+    {
+     "sfx": "gulp",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p14",
+      "p28"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p28"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 14,
+   "setting": "feast_hall",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "winter",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "A recruiter with a big smile arrives."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Aleksi, Daniel and 3 more sign up before reading the small print."
+    }
+   ],
+   "captions": [
+    {
+     "text": "NORTHWARD",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p02",
+     "action": "exit",
+     "line": 1
+    },
+    {
+     "character": "p05",
+     "action": "exit",
+     "line": 1
+    },
+    {
+     "character": "p06",
+     "action": "exit",
+     "line": 1
+    },
+    {
+     "character": "p18",
+     "action": "exit",
+     "line": 1
+    },
+    {
+     "character": "p36",
+     "action": "exit",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "wind",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": []
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 15,
+   "setting": "ice_wall",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "battle",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Two banners, one very muddy field."
+    },
+    {
+     "speaker": "p35",
+     "emotion": "triumphant",
+     "action": "strike",
+     "text": "Hold the line!"
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "grieving",
+     "action": null,
+     "text": "Iiro, Jari and 3 more fall in the muck."
+    }
+   ],
+   "captions": [
+    {
+     "text": "MUD AND BANNERS",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p12",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p14",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p27",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p29",
+     "action": "fall",
+     "line": 2
+    },
+    {
+     "character": "p38",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "sword_clash",
+     "line": 1
+    },
+    {
+     "sfx": "thud",
+     "line": 2
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p35"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p35"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 16,
+   "setting": "battlefield",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "A falling gargoyle misses Urho by a hair."
+    },
+    {
+     "speaker": "p35",
+     "emotion": "terrified",
+     "action": "flee",
+     "text": "I meant to do that!"
+    }
+   ],
+   "captions": [
+    {
+     "text": "A CLOSE CALL",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [
+    {
+     "text": "WHOOSH!",
+     "line": 0
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "thud",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p35"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p35"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p35"
+     ]
+    }
+   ],
+   "beat_index": 17,
+   "setting": "bridge",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p35",
+     "emotion": "smug",
+     "action": null,
+     "text": "Ha! Missed me!"
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The arrow quivers in the post behind Urho."
+    }
+   ],
+   "captions": [
+    {
+     "text": "NOT TODAY",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [
+    {
+     "text": "THWOK!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "thud",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p35"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 18,
+   "setting": "bridge",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "battle",
+   "lines": [
+    {
+     "speaker": "p35",
+     "emotion": "furious",
+     "action": "draw_weapon",
+     "text": "Only one of us leaves this place, Saku."
+    },
+    {
+     "speaker": "p30",
+     "emotion": "smug",
+     "action": "strike",
+     "text": "Then I will hold the door for you."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Steel rings. The rival's rod snaps. It is over."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE LAST DUEL",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p35",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "KRAKOOM!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "sword_draw",
+     "line": 0
+    },
+    {
+     "sfx": "sword_clash",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p35",
+      "p30"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p30"
+     ]
+    },
+    {
+     "framing": "splash",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 19,
+   "setting": "battlefield",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "triumph",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "And so the prophecy is fulfilled."
+    },
+    {
+     "speaker": "p30",
+     "emotion": "triumphant",
+     "action": "crown",
+     "text": "The bottle is mine!"
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "grieving",
+     "action": "kneel",
+     "text": "Take good care of it."
+    }
+   ],
+   "captions": [
+    {
+     "text": "LONG LIVE THE MONARCH!",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [
+    {
+     "text": "HUZZAH!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "choir",
+     "line": 0
+    },
+    {
+     "sfx": "crowd_cheer",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p30"
+     ]
+    },
+    {
+     "framing": "splash",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p30"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 20,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  }
+ ],
+ "bible": {
+  "title": "The Bottle Throne: Knives Out at the Pub",
+  "prophecy": "One who bears the sign of the Stag / One who faces a Fool at the last / One who walked out of the Mutiny of the Grey Cloaks",
+  "motifs": [
+   "the bottle",
+   "a suspicious goat",
+   "paper crowns"
+  ],
+  "beats": [
+   {
+    "index": 0,
+    "synopsis": "The Old King's Court"
+   },
+   {
+    "index": 1,
+    "synopsis": "The Old King's Decree"
+   },
+   {
+    "index": 2,
+    "synopsis": "The Old King's Gambit"
+   },
+   {
+    "index": 3,
+    "synopsis": "The Prophecy"
+   },
+   {
+    "index": 4,
+    "synopsis": "The Faceless Contract"
+   },
+   {
+    "index": 5,
+    "synopsis": "Debt to the Iron Vault"
+   },
+   {
+    "index": 6,
+    "synopsis": "The Faceless Strike"
+   },
+   {
+    "index": 7,
+    "synopsis": "A Sworn Alliance"
+   },
+   {
+    "index": 8,
+    "synopsis": "Wildfire Below the City"
+   },
+   {
+    "index": 9,
+    "synopsis": "The Crimson Feast"
+   },
+   {
+    "index": 10,
+    "synopsis": "The Knife in the Back"
+   },
+   {
+    "index": 11,
+    "synopsis": "March of the Pale Ones"
+   },
+   {
+    "index": 12,
+    "synopsis": "Wildfire Below the City"
+   },
+   {
+    "index": 13,
+    "synopsis": "The Bridge Gives Way"
+   },
+   {
+    "index": 14,
+    "synopsis": "The Poisoned Goblet"
+   },
+   {
+    "index": 15,
+    "synopsis": "Mutiny of the Grey Cloaks"
+   },
+   {
+    "index": 16,
+    "synopsis": "Battle of the Muddy Field"
+   },
+   {
+    "index": 17,
+    "synopsis": "A Near Miss"
+   },
+   {
+    "index": 18,
+    "synopsis": "A Near Miss"
+   },
+   {
+    "index": 19,
+    "synopsis": "The Last Duel"
+   },
+   {
+    "index": 20,
+    "synopsis": "The Coronation"
+   }
+  ]
+ },
+ "chronicle": {
+  "act_titles": {
+   "act_1": "The Call",
+   "act_2": "The Game",
+   "act_3": "The Throne"
+  },
+  "epilogue": "When the dust settled, Saku the Brute sat upon the Bottle Throne. 39 rivals fell, fled or were sent away along the way. The old crown passed on, the prophecy came true, and the bottle was finally opened. Long may Saku reign, at least until next Friday.",
+  "cover_title": "The Bottle Throne: A Clash of Corks",
+  "blurb": "40 peasants. One bottle. Alliances, betrayals and a very suspicious goat. Who will be crowned when the curtain falls?"
+ }
+}

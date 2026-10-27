@@ -1,5 +1,7 @@
 import { ApiError, createShow, getHealth } from "../api/client";
+import { unlockAudio } from "../audio/context";
 import { el } from "../dom";
+import { renderAudioCheck } from "./audio-check";
 import { renderCastPreview } from "./preview";
 import "./setup.css";
 import { splitLines, validateRoster, type RosterValidation } from "./validation";
@@ -68,6 +70,7 @@ export function renderSetup(root: HTMLElement, navigate: (path: string) => void)
         issues,
         el("div", { class: "actions" }, preview, start),
         serverError,
+        renderAudioCheck(),
       ),
     ),
     previewSlot,
@@ -135,7 +138,11 @@ export function renderSetup(root: HTMLElement, navigate: (path: string) => void)
 
   participants.addEventListener("input", refresh);
   oldKing.addEventListener("input", refresh);
-  start.addEventListener("click", () => void submit());
+  start.addEventListener("click", () => {
+    // Must run inside the click: browsers only allow audio to start from a user gesture.
+    unlockAudio();
+    void submit();
+  });
   preview.addEventListener("click", showPreview);
 
   root.replaceChildren(page);

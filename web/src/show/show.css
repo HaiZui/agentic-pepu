@@ -1,0 +1,60 @@
+.show-page {
+  position: fixed;
+  inset: 0;
+  background: #0b0705;
+}
+
+.lobby {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: min(560px, 90vw);
+  padding: 28px 36px;
+  border: 5px solid #1b130b;
+  border-radius: 10px;
+  background: #f2e4c4;
+  box-shadow: 10px 12px 0 rgba(0, 0, 0, 0.55);
+  text-align: center;
+  z-index: 12;
+}
+.lobby h1 {
+  margin: 0 0 6px;
+  font-family: var(--bt-font-display, Impact, sans-serif);
+  font-weight: 400;
+  font-size: 54px;
+  color: #c42a1f;
+  letter-spacing: 0.04em;
+}
+.lobby-meta,
+.lobby-seal,
+.lobby-progress {
+  margin: 6px 0;
+}
+.lobby-seal strong {
+  font-family: "Courier New", monospace;
+}
+.lobby-progress {
+  min-height: 2.6em;
+  font-size: 15px;
+}
+.lobby-start {
+  margin: 10px 0 6px;
+  padding: 12px 28px;
+  border: 4px solid #1b130b;
+  border-radius: 10px;
+  background: #efbd2e;
+  font-family: var(--bt-font-display, Impact, sans-serif);
+  font-size: 30px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  box-shadow: 4px 5px 0 #1b130b;
+}
+.lobby-start:hover {
+  background: #f6cf55;
+}
+.lobby-hint,
+.lobby-links {
+  margin: 6px 0 0;
+  font-size: 14px;
+}

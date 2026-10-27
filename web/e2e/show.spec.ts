@@ -1,0 +1,37 @@
+import { expect, test } from "@playwright/test";
+
+interface FateCharacter {
+  id: string;
+  name: string;
+  kind: string;
+}
+
+const ROSTER = ["Matti", "Aino", "Kalle", "Jääskeläinen", "Öhman", "Liisa"];
+
+test("a six-peasant fallback show plays to the credits and crowns the fate winner", async ({ page, request }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+
+  const health = await (await request.get("/api/health")).json();
+  expect(health.foundry, "the e2e server must run without Foundry").toEqual({ api_key: false, endpoint: false, deployment: false });
+
+  const created = await request.post("/api/shows", { data: { participants: ROSTER, old_king: "Jukka" } });
+  expect(created.status()).toBe(201);
+  const { id } = await created.json();
+  const fate = await (await request.get(`/api/shows/${id}/fate`)).json();
+  const characters = fate.characters as FateCharacter[];
+  const winner = characters.find((c) => c.id === fate.winner)!.name;
+  const others = characters.filter((c) => c.kind === "participant" && c.id !== fate.winner).map((c) => c.name);
+
+  await page.goto(`/show/${id}?speed=10`);
+  await page.getByTestId("start").click();
+  await expect(page.getByTestId("seal").first()).toBeVisible({ timeout: 20_000 });
+
+  await expect(page.getByTestId("crowned-name")).toHaveText(winner, { timeout: 150_000 });
+  await expect(page.getByTestId("credits")).toBeVisible({ timeout: 60_000 });
+  await expect(page.getByTestId("credits-winner")).toHaveText(winner);
+  for (const name of others) await expect(page.getByTestId("fallen")).toContainText(name);
+  await expect(page.getByTestId("seed")).not.toHaveText("revealing...");
+
+  expect(errors).toEqual([]);
+});

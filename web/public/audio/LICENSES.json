@@ -1,0 +1,578 @@
+[
+ {
+  "file": "music/overture.ogg",
+  "title": "Overture (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/overture.mp3",
+  "title": "Overture (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/intrigue.ogg",
+  "title": "Intrigue (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/intrigue.mp3",
+  "title": "Intrigue (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/feast.ogg",
+  "title": "Feast (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/feast.mp3",
+  "title": "Feast (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/battle.ogg",
+  "title": "Battle (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/battle.mp3",
+  "title": "Battle (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/dread.ogg",
+  "title": "Dread (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/dread.mp3",
+  "title": "Dread (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/winter.ogg",
+  "title": "Winter (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/winter.mp3",
+  "title": "Winter (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/sorrow.ogg",
+  "title": "Sorrow (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/sorrow.mp3",
+  "title": "Sorrow (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/triumph.ogg",
+  "title": "Triumph (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "music/triumph.mp3",
+  "title": "Triumph (mood loop)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/curtain.ogg",
+  "title": "Curtain (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/curtain.mp3",
+  "title": "Curtain (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/gong.ogg",
+  "title": "Gong (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/gong.mp3",
+  "title": "Gong (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/sword_draw.ogg",
+  "title": "Sword Draw (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/sword_draw.mp3",
+  "title": "Sword Draw (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/sword_clash.ogg",
+  "title": "Sword Clash (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/sword_clash.mp3",
+  "title": "Sword Clash (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/shink.ogg",
+  "title": "Shink (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/shink.mp3",
+  "title": "Shink (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/thud.ogg",
+  "title": "Thud (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/thud.mp3",
+  "title": "Thud (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/crowd_gasp.ogg",
+  "title": "Crowd Gasp (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/crowd_gasp.mp3",
+  "title": "Crowd Gasp (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/crowd_cheer.ogg",
+  "title": "Crowd Cheer (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/crowd_cheer.mp3",
+  "title": "Crowd Cheer (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/thunder.ogg",
+  "title": "Thunder (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/thunder.mp3",
+  "title": "Thunder (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/wind.ogg",
+  "title": "Wind (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/wind.mp3",
+  "title": "Wind (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/fire_whoosh.ogg",
+  "title": "Fire Whoosh (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/fire_whoosh.mp3",
+  "title": "Fire Whoosh (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/goblet_clink.ogg",
+  "title": "Goblet Clink (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/goblet_clink.mp3",
+  "title": "Goblet Clink (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/gulp.ogg",
+  "title": "Gulp (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/gulp.mp3",
+  "title": "Gulp (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/bell_toll.ogg",
+  "title": "Bell Toll (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/bell_toll.mp3",
+  "title": "Bell Toll (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/horn.ogg",
+  "title": "Horn (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/horn.mp3",
+  "title": "Horn (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/raven.ogg",
+  "title": "Raven (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/raven.mp3",
+  "title": "Raven (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/splash.ogg",
+  "title": "Splash (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/splash.mp3",
+  "title": "Splash (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/dragon_roar.ogg",
+  "title": "Dragon Roar (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/dragon_roar.mp3",
+  "title": "Dragon Roar (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/heartbeat.ogg",
+  "title": "Heartbeat (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/heartbeat.mp3",
+  "title": "Heartbeat (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/choir.ogg",
+  "title": "Choir (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "sfx/choir.mp3",
+  "title": "Choir (sound effect)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "stingers/curtain.ogg",
+  "title": "Curtain (stinger)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "stingers/curtain.mp3",
+  "title": "Curtain (stinger)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "stingers/roll_call.ogg",
+  "title": "Roll Call (stinger)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "stingers/roll_call.mp3",
+  "title": "Roll Call (stinger)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "stingers/elimination.ogg",
+  "title": "Elimination (stinger)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "stingers/elimination.mp3",
+  "title": "Elimination (stinger)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "stingers/coronation.ogg",
+  "title": "Coronation (stinger)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ },
+ {
+  "file": "stingers/coronation.mp3",
+  "title": "Coronation (stinger)",
+  "author": "The Bottle Throne (synthesized by scripts/gen_audio_assets.py)",
+  "source_url": "",
+  "license": "CC0-1.0",
+  "attribution_required": false,
+  "attribution_text": ""
+ }
+]
