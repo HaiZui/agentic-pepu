@@ -15,13 +15,13 @@ dependencies = [
     "openai>=2.0",
     # Prints the comic book PDF; also run `python -m playwright install chromium` once.
     "playwright>=1.55",
+    "httpx>=0.28",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8.4",
     "pytest-asyncio>=1.2",
-    "httpx>=0.28",
     "pypdf>=6.0",
 ]
 # Only needed to regenerate the bundled audio (scripts/gen_audio_assets.py).
