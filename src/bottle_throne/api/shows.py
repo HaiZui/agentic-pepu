@@ -13,25 +13,27 @@ def _store(request: Request) -> SessionStore:
 
 @router.post("", response_model=ShowSession, status_code=status.HTTP_201_CREATED)
 def create_show(body: ShowRequest, request: Request) -> ShowSession:
-    return _store(request).create(body).public()
+    record = _store(request).create(body)
+    request.app.state.story_worker.start(record.story)
+    return record.public()
 
 
 @router.get("/{show_id}", response_model=ShowSession)
 def get_show(show_id: str, request: Request) -> ShowSession:
-    return _record(request, show_id).public()
+    return show_record(request, show_id).public()
 
 
 @router.get("/{show_id}/fate", response_model=FateScript)
 def get_fate(show_id: str, request: Request) -> FateScript:
-    return _record(request, show_id).fate
+    return show_record(request, show_id).fate
 
 
 @router.post("/{show_id}/reveal", response_model=Reveal)
 def reveal(show_id: str, request: Request) -> Reveal:
-    return _record(request, show_id).reveal()
+    return show_record(request, show_id).reveal()
 
 
-def _record(request: Request, show_id: str) -> SessionRecord:
+def show_record(request: Request, show_id: str) -> SessionRecord:
     record = _store(request).get(show_id)
     if record is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Show not found")

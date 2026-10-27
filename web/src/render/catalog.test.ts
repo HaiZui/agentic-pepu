@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import openapi from "../api/openapi.json";
-import { ARCHETYPES, HOUSE_IDS, NPC_ROLES, SETTINGS } from "./catalog";
+import { ARCHETYPES, EMOTIONS, HOUSE_IDS, NPC_ROLES, SETTINGS } from "./catalog";
 
 const pythonCatalog = readFileSync(
   join(dirname(fileURLToPath(import.meta.url)), "../../../src/bottle_throne/fate/catalog.py"),
@@ -23,6 +23,13 @@ describe("catalog mirrors the backend", () => {
     const archetype = schemas.Character.properties.archetype as { anyOf: { enum?: string[] }[] };
     expect([...SETTINGS].sort()).toEqual([...setting.enum].sort());
     expect([...ARCHETYPES].sort()).toEqual([...(archetype.anyOf.find((a) => a.enum)?.enum ?? [])].sort());
+  });
+
+  it("emotions match the published /api/catalog", () => {
+    const schemas = (openapi as { components: { schemas: Record<string, { properties: Record<string, unknown> }> } })
+      .components.schemas;
+    const emotions = schemas.Catalog.properties.emotions as { items: { enum: string[] } };
+    expect([...EMOTIONS]).toEqual(emotions.items.enum);
   });
 
   it("house ids match HOUSE_CATALOG", () => {

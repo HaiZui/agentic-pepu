@@ -1,13 +1,16 @@
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import APIRouter, FastAPI, HTTPException
 from fastapi.responses import FileResponse, HTMLResponse
 
 from bottle_throne import __version__
-from bottle_throne.api import health, shows
+from bottle_throne.api import catalog, health, shows, story
 from bottle_throne.config import REPO_ROOT, Settings, get_settings
 from bottle_throne.logging_utils import install_secret_masking
 from bottle_throne.sessions import SessionStore
+from bottle_throne.story.llm import create_llm
+from bottle_throne.story.scheduler import StoryWorker
 
 DEFAULT_STATIC_DIR = REPO_ROOT / "web" / "dist"
 
@@ -17,17 +20,26 @@ Run <code>npm install</code> and <code>npm run build</code> in <code>web/</code>
 or start the app with <code>scripts/start.ps1</code>.</p></body></html>"""
 
 
+@asynccontextmanager
+async def _lifespan(app: FastAPI):
+    yield
+    app.state.story_worker.stop()
+
+
 def create_app(settings: Settings | None = None, static_dir: Path | None = None) -> FastAPI:
     settings = settings or get_settings()
     install_secret_masking(settings.secret_values())
 
-    app = FastAPI(title="The Bottle Throne", version=__version__)
+    app = FastAPI(title="The Bottle Throne", version=__version__, lifespan=_lifespan)
     app.state.settings = settings
     app.state.sessions = SessionStore()
+    app.state.story_worker = StoryWorker(create_llm(settings))
 
     api = APIRouter(prefix="/api")
     api.include_router(health.router)
+    api.include_router(catalog.router)
     api.include_router(shows.router)
+    api.include_router(story.router)
     app.include_router(api)
 
     @app.api_route("/api/{_rest:path}", methods=["GET", "POST", "PUT", "PATCH", "DELETE"], include_in_schema=False)

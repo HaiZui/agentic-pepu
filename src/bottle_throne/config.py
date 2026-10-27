@@ -30,6 +30,7 @@ class Settings(BaseSettings):
     foundry_llm_deployment_name: str | None = Field(
         default=None, validation_alias="FOUNDRY_LLM_DEPLOYMENT_NAME"
     )
+    foundry_api_version: str | None = Field(default=None, validation_alias="FOUNDRY_API_VERSION")
     host: str = Field(default="127.0.0.1", validation_alias="BOTTLE_THRONE_HOST")
     port: int = Field(default=8765, ge=1, le=65535, validation_alias="BOTTLE_THRONE_PORT")
 

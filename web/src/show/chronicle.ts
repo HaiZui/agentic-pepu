@@ -2,6 +2,7 @@ import { ApiError, getFate, type Beat, type Character, type FateScript } from ".
 import { el } from "../dom";
 import "./chronicle.css";
 import { shortSeal } from "./seal";
+import { followStory, statusBadge } from "./story-view";
 
 const SECTION_TITLES: Record<string, string> = {
   cold_open: "Cold Open",
@@ -75,6 +76,7 @@ export async function renderChronicle(
 
   const byId = new Map(fate.characters.map((c) => [c.id, c]));
   const name = (id: string) => byId.get(id)?.name ?? id;
+  const sceneCells = fate.beats.map(() => el("td", { colspan: "7", class: "scene-cell" }, statusBadge("pending")));
   const sections = Object.keys(SECTION_TITLES).map((section) => {
     const beats = fate.beats.filter((b) => b.section === section);
     return el(
@@ -93,10 +95,20 @@ export async function renderChronicle(
             ...["#", "Card", "Setting", "Roles", "Out", "Notes", "Budget"].map((h) => el("th", {}, h)),
           ),
         ),
-        el("tbody", {}, ...beats.map((b) => describeBeat(b, name))),
+        el(
+          "tbody",
+          {},
+          ...beats.flatMap((b) => [describeBeat(b, name), el("tr", { class: "scene-row" }, sceneCells[b.index])]),
+        ),
       ),
     );
   });
+  const story = {
+    progress: el("p", { class: "story-progress", "aria-live": "polite" }),
+    bible: el("section", { class: "bible" }),
+    chronicle: el("section", { class: "chronicle-texts" }),
+    sceneCells,
+  };
 
   const eliminated = fate.beats
     .flatMap((b) => b.eliminations)
@@ -114,10 +126,14 @@ export async function renderChronicle(
         `${fate.total_budget_seconds}s budget · ${eliminated.length} eliminations · engine ${fate.engine_version}`,
         fate.seed_mode === "manual" ? " · manual seed" : "",
       ),
+      story.progress,
+      story.bible,
       el("h2", {}, "Cast"),
       castList(fate, byId),
       ...sections,
+      story.chronicle,
       back,
     ),
   );
+  followStory(showId, story, name);
 }

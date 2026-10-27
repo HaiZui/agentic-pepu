@@ -17,6 +17,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/catalog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Catalog */
+        get: operations["get_catalog_api_catalog_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/shows": {
         parameters: {
             query?: never;
@@ -85,10 +102,107 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/shows/{show_id}/story": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Story Status */
+        get: operations["story_status_api_shows__show_id__story_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/shows/{show_id}/bible": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Bible */
+        get: operations["get_bible_api_shows__show_id__bible_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/shows/{show_id}/chronicle-texts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Chronicle Texts */
+        get: operations["get_chronicle_texts_api_shows__show_id__chronicle_texts_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/shows/{show_id}/scenes/{beat}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Scene */
+        get: operations["get_scene_api_shows__show_id__scenes__beat__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/shows/{show_id}/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Story Events
+         * @description Server-Sent Events: a status snapshot, then bible/beat/chronicle events, ending with 'complete'.
+         */
+        get: operations["story_events_api_shows__show_id__events_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** ActTitles */
+        ActTitles: {
+            /** Act 1 */
+            act_1: string;
+            /** Act 2 */
+            act_2: string;
+            /** Act 3 */
+            act_3: string;
+        };
         /** Alliance */
         Alliance: {
             /** A */
@@ -141,6 +255,41 @@ export interface components {
             /** Dramatic */
             dramatic: boolean;
         };
+        /** BeatSynopsis */
+        BeatSynopsis: {
+            /** Index */
+            index: number;
+            /** Synopsis */
+            synopsis: string;
+        };
+        /** Caption */
+        Caption: {
+            /** Text */
+            text: string;
+            /**
+             * Before Line
+             * @description Index of the line this caption box precedes; len(lines) means at the end.
+             */
+            before_line: number;
+        };
+        /** Catalog */
+        Catalog: {
+            /** Emotions */
+            emotions: ("neutral" | "smug" | "scheming" | "furious" | "terrified" | "grieving" | "triumphant" | "dead")[];
+            /** Actions */
+            actions: ("enter" | "exit" | "draw_weapon" | "strike" | "fall" | "kneel" | "drink" | "point" | "embrace" | "flee" | "crown")[];
+            /** Sfx Cues */
+            sfx_cues: ("curtain" | "gong" | "sword_draw" | "sword_clash" | "shink" | "thud" | "crowd_gasp" | "crowd_cheer" | "thunder" | "wind" | "fire_whoosh" | "goblet_clink" | "gulp" | "bell_toll" | "horn" | "raven" | "splash" | "dragon_roar" | "heartbeat" | "choir")[];
+            /** Music Moods */
+            music_moods: ("overture" | "intrigue" | "feast" | "battle" | "dread" | "winter" | "sorrow" | "triumph")[];
+            /** Framings */
+            framings: ("wide" | "medium" | "close_up" | "extreme_close_up" | "over_shoulder" | "splash" | "montage")[];
+            /** Settings */
+            settings: ("throne_room" | "feast_hall" | "battlefield" | "ice_wall" | "forest" | "dungeon" | "harbor" | "city_streets" | "temple" | "bridge")[];
+            /** Narrator */
+            narrator: string;
+            reading: components["schemas"]["ReadingTime"];
+        };
         /** Character */
         Character: {
             /**
@@ -167,6 +316,32 @@ export interface components {
              * @default false
              */
             is_old_king: boolean;
+        };
+        /** ChronicleTexts */
+        ChronicleTexts: {
+            act_titles: components["schemas"]["ActTitles"];
+            /**
+             * Epilogue
+             * @description At most 120 words, naming the new monarch.
+             */
+            epilogue: string;
+            /** Cover Title */
+            cover_title: string;
+            /**
+             * Blurb
+             * @description Back-cover blurb, two or three sentences, no spoilers of the winner.
+             */
+            blurb: string;
+        };
+        /** Cue */
+        Cue: {
+            /**
+             * Sfx
+             * @enum {string}
+             */
+            sfx: "curtain" | "gong" | "sword_draw" | "sword_clash" | "shink" | "thud" | "crowd_gasp" | "crowd_cheer" | "thunder" | "wind" | "fire_whoosh" | "goblet_clink" | "gulp" | "bell_toll" | "horn" | "raven" | "splash" | "dragon_roar" | "heartbeat" | "choir";
+            /** Line */
+            line: number;
         };
         /** Elimination */
         Elimination: {
@@ -222,6 +397,17 @@ export interface components {
             /** Deployment */
             deployment: boolean;
         };
+        /** GenerationStatus */
+        GenerationStatus: {
+            /** Beats */
+            beats: ("pending" | "ready" | "fallback")[];
+            /** Bible Ready */
+            bible_ready: boolean;
+            /** Chronicle Ready */
+            chronicle_ready: boolean;
+            /** Complete */
+            complete: boolean;
+        };
         /** HTTPValidationError */
         HTTPValidationError: {
             /** Detail */
@@ -245,6 +431,23 @@ export interface components {
              */
             members: string[];
         };
+        /** Line */
+        Line: {
+            /**
+             * Speaker
+             * @description Character id from the cast, or 'narrator'.
+             */
+            speaker: string;
+            /**
+             * Emotion
+             * @enum {string}
+             */
+            emotion: "neutral" | "smug" | "scheming" | "furious" | "terrified" | "grieving" | "triumphant" | "dead";
+            /** Action */
+            action: ("enter" | "exit" | "draw_weapon" | "strike" | "fall" | "kneel" | "drink" | "point" | "embrace" | "flee" | "crown") | null;
+            /** Text */
+            text: string;
+        };
         /** OldKing */
         OldKing: {
             /** Name */
@@ -259,6 +462,36 @@ export interface components {
              * @description True when the previous winner also competes.
              */
             is_participant: boolean;
+        };
+        /** Onomatopoeia */
+        Onomatopoeia: {
+            /**
+             * Text
+             * @description Short comic sound word in capitals, e.g. SHINK!
+             */
+            text: string;
+            /** Line */
+            line: number;
+        };
+        /** PanelMoment */
+        PanelMoment: {
+            /**
+             * Framing
+             * @enum {string}
+             */
+            framing: "wide" | "medium" | "close_up" | "extreme_close_up" | "over_shoulder" | "splash" | "montage";
+            /**
+             * Ref Kind
+             * @enum {string}
+             */
+            ref_kind: "line" | "caption";
+            /** Ref Index */
+            ref_index: number;
+            /**
+             * Focus
+             * @description Character ids in the frame.
+             */
+            focus: string[];
         };
         /** Participant */
         Participant: {
@@ -283,6 +516,15 @@ export interface components {
              */
             text: string;
         };
+        /** ReadingTime */
+        ReadingTime: {
+            /** Base Seconds */
+            base_seconds: number;
+            /** Per Char Seconds */
+            per_char_seconds: number;
+            /** Max Line Chars */
+            max_line_chars: number;
+        };
         /** Reveal */
         Reveal: {
             /** Seed */
@@ -303,6 +545,63 @@ export interface components {
             role: string;
             /** Character */
             character: string;
+        };
+        /**
+         * SceneScript
+         * @description A validated scene, shared by the live stage and the comic. Never changes once delivered.
+         */
+        SceneScript: {
+            /**
+             * Music
+             * @enum {string}
+             */
+            music: "overture" | "intrigue" | "feast" | "battle" | "dread" | "winter" | "sorrow" | "triumph";
+            /** Lines */
+            lines: components["schemas"]["Line"][];
+            /** Captions */
+            captions: components["schemas"]["Caption"][];
+            /** Stage Directions */
+            stage_directions: components["schemas"]["StageDirection"][];
+            /** Onomatopoeia */
+            onomatopoeia: components["schemas"]["Onomatopoeia"][];
+            /** Cues */
+            cues: components["schemas"]["Cue"][];
+            /** Panels */
+            panels: components["schemas"]["PanelMoment"][];
+            /** Beat Index */
+            beat_index: number;
+            /**
+             * Setting
+             * @enum {string}
+             */
+            setting: "throne_room" | "feast_hall" | "battlefield" | "ice_wall" | "forest" | "dungeon" | "harbor" | "city_streets" | "temple" | "bridge";
+            /** Is Fallback */
+            is_fallback: boolean;
+            /** Prompt Version */
+            prompt_version: string;
+        };
+        /** ShowBible */
+        ShowBible: {
+            /**
+             * Title
+             * @description Title of this week's show, like a comic issue title.
+             */
+            title: string;
+            /**
+             * Prophecy
+             * @description The seer's prophecy, two or three cryptic lines, never naming anyone.
+             */
+            prophecy: string;
+            /**
+             * Motifs
+             * @description Two to five recurring images or running jokes.
+             */
+            motifs: string[];
+            /**
+             * Beats
+             * @description One-sentence synopsis for every beat index.
+             */
+            beats: components["schemas"]["BeatSynopsis"][];
         };
         /** ShowRequest */
         ShowRequest: {
@@ -337,6 +636,24 @@ export interface components {
              * @enum {string}
              */
             seed_mode: "auto" | "manual";
+        };
+        /** StageDirection */
+        StageDirection: {
+            /**
+             * Character
+             * @description Character id performing the action.
+             */
+            character: string;
+            /**
+             * Action
+             * @enum {string}
+             */
+            action: "enter" | "exit" | "draw_weapon" | "strike" | "fall" | "kneel" | "drink" | "point" | "embrace" | "flee" | "crown";
+            /**
+             * Line
+             * @description Index of the line during which it happens.
+             */
+            line: number;
         };
         /** ValidationError */
         ValidationError: {
@@ -376,6 +693,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Health"];
+                };
+            };
+        };
+    };
+    get_catalog_api_catalog_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Catalog"];
                 };
             };
         };
@@ -494,6 +831,160 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["Reveal"];
                 };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    story_status_api_shows__show_id__story_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                show_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GenerationStatus"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_bible_api_shows__show_id__bible_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                show_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ShowBible"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_chronicle_texts_api_shows__show_id__chronicle_texts_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                show_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ChronicleTexts"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_scene_api_shows__show_id__scenes__beat__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                show_id: string;
+                beat: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SceneScript"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    story_events_api_shows__show_id__events_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                show_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Validation Error */
             422: {

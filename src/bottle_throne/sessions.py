@@ -1,12 +1,13 @@
 import secrets
 import threading
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Literal
 
 from bottle_throne.fate.fairness import ENGINE_VERSION, canonical_roster, new_auto_seed
 from bottle_throne.fate.solver import generate_fate
 from bottle_throne.models.fate import FateScript, Reveal
 from bottle_throne.models.show import OldKing, Participant, ShowRequest, ShowSession, resolve_old_king
+from bottle_throne.story.scheduler import StoryState
 
 
 @dataclass
@@ -19,6 +20,10 @@ class SessionRecord:
     seed_mode: Literal["auto", "manual"]
     seed: str
     fate: FateScript
+    story: StoryState = field(init=False)
+
+    def __post_init__(self) -> None:
+        self.story = StoryState(fate=self.fate, seed=self.seed)
 
     @property
     def canonical_roster(self) -> list[str]:

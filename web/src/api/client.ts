@@ -7,6 +7,11 @@ export type FateScript = components["schemas"]["FateScript"];
 export type Beat = components["schemas"]["Beat"];
 export type Character = components["schemas"]["Character"];
 export type Reveal = components["schemas"]["Reveal"];
+export type SceneScript = components["schemas"]["SceneScript"];
+export type ShowBible = components["schemas"]["ShowBible"];
+export type ChronicleTexts = components["schemas"]["ChronicleTexts"];
+export type GenerationStatus = components["schemas"]["GenerationStatus"];
+export type Catalog = components["schemas"]["Catalog"];
 
 export class ApiError extends Error {
   constructor(
@@ -49,3 +54,12 @@ export const getFate = (id: string) => request<FateScript>(`/api/shows/${encodeU
 
 export const revealSeed = (id: string) =>
   request<Reveal>(`/api/shows/${encodeURIComponent(id)}/reveal`, { method: "POST" });
+
+const showPath = (id: string) => `/api/shows/${encodeURIComponent(id)}`;
+
+export const getScene = (id: string, beat: number) => request<SceneScript>(`${showPath(id)}/scenes/${beat}`);
+export const getBible = (id: string) => request<ShowBible>(`${showPath(id)}/bible`);
+export const getChronicleTexts = (id: string) => request<ChronicleTexts>(`${showPath(id)}/chronicle-texts`);
+export const getStoryStatus = (id: string) => request<GenerationStatus>(`${showPath(id)}/story`);
+export const getCatalog = () => request<Catalog>("/api/catalog");
+export const storyEventsUrl = (id: string) => `${showPath(id)}/events`;

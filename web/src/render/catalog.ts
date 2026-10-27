@@ -5,7 +5,7 @@ type Schemas = components["schemas"];
 export type Archetype = NonNullable<Schemas["Character"]["archetype"]>;
 export type SettingId = Schemas["Beat"]["setting"];
 
-// Mirrors the emotion catalog planned for /api/catalog in add-story-director.
+// Same order as /api/catalog (checked by catalog.test.ts).
 export const EMOTIONS = [
   "neutral",
   "smug",

@@ -87,6 +87,18 @@ def verify(args: argparse.Namespace) -> int:
     return 0
 
 
+def llm_check(args: argparse.Namespace) -> int:
+    import asyncio
+
+    from bottle_throne.story.check import llm_check as run_check
+
+    ok, lines = asyncio.run(run_check(get_settings()))
+    for line in lines:
+        if line:
+            print(line, file=sys.stdout if ok else sys.stderr)
+    return 0 if ok else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="python -m bottle_throne", description="The Bottle Throne")
     parser.add_argument("--open", action="store_true", help="open the setup screen in the browser")
@@ -105,6 +117,9 @@ def build_parser() -> argparse.ArgumentParser:
     check.add_argument("--old-king", help="last week's winner, if one was entered")
     check.add_argument("--engine", default="fate-1", help="engine version shown in the credits")
     check.set_defaults(handler=verify)
+
+    ping = commands.add_parser("llm-check", help="send one tiny request to the configured Foundry deployment")
+    ping.set_defaults(handler=llm_check)
     return parser
 
 

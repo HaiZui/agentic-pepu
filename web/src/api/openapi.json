@@ -23,6 +23,27 @@
         }
       }
     },
+    "/api/catalog": {
+      "get": {
+        "tags": [
+          "story"
+        ],
+        "summary": "Get Catalog",
+        "operationId": "get_catalog_api_catalog_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Catalog"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/shows": {
       "post": {
         "tags": [
@@ -189,10 +210,246 @@
           }
         }
       }
+    },
+    "/api/shows/{show_id}/story": {
+      "get": {
+        "tags": [
+          "story"
+        ],
+        "summary": "Story Status",
+        "operationId": "story_status_api_shows__show_id__story_get",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationStatus"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shows/{show_id}/bible": {
+      "get": {
+        "tags": [
+          "story"
+        ],
+        "summary": "Get Bible",
+        "operationId": "get_bible_api_shows__show_id__bible_get",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShowBible"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shows/{show_id}/chronicle-texts": {
+      "get": {
+        "tags": [
+          "story"
+        ],
+        "summary": "Get Chronicle Texts",
+        "operationId": "get_chronicle_texts_api_shows__show_id__chronicle_texts_get",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChronicleTexts"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shows/{show_id}/scenes/{beat}": {
+      "get": {
+        "tags": [
+          "story"
+        ],
+        "summary": "Get Scene",
+        "operationId": "get_scene_api_shows__show_id__scenes__beat__get",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          },
+          {
+            "name": "beat",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Beat"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SceneScript"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/shows/{show_id}/events": {
+      "get": {
+        "tags": [
+          "story"
+        ],
+        "summary": "Story Events",
+        "description": "Server-Sent Events: a status snapshot, then bible/beat/chronicle events, ending with 'complete'.",
+        "operationId": "story_events_api_shows__show_id__events_get",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "ActTitles": {
+        "properties": {
+          "act_1": {
+            "type": "string",
+            "title": "Act 1"
+          },
+          "act_2": {
+            "type": "string",
+            "title": "Act 2"
+          },
+          "act_3": {
+            "type": "string",
+            "title": "Act 3"
+          }
+        },
+        "type": "object",
+        "required": [
+          "act_1",
+          "act_2",
+          "act_3"
+        ],
+        "title": "ActTitles"
+      },
       "Alliance": {
         "properties": {
           "a": {
@@ -341,6 +598,184 @@
         ],
         "title": "Beat"
       },
+      "BeatSynopsis": {
+        "properties": {
+          "index": {
+            "type": "integer",
+            "title": "Index"
+          },
+          "synopsis": {
+            "type": "string",
+            "title": "Synopsis"
+          }
+        },
+        "type": "object",
+        "required": [
+          "index",
+          "synopsis"
+        ],
+        "title": "BeatSynopsis"
+      },
+      "Caption": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "before_line": {
+            "type": "integer",
+            "title": "Before Line",
+            "description": "Index of the line this caption box precedes; len(lines) means at the end."
+          }
+        },
+        "type": "object",
+        "required": [
+          "text",
+          "before_line"
+        ],
+        "title": "Caption"
+      },
+      "Catalog": {
+        "properties": {
+          "emotions": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "neutral",
+                "smug",
+                "scheming",
+                "furious",
+                "terrified",
+                "grieving",
+                "triumphant",
+                "dead"
+              ]
+            },
+            "type": "array",
+            "title": "Emotions"
+          },
+          "actions": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "enter",
+                "exit",
+                "draw_weapon",
+                "strike",
+                "fall",
+                "kneel",
+                "drink",
+                "point",
+                "embrace",
+                "flee",
+                "crown"
+              ]
+            },
+            "type": "array",
+            "title": "Actions"
+          },
+          "sfx_cues": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "curtain",
+                "gong",
+                "sword_draw",
+                "sword_clash",
+                "shink",
+                "thud",
+                "crowd_gasp",
+                "crowd_cheer",
+                "thunder",
+                "wind",
+                "fire_whoosh",
+                "goblet_clink",
+                "gulp",
+                "bell_toll",
+                "horn",
+                "raven",
+                "splash",
+                "dragon_roar",
+                "heartbeat",
+                "choir"
+              ]
+            },
+            "type": "array",
+            "title": "Sfx Cues"
+          },
+          "music_moods": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "overture",
+                "intrigue",
+                "feast",
+                "battle",
+                "dread",
+                "winter",
+                "sorrow",
+                "triumph"
+              ]
+            },
+            "type": "array",
+            "title": "Music Moods"
+          },
+          "framings": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "wide",
+                "medium",
+                "close_up",
+                "extreme_close_up",
+                "over_shoulder",
+                "splash",
+                "montage"
+              ]
+            },
+            "type": "array",
+            "title": "Framings"
+          },
+          "settings": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "throne_room",
+                "feast_hall",
+                "battlefield",
+                "ice_wall",
+                "forest",
+                "dungeon",
+                "harbor",
+                "city_streets",
+                "temple",
+                "bridge"
+              ]
+            },
+            "type": "array",
+            "title": "Settings"
+          },
+          "narrator": {
+            "type": "string",
+            "title": "Narrator"
+          },
+          "reading": {
+            "$ref": "#/components/schemas/ReadingTime"
+          }
+        },
+        "type": "object",
+        "required": [
+          "emotions",
+          "actions",
+          "sfx_cues",
+          "music_moods",
+          "framings",
+          "settings",
+          "narrator",
+          "reading"
+        ],
+        "title": "Catalog"
+      },
       "Character": {
         "properties": {
           "id": {
@@ -417,6 +852,75 @@
           "kind"
         ],
         "title": "Character"
+      },
+      "ChronicleTexts": {
+        "properties": {
+          "act_titles": {
+            "$ref": "#/components/schemas/ActTitles"
+          },
+          "epilogue": {
+            "type": "string",
+            "title": "Epilogue",
+            "description": "At most 120 words, naming the new monarch."
+          },
+          "cover_title": {
+            "type": "string",
+            "title": "Cover Title"
+          },
+          "blurb": {
+            "type": "string",
+            "title": "Blurb",
+            "description": "Back-cover blurb, two or three sentences, no spoilers of the winner."
+          }
+        },
+        "type": "object",
+        "required": [
+          "act_titles",
+          "epilogue",
+          "cover_title",
+          "blurb"
+        ],
+        "title": "ChronicleTexts"
+      },
+      "Cue": {
+        "properties": {
+          "sfx": {
+            "type": "string",
+            "enum": [
+              "curtain",
+              "gong",
+              "sword_draw",
+              "sword_clash",
+              "shink",
+              "thud",
+              "crowd_gasp",
+              "crowd_cheer",
+              "thunder",
+              "wind",
+              "fire_whoosh",
+              "goblet_clink",
+              "gulp",
+              "bell_toll",
+              "horn",
+              "raven",
+              "splash",
+              "dragon_roar",
+              "heartbeat",
+              "choir"
+            ],
+            "title": "Sfx"
+          },
+          "line": {
+            "type": "integer",
+            "title": "Line"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sfx",
+          "line"
+        ],
+        "title": "Cue"
       },
       "Elimination": {
         "properties": {
@@ -538,6 +1042,42 @@
         ],
         "title": "FoundryHealth"
       },
+      "GenerationStatus": {
+        "properties": {
+          "beats": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "ready",
+                "fallback"
+              ]
+            },
+            "type": "array",
+            "title": "Beats"
+          },
+          "bible_ready": {
+            "type": "boolean",
+            "title": "Bible Ready"
+          },
+          "chronicle_ready": {
+            "type": "boolean",
+            "title": "Chronicle Ready"
+          },
+          "complete": {
+            "type": "boolean",
+            "title": "Complete"
+          }
+        },
+        "type": "object",
+        "required": [
+          "beats",
+          "bible_ready",
+          "chronicle_ready",
+          "complete"
+        ],
+        "title": "GenerationStatus"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -595,6 +1135,65 @@
         ],
         "title": "House"
       },
+      "Line": {
+        "properties": {
+          "speaker": {
+            "type": "string",
+            "title": "Speaker",
+            "description": "Character id from the cast, or 'narrator'."
+          },
+          "emotion": {
+            "type": "string",
+            "enum": [
+              "neutral",
+              "smug",
+              "scheming",
+              "furious",
+              "terrified",
+              "grieving",
+              "triumphant",
+              "dead"
+            ],
+            "title": "Emotion"
+          },
+          "action": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "enter",
+                  "exit",
+                  "draw_weapon",
+                  "strike",
+                  "fall",
+                  "kneel",
+                  "drink",
+                  "point",
+                  "embrace",
+                  "flee",
+                  "crown"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Action"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          }
+        },
+        "type": "object",
+        "required": [
+          "speaker",
+          "emotion",
+          "action",
+          "text"
+        ],
+        "title": "Line"
+      },
       "OldKing": {
         "properties": {
           "name": {
@@ -619,6 +1218,70 @@
           "is_participant"
         ],
         "title": "OldKing"
+      },
+      "Onomatopoeia": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text",
+            "description": "Short comic sound word in capitals, e.g. SHINK!"
+          },
+          "line": {
+            "type": "integer",
+            "title": "Line"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text",
+          "line"
+        ],
+        "title": "Onomatopoeia"
+      },
+      "PanelMoment": {
+        "properties": {
+          "framing": {
+            "type": "string",
+            "enum": [
+              "wide",
+              "medium",
+              "close_up",
+              "extreme_close_up",
+              "over_shoulder",
+              "splash",
+              "montage"
+            ],
+            "title": "Framing"
+          },
+          "ref_kind": {
+            "type": "string",
+            "enum": [
+              "line",
+              "caption"
+            ],
+            "title": "Ref Kind"
+          },
+          "ref_index": {
+            "type": "integer",
+            "title": "Ref Index"
+          },
+          "focus": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Focus",
+            "description": "Character ids in the frame."
+          }
+        },
+        "type": "object",
+        "required": [
+          "framing",
+          "ref_kind",
+          "ref_index",
+          "focus"
+        ],
+        "title": "PanelMoment"
       },
       "Participant": {
         "properties": {
@@ -657,6 +1320,29 @@
           "text"
         ],
         "title": "ProphecyHint"
+      },
+      "ReadingTime": {
+        "properties": {
+          "base_seconds": {
+            "type": "number",
+            "title": "Base Seconds"
+          },
+          "per_char_seconds": {
+            "type": "number",
+            "title": "Per Char Seconds"
+          },
+          "max_line_chars": {
+            "type": "integer",
+            "title": "Max Line Chars"
+          }
+        },
+        "type": "object",
+        "required": [
+          "base_seconds",
+          "per_char_seconds",
+          "max_line_chars"
+        ],
+        "title": "ReadingTime"
       },
       "Reveal": {
         "properties": {
@@ -707,6 +1393,148 @@
           "character"
         ],
         "title": "Role"
+      },
+      "SceneScript": {
+        "properties": {
+          "music": {
+            "type": "string",
+            "enum": [
+              "overture",
+              "intrigue",
+              "feast",
+              "battle",
+              "dread",
+              "winter",
+              "sorrow",
+              "triumph"
+            ],
+            "title": "Music"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/Line"
+            },
+            "type": "array",
+            "title": "Lines"
+          },
+          "captions": {
+            "items": {
+              "$ref": "#/components/schemas/Caption"
+            },
+            "type": "array",
+            "title": "Captions"
+          },
+          "stage_directions": {
+            "items": {
+              "$ref": "#/components/schemas/StageDirection"
+            },
+            "type": "array",
+            "title": "Stage Directions"
+          },
+          "onomatopoeia": {
+            "items": {
+              "$ref": "#/components/schemas/Onomatopoeia"
+            },
+            "type": "array",
+            "title": "Onomatopoeia"
+          },
+          "cues": {
+            "items": {
+              "$ref": "#/components/schemas/Cue"
+            },
+            "type": "array",
+            "title": "Cues"
+          },
+          "panels": {
+            "items": {
+              "$ref": "#/components/schemas/PanelMoment"
+            },
+            "type": "array",
+            "title": "Panels"
+          },
+          "beat_index": {
+            "type": "integer",
+            "title": "Beat Index"
+          },
+          "setting": {
+            "type": "string",
+            "enum": [
+              "throne_room",
+              "feast_hall",
+              "battlefield",
+              "ice_wall",
+              "forest",
+              "dungeon",
+              "harbor",
+              "city_streets",
+              "temple",
+              "bridge"
+            ],
+            "title": "Setting"
+          },
+          "is_fallback": {
+            "type": "boolean",
+            "title": "Is Fallback"
+          },
+          "prompt_version": {
+            "type": "string",
+            "title": "Prompt Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "music",
+          "lines",
+          "captions",
+          "stage_directions",
+          "onomatopoeia",
+          "cues",
+          "panels",
+          "beat_index",
+          "setting",
+          "is_fallback",
+          "prompt_version"
+        ],
+        "title": "SceneScript",
+        "description": "A validated scene, shared by the live stage and the comic. Never changes once delivered."
+      },
+      "ShowBible": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "Title of this week's show, like a comic issue title."
+          },
+          "prophecy": {
+            "type": "string",
+            "title": "Prophecy",
+            "description": "The seer's prophecy, two or three cryptic lines, never naming anyone."
+          },
+          "motifs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Motifs",
+            "description": "Two to five recurring images or running jokes."
+          },
+          "beats": {
+            "items": {
+              "$ref": "#/components/schemas/BeatSynopsis"
+            },
+            "type": "array",
+            "title": "Beats",
+            "description": "One-sentence synopsis for every beat index."
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "prophecy",
+          "motifs",
+          "beats"
+        ],
+        "title": "ShowBible"
       },
       "ShowRequest": {
         "properties": {
@@ -783,6 +1611,44 @@
         ],
         "title": "ShowSession",
         "description": "Public view of a show session. The seed itself is never included."
+      },
+      "StageDirection": {
+        "properties": {
+          "character": {
+            "type": "string",
+            "title": "Character",
+            "description": "Character id performing the action."
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "enter",
+              "exit",
+              "draw_weapon",
+              "strike",
+              "fall",
+              "kneel",
+              "drink",
+              "point",
+              "embrace",
+              "flee",
+              "crown"
+            ],
+            "title": "Action"
+          },
+          "line": {
+            "type": "integer",
+            "title": "Line",
+            "description": "Index of the line during which it happens."
+          }
+        },
+        "type": "object",
+        "required": [
+          "character",
+          "action",
+          "line"
+        ],
+        "title": "StageDirection"
       },
       "ValidationError": {
         "properties": {
