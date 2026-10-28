@@ -7,6 +7,7 @@ import webbrowser
 from pathlib import Path
 
 from bottle_throne.config import get_settings
+from bottle_throne.fate.fairness import ENGINE_VERSION
 
 
 def _port_available(host: str, port: int) -> bool:
@@ -115,7 +116,7 @@ def build_parser() -> argparse.ArgumentParser:
     check.add_argument("--seed", required=True, help="the seed revealed in the credits")
     check.add_argument("--roster", required=True, help="text file with one participant name per line")
     check.add_argument("--old-king", help="last week's winner, if one was entered")
-    check.add_argument("--engine", default="fate-1", help="engine version shown in the credits")
+    check.add_argument("--engine", default=ENGINE_VERSION, help="engine version shown in the credits")
     check.set_defaults(handler=verify)
 
     ping = commands.add_parser("llm-check", help="send one tiny request to the configured Foundry deployment")

@@ -105,6 +105,13 @@ def _attempt(seed: str, attempt: int, cast: Cast, winner: str) -> tuple[list[Bea
     n = len(cast.participant_ids)
     plan_stream = Stream(seed, f"plan#{attempt}")
     plan = make_plan(n, plan_stream)
+    encounter_stream = Stream(seed, f"dragon#{attempt}")
+    eligible = [
+        i for i, slot in enumerate(plan.slots)
+        if slot.section in ("act_1", "act_2")
+        and (slot.type == "drama" or (slot.type == "single" and not slot.nonlethal))
+    ]
+    encounter = encounter_stream.choice(eligible) if eligible and encounter_stream.chance(1, 3) else None
 
     others = [p for p in cast.participant_ids if p != winner]
     contenders = frozenset([winner, *plan_stream.sample(others, plan.contenders - 1)])
@@ -144,7 +151,10 @@ def _attempt(seed: str, attempt: int, cast: Cast, winner: str) -> tuple[list[Bea
             crowd_size=slot.size,
             risen=risen,
         )
-        for card in _weighted_order(_candidates(slot), slot, used, stream):
+        candidates = _weighted_order(_candidates(slot), slot, used, stream)
+        if index == encounter:
+            candidates.insert(0, CARDS["dragon_victory" if slot.type == "drama" else "dragon_defeat"])
+        for card in candidates:
             draft = card.cast(ctx)
             if draft is not None:
                 break

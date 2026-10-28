@@ -1,4 +1,5 @@
 import type { components } from "../api/schema";
+import type { Encounter } from "./encounter";
 
 type Schemas = components["schemas"];
 
@@ -29,6 +30,7 @@ export interface Placement {
 
 /** Everything the stage needs to redraw a moment instantly, without replaying animation. */
 export interface StageState {
+  encounter?: Encounter | null;
   section: Section | "credits";
   beat: number | null;
   setting: SettingId | null;
@@ -53,6 +55,7 @@ export interface Camera {
 }
 
 export interface PanelShot {
+  encounter?: Encounter | null;
   framing: Framing;
   focus: string[];
   setting: SettingId;

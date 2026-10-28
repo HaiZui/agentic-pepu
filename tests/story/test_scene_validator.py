@@ -13,6 +13,7 @@ from bottle_throne.models.story import (
     StageDirection,
 )
 from bottle_throne.story.storyline import storyline
+from bottle_throne.story.causes import dragon_resolution
 from bottle_throne.story.validate import validate_scene
 
 NAMES = ["Matti", "Aino", "Kalle", "Jääskeläinen", "Öhman", "Liisa", "Pekka", "Sanna", "Timo", "Ulla"]
@@ -54,7 +55,7 @@ def good_scene(fate: FateScript, beat: Beat) -> SceneScript:
         StageDirection(character=c, action="fall" if mode == "killed" else "exit", line=len(lines) - 1)
         for c, mode in victims.items()
     ] + [StageDirection(character=r, action="enter", line=0) for r in beat.resurrections]
-    return SceneScript(
+    scene = SceneScript(
         beat_index=beat.index,
         setting=beat.setting,
         music="intrigue",
@@ -71,6 +72,14 @@ def good_scene(fate: FateScript, beat: Beat) -> SceneScript:
         is_fallback=False,
         prompt_version="test",
     )
+    resolution = dragon_resolution(fate, beat)
+    if resolution:
+        hero = beat.roles[0].character
+        if not victims:
+            scene.stage_directions.append(StageDirection(character=hero, action="strike", line=0))
+        scene.captions.append(Caption(text=resolution, before_line=len(lines)))
+        scene.panels[-1] = PanelMoment(framing="wide", ref_kind="caption", ref_index=1, focus=[hero])
+    return scene
 
 
 def codes(scene: SceneDraft, beat: Beat, fate: FateScript) -> set[str]:

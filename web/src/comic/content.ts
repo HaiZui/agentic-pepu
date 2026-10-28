@@ -1,5 +1,5 @@
 import { createProgram, NARRATOR } from "../stage/compiler";
-import type { Announcement, FateScript, PanelShot, Placement, SceneScript, Storyline } from "../stage/types";
+import type { Announcement, FateScript, PanelShot, Placement, SceneScript, StageState, Storyline } from "../stage/types";
 
 export interface PanelText {
   kind: "balloon" | "caption";
@@ -31,6 +31,8 @@ export function comicPanels(fate: FateScript, scenes: readonly SceneScript[], st
     if (!scene) continue;
     const lineCast = new Map<number, Placement[]>();
     const captionCast = new Map<number, Placement[]>();
+    const lineStates = new Map<number, StageState>();
+    const captionStates = new Map<number, StageState>();
     const ghostLines = new Set<number>();
     // Each stamp belongs to the last line before it: the panel showing the elimination or the return.
     const stamps: { at: number; announcement: Announcement }[] = [];
@@ -38,10 +40,14 @@ export function comicPanels(fate: FateScript, scenes: readonly SceneScript[], st
     for (const step of segment.steps) {
       if (step.kind === "line") {
         lineCast.set(step.line, step.stateAfter.onStage);
+        lineStates.set(step.line, step.stateAfter);
         if (step.ghost) ghostLines.add(step.line);
         lastLine = step.line;
       }
-      if (step.kind === "caption") captionCast.set(step.index, step.stateAfter.onStage);
+      if (step.kind === "caption") {
+        captionCast.set(step.index, step.stateAfter.onStage);
+        captionStates.set(step.index, step.stateAfter);
+      }
       if (step.kind === "stamp") stamps.push({ at: Math.max(lastLine, 0), announcement: step.announcement });
     }
     const firstCast = lineCast.get(0) ?? [];
@@ -65,6 +71,7 @@ export function comicPanels(fate: FateScript, scenes: readonly SceneScript[], st
           focus: p.focus.filter((id) => placements.some((x) => x.id === id)),
           setting: scene.setting,
           placements: placements.map((x) => ({ ...x })),
+          encounter: (isLine ? lineStates.get(p.ref_index) : captionStates.get(p.ref_index))?.encounter ?? null,
           text: null,
           speaker: null,
           sound: null,

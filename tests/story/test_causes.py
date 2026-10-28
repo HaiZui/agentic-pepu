@@ -25,10 +25,11 @@ def many() -> list[FateScript]:
 
 
 def test_every_card_has_wording() -> None:
-    assert set(CARDS) <= set(causes.WORDING)
+    assert set(CARDS) <= {key.split(":")[0] for key in causes.WORDING}
     for card in CARDS.values():
         if card.mode is not None:
-            assert causes.WORDING[card.id].out, f"{card.id} eliminates but has no announcement wording"
+            variants = [wording for key, wording in causes.WORDING.items() if key.split(":")[0] == card.id]
+            assert all(wording.out for wording in variants), f"{card.id} eliminates but has no announcement wording"
         if card.kind == "crowd":
             assert causes.WORDING[card.id].crowd
 
@@ -79,6 +80,8 @@ FACT_PHRASES = {
     "pardoned": "pardons",
     "debt_paid": "pays",
     "yielded": "yields",
+    "dragon_slaying": "dragon slays",
+    "sword_accident": "trips onto their own sword",
 }
 
 

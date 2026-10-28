@@ -26,6 +26,15 @@ class Wording:
 
 
 WORDING: dict[str, Wording] = {
+    "dragon_victory": Wording("{hero} faces the dragon alone and slays it. {hero} survives and stays in the contest."),
+    "dragon_defeat:dragon_slaying": Wording(
+        "{hero} faces the dragon alone. The dragon slays {hero}. The dragon survives.",
+        out="slain by the dragon",
+    ),
+    "dragon_defeat:sword_accident": Wording(
+        "{hero} faces the dragon alone, trips onto their own sword and dies. The dragon survives.",
+        out="tripped onto their own sword during the dragon duel",
+    ),
     # single eliminations
     "knife_in_the_back": Wording(
         "{betrayer} betrays their ally {victim} with a knife in the back. {victim} is killed and the alliance is over.",
@@ -172,10 +181,24 @@ def wording_key(beat: Beat) -> str:
         return "coronation:alone"
     if beat.card == "cold_open" and "announcer" not in roles:
         return "cold_open:alone"
-    for fact in ("poisoner_drank", "yielded"):
+    for fact in ("poisoner_drank", "yielded", "dragon_slaying", "sword_accident"):
         if fact in beat.facts and f"{beat.card}:{fact}" in WORDING:
             return f"{beat.card}:{fact}"
     return beat.card
+
+
+def dragon_resolution(fate: FateScript, beat: Beat) -> str | None:
+    if beat.card not in ("dragon_victory", "dragon_defeat"):
+        return None
+    hero = next(r.character for r in beat.roles if r.role == "hero")
+    name = next(c.name for c in fate.characters if c.id == hero)
+    if beat.card == "dragon_victory":
+        return f"{name} slays the dragon and survives."
+    if "sword_accident" in beat.facts:
+        return f"{name} trips onto their own sword and dies. The dragon survives."
+    if "dragon_slaying" in beat.facts:
+        return f"The dragon slays {name}. The dragon survives."
+    raise ValueError(f"Invalid dragon outcome in beat {beat.index}")
 
 
 def _sentence_case(text: str) -> str:

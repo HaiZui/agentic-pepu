@@ -4,6 +4,8 @@ import { SVG_NS } from "../render/svg";
 import { FLOOR, FORE_SCALE, frame, panelGrid, STAGE_H, STAGE_W } from "../shared/panels";
 import { puppetNode } from "./actors";
 import type { CastSheet } from "./cast";
+import { encounterArt } from "./encounter-art";
+import { encounterFrame } from "./encounter";
 import { montageStampTimes, montageSummaryAt } from "./timing";
 import type { Announcement, EliminationMode, PanelShot } from "./types";
 
@@ -13,20 +15,23 @@ const MODE_LABEL: Record<EliminationMode, string> = { killed: "Fallen", forfeite
 
 /** One framed comic panel: fresh scenery and figures, viewed through `frame()` (shared with the comic book). */
 export function panelArt(shot: PanelShot, cast: CastSheet, width: number, height: number): SVGSVGElement {
-  const view = frame(shot.framing, shot.focus, shot.placements, width / height);
+  const view = shot.encounter ? encounterFrame(width / height) : frame(shot.framing, shot.focus, shot.placements, width / height);
   const svg = document.createElementNS(SVG_NS, "svg");
   svg.setAttribute("viewBox", `${view.x} ${view.y} ${view.width} ${view.height}`);
   svg.setAttribute("preserveAspectRatio", "xMidYMid slice");
   svg.setAttribute("class", "panel-art");
   const scenery = renderScenery(shot.setting);
   svg.append(scenery.back, scenery.mid);
+  if (shot.encounter) svg.append(encounterArt(shot.encounter, cast));
   for (const p of shot.placements.filter((x) => x.layer === "back")) {
     const crowd = renderCrowdFigure(p.id, cast.get(p.id)?.color ?? "#6f6253");
     crowd.setAttribute("transform", `translate(${p.x} ${FLOOR - 70}) scale(0.95)`);
     svg.append(crowd);
   }
   for (const p of shot.placements.filter((x) => x.layer === "fore")) {
+    if (shot.encounter?.phase === "resolved" && shot.encounter.outcome !== "victory" && p.id === shot.encounter.hero) continue;
     const { node } = puppetNode(cast, p.id, p.emotion, false);
+    if (p.id === shot.encounter?.hero) node.setAttribute("data-encounter-hero", p.id);
     node.setAttribute("transform", `translate(${p.x} ${FLOOR}) scale(${FORE_SCALE})`);
     svg.append(node);
   }

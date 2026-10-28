@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ManualClock } from "./clock";
 import { addScene, allSteps, createProgram, programSeconds } from "./compiler";
-import { FIXTURES } from "./fixtures";
+import { DRAGON_FIXTURES, FIXTURES } from "./fixtures";
 import { Player, type Renderer } from "./player";
 import type { StageState, Step } from "./types";
 
@@ -44,6 +44,33 @@ function setup(size: 6 | 15 | 40 = 6, withScenes = true, speed?: number) {
 }
 
 describe("player loop", () => {
+  it.each(Object.keys(DRAGON_FIXTURES) as (keyof typeof DRAGON_FIXTURES)[])("plays dragon %s cues and result once across pause and speed changes", async (outcome) => {
+    const fixture = DRAGON_FIXTURES[outcome];
+    const full = createProgram(fixture.fate, fixture.scenes, fixture.storyline);
+    const index = full.segments.findIndex((s) => s.steps?.some((step) => step.stateAfter.encounter));
+    const program = { ...full, segments: full.segments.slice(index, index + 2) };
+    const renderer = new RecordingRenderer();
+    const clock = new ManualClock();
+    const player = new Player(program, renderer, clock, { maxSpeed: 10 });
+    const cues: string[] = [];
+    player.bus.on("cue", ({ sfx }) => cues.push(sfx));
+    const done = player.run();
+    await clock.advance(1);
+    player.pause();
+    const count = renderer.played.length;
+    await clock.advance(100);
+    expect(renderer.played).toHaveLength(count);
+    player.setSpeed(2);
+    player.resume();
+    await clock.runOut();
+    await done;
+    const expected = program.segments.flatMap((s) => s.steps ?? []).filter((s) => s.kind === "line").flatMap((s) => s.cues);
+    expect(cues).toEqual(expected);
+    expect(cues).toContain("dragon_roar");
+    const resolved = renderer.played.filter((s) => s.kind === "caption" && s.stateAfter.encounter?.phase === "resolved");
+    expect(resolved).toHaveLength(1);
+    expect(renderer.played.at(-1)!.stateAfter.encounter).toBeFalsy();
+  });
   it("emits events in program order and ends once", async () => {
     const { program, clock, player, events, renderer } = setup();
     const done = player.run();

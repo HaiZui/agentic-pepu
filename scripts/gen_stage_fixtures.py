@@ -23,9 +23,8 @@ NAMES = [
 SHOWS = {6: "Jukka", 15: None, 40: "Aino"}
 
 
-def build(size: int) -> dict:
-    seed = f"stage-fixture-{size}"
-    fate = generate_fate(seed, NAMES[:size], SHOWS[size])
+def fixture(seed: str, size: int, old_king: str | None) -> dict:
+    fate = generate_fate(seed, NAMES[:size], old_king)
     return {
         "seed": seed,
         "fate": fate.model_dump(mode="json"),
@@ -34,6 +33,26 @@ def build(size: int) -> dict:
         "bible": fallback_bible(fate, seed).model_dump(mode="json"),
         "chronicle": fallback_chronicle(fate, seed).model_dump(mode="json"),
     }
+
+def build(size: int) -> dict:
+    return fixture(f"stage-fixture-{size}", size, SHOWS[size])
+
+
+def dragon_fixtures() -> dict[str, dict]:
+    found = {}
+    for i in range(300):
+        seed = f"dragon-fixture-{i}"
+        fate = generate_fate(seed, NAMES[:8], None)
+        for beat in fate.beats:
+            if beat.card in {"dragon_victory", "dragon_defeat"}:
+                outcome = "victory" if beat.card == "dragon_victory" else next(
+                    fact for fact in beat.facts if fact in {"dragon_slaying", "sword_accident"}
+                )
+                if outcome not in found:
+                    found[outcome] = fixture(seed, 8, None)
+        if len(found) == 3:
+            return found
+    raise RuntimeError("Could not find all deterministic dragon fixtures")
 
 
 def render(size: int) -> str:
@@ -87,6 +106,11 @@ def main() -> None:
         print(f"wrote show-{size}.json")
     (OUT_DIR / "comic-shapes.json").write_text(render_shapes(), encoding="utf-8", newline="\n")
     print("wrote comic-shapes.json")
+    for outcome, data in dragon_fixtures().items():
+        (OUT_DIR / f"dragon-{outcome}.json").write_text(
+            json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n"
+        )
+        print(f"wrote dragon-{outcome}.json")
 
 
 if __name__ == "__main__":

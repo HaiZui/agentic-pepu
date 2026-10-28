@@ -1,4 +1,5 @@
 import { ensureForeground, initialBlocking, layoutBackground, MAX_FOREGROUND } from "./blocking";
+import { encounterBlocking, encounterFor, resolutionCaption } from "./encounter";
 import { DURATION, MAX_STRETCH, readingSeconds } from "./timing";
 import type {
   Action,
@@ -49,6 +50,7 @@ export interface Program {
 function cloneState(state: StageState): StageState {
   return {
     ...state,
+    encounter: state.encounter ? { ...state.encounter } : null,
     alive: [...state.alive],
     tracker: state.tracker && [...state.tracker],
     onStage: state.onStage.map((p) => ({ ...p })),
@@ -158,6 +160,8 @@ interface Moment {
 /** Compiles one beat's scene into steps, starting from the fate-only state before the beat. */
 export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, before: StageState, story: BeatStory | null = null): Step[] {
   const w = new Writer(before, beat.index, beat.section);
+  const encounter = encounterFor(beat);
+  const resolution = encounter ? resolutionCaption(fate, encounter) : null;
   const announcement = (kind: Announcement["kind"], character: string | null) =>
     story?.announcements.find((a) => a.kind === kind && a.character === character) ?? null;
   const participants = new Set(fate.characters.filter((c) => c.kind === "participant").map((c) => c.id));
@@ -207,6 +211,7 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
       s.seal = false;
       s.dramatic = beat.dramatic;
       s.alive = aliveStart;
+      s.encounter = encounter ? { ...encounter } : null;
     },
   );
 
@@ -239,7 +244,9 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
   const pushCaptions = (i: number) => {
     for (const caption of captionsBefore(i)) {
       const index = scene.captions.indexOf(caption);
-      const step = w.push({ kind: "caption", text: caption.text, index, readSeconds: readingSeconds(caption.text) }, 0);
+      const step = w.push({ kind: "caption", text: caption.text, index, readSeconds: readingSeconds(caption.text) }, 0, (s) => {
+        if (s.encounter && caption.text === resolution) s.encounter.phase = "resolved";
+      });
       captionSnapshots.set(index, step.stateAfter);
     }
   };
@@ -247,6 +254,7 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
   pushCaptions(0);
   if (present.length > 0) {
     const placements = initialBlocking(present, [...needs.flat(), ...roles], startEmotion);
+    encounterBlocking(placements, encounter);
     w.push({ kind: "enter", characters: placements.map((p) => p.id) }, DURATION.enter, (s) => (s.onStage = placements));
   }
   const entersLater = new Set(moments.flat().filter((m) => m.action === "enter").map((m) => m.character));
@@ -272,6 +280,7 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
       if (eliminated.has(character)) s.alive = s.alive.filter((id) => id !== character);
       if (eliminated.has(character) && !out) dropFromTracker(s, [character]);
       layoutBackground(s.onStage);
+      encounterBlocking(s.onStage, encounter);
     });
     if (out) w.push({ kind: "stamp", announcement: out }, DURATION.stamp, (s) => dropFromTracker(s, [character]));
   };
@@ -305,6 +314,7 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
         focus: p.focus.filter((id) => placements.some((x) => x.id === id)),
         setting: beat.setting,
         placements,
+        encounter: cloneState(snapshot ?? w.state).encounter,
         text: isLine ? (line?.text ?? null) : (scene.captions[p.ref_index]?.text ?? null),
         speaker: isLine && line ? line.speaker : null,
         sound: isLine ? (scene.onomatopoeia.find((o) => o.line === p.ref_index)?.text ?? null) : null,
@@ -343,6 +353,7 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
       0,
       (s) => {
         ensureForeground(s.onStage, required.slice(0, MAX_FOREGROUND), nextNeedFrom(i), startEmotion);
+        encounterBlocking(s.onStage, encounter);
         const speaker = s.onStage.find((p) => p.id === line.speaker);
         if (speaker) speaker.emotion = line.emotion;
       },
@@ -359,7 +370,7 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
         leave(m.character, m.action);
       }
     }
-    if (i === breakAfter && !breakDone) panelBreak(i);
+    if (!encounter && i === breakAfter && !breakDone) panelBreak(i);
   });
 
   function eliminatedEarlier(id: string): boolean {
@@ -381,6 +392,7 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
   if (beat.card === "coronation") {
     w.push({ kind: "coronation", winner: fate.winner }, DURATION.coronation, (s) => {
       s.crowned = fate.winner;
+      s.encounter = null;
       s.onStage = [{ id: fate.winner, layer: "fore", x: 960, emotion: "triumphant" }];
     });
   }
@@ -427,6 +439,7 @@ function compileCredits(fate: FateScript, before: StageState): Step[] {
     s.onStage = [];
     s.dramatic = false;
     s.crowned = fate.winner;
+    s.encounter = null;
   });
   return w.steps;
 }

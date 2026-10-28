@@ -43,3 +43,11 @@ def test_verify_rejects_unknown_engine(tmp_path: Path) -> None:
     roster_file = tmp_path / "roster.txt"
     roster_file.write_text("A\nB\nC\n", encoding="utf-8")
     assert main(["verify", "--seed", "s", "--roster", str(roster_file), "--engine", "fate-0"]) == 2
+
+
+def test_verify_defaults_to_current_engine(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    roster = tmp_path / "roster.txt"
+    roster.write_text("A\nB\nC\n", encoding="utf-8")
+    implicit = run_verify(capsys, "--seed", "s", "--roster", str(roster))
+    explicit = run_verify(capsys, "--seed", "s", "--roster", str(roster), "--engine", "fate-2")
+    assert implicit == explicit

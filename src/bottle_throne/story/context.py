@@ -6,7 +6,7 @@ from bottle_throne.fate.catalog import ARCHETYPE_LABELS
 from bottle_throne.fate.state import TimelineState
 from bottle_throne.models.fate import Beat, FateScript
 from bottle_throne.story.catalog import reading_seconds
-from bottle_throne.story.causes import out_cause, statement
+from bottle_throne.story.causes import dragon_resolution, out_cause, statement
 
 SECTION_NAMES = {
     "cold_open": "Cold open",
@@ -62,6 +62,18 @@ def beat_facts(fate: FateScript, beat: Beat) -> dict[str, Any]:
     }
     if beat.eliminations:
         facts["cause"] = out_cause(fate, beat)
+    resolution = dragon_resolution(fate, beat)
+    if resolution:
+        facts["dragon_duel"] = {
+            "resolution_caption": resolution,
+            "rules": (
+                "Include this exact resolution caption once after the hero's decisive action line. "
+                "Include wide panels referencing an opening caption before line 0 and the resolution caption. "
+                "The hero alone fights; spectators only react. The dragon is not a speaker. "
+                "A fatal result requires the hero's fall before the resolution caption. "
+                "Do not reverse the fixed outcome or describe gore."
+            ),
+        }
     if beat.prophecy_hints:
         facts["prophecy_hints"] = [h.text for h in beat.prophecy_hints]
     return facts

@@ -73,6 +73,28 @@ def test_section_restrictions() -> None:
     assert CARDS["red_priestess"].cast(ctx(state, section="act_1", risen="p02")) is None
 
 
+def test_dragon_cards_respect_victims_and_sections() -> None:
+    variants = set()
+    heroes = set()
+    for seed in range(40):
+        state = new_state()
+        victory = CARDS["dragon_victory"].cast(ctx(state, seed=str(seed)))
+        assert victory is not None and not victory.eliminations
+        assert len(victory.roles) == 1 and victory.roles[0][0] == "hero"
+        heroes.add(victory.roles[0][1])
+        defeat = CARDS["dragon_defeat"].cast(ctx(state, seed=str(seed), forced_victim="p02"))
+        assert defeat is not None and defeat.roles == [("hero", "p02")]
+        assert defeat.eliminations == [("p02", "killed")]
+        variants.update(defeat.facts)
+    assert variants == {"dragon_slaying", "sword_accident"}
+    assert heroes - {"p01"}
+    state.immune_until["p02"] = 5
+    assert CARDS["dragon_defeat"].cast(ctx(state, forced_victim="p02")) is None
+    assert CARDS["dragon_defeat"].cast(ctx(new_state(), forced_victim="p01")) is None
+    for card in ("dragon_victory", "dragon_defeat"):
+        assert CARDS[card].cast(ctx(new_state(), section="act_3")) is None
+
+
 # --- state model ---------------------------------------------------------------------------------
 
 

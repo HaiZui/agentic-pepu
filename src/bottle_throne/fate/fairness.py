@@ -4,7 +4,7 @@ import secrets
 
 from bottle_throne.fate.rng import Stream
 
-ENGINE_VERSION = "fate-1"
+ENGINE_VERSION = "fate-2"
 
 
 def canonical_roster(names: list[str]) -> list[str]:

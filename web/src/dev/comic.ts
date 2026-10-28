@@ -1,5 +1,6 @@
 import { showComic } from "../comic/page";
-import { FIXTURES } from "../stage/fixtures";
+import { DRAGON_FIXTURES, FIXTURES } from "../stage/fixtures";
+import type { DragonOutcome } from "../stage/encounter";
 import type { SceneScript } from "../stage/types";
 
 /** A 24-character Finnish name and a 140-character line: the worst case for balloon fitting. */
@@ -11,7 +12,9 @@ export const WORST_LINE =
 export async function renderComicDev(root: HTMLElement): Promise<void> {
   const params = new URLSearchParams(location.search);
   const size = (Number(params.get("fixture")) || 15) as 6 | 15 | 40;
-  const fixture = structuredClone(FIXTURES[size] ?? FIXTURES[15]);
+  const dragon = params.get("dragon");
+  if (dragon && !Object.hasOwn(DRAGON_FIXTURES, dragon)) throw new Error(`Unknown dragon fixture: ${dragon}`);
+  const fixture = structuredClone(dragon ? DRAGON_FIXTURES[dragon as DragonOutcome] : FIXTURES[size] ?? FIXTURES[15]);
   const scenes: SceneScript[] = fixture.scenes;
   if (params.get("worst")) {
     // Rename a peasant and give them the longest allowed line in every scene they speak in.

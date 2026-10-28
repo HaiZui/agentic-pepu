@@ -95,8 +95,8 @@ def test_seal_is_deterministic_and_sensitive() -> None:
     assert base != seal_of_fate("friday-43", ROSTER_15, None)
     assert base != seal_of_fate("friday-42", ROSTER_15, "Aino")
     assert base != seal_of_fate("friday-42", ROSTER_15[:-1], None)
-    assert base != seal_of_fate("friday-42", ROSTER_15, None, engine_version="fate-2")
-    assert ENGINE_VERSION == "fate-1"
+    assert base != seal_of_fate("friday-42", ROSTER_15, None, engine_version="fate-other")
+    assert ENGINE_VERSION == "fate-2"
 
 
 def test_short_seal_format() -> None:

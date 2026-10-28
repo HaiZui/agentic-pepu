@@ -1,8 +1,10 @@
 import { sharedEngine, unlockAudio } from "../audio/context";
 import { el } from "../dom";
 import { compileBeat, createProgram, type Program } from "../stage/compiler";
-import { FIXTURES, type StageFixture } from "../stage/fixtures";
+import { DRAGON_FIXTURES, FIXTURES, type StageFixture } from "../stage/fixtures";
+import { encounterFor } from "../stage/encounter";
 import { mountStage, type MountedStage } from "../stage/mount";
+import { panelArt } from "../stage/panels-view";
 import type { Action, Beat, FateScript, SceneScript, Segment, StageState } from "../stage/types";
 import "./stage-dev.css";
 
@@ -161,6 +163,16 @@ function showDemo(size: 6 | 15 | 40, trickle: boolean): Demo {
 }
 
 const DEMOS: Demo[] = [
+  ...Object.entries(DRAGON_FIXTURES).map(([outcome, fixture]): Demo => ({
+    id: `dragon-${outcome}`,
+    label: `Dragon duel: ${outcome.replaceAll("_", " ")}`,
+    build: () => {
+      const beat = fixture.fate.beats.find((b) => encounterFor(b))!;
+      const program = createProgram(fixture.fate, fixture.scenes, fixture.storyline);
+      const index = program.segments.findIndex((s) => s.beat === beat.index);
+      return { fixture, program: { ...program, segments: program.segments.slice(index, index + 2) } };
+    },
+  })),
   ...ACTIONS.map(actionDemo),
   beatDemo("betrayal", "Betrayal panel break", 40, (f) => f.beats.find((b) => b.card === "knife_in_the_back") ?? f.beats.find((b) => b.dramatic && b.eliminations.length === 1)),
   beatDemo("plague", "Plague montage", 40, (f) => f.beats.find((b) => b.eliminations.length >= 2), (beat, scene) => [
@@ -240,6 +252,7 @@ export function renderStageDev(root: HTMLElement): () => void {
       speed,
       maxSpeed: 10,
     });
+    Object.assign(window, { __btStage: mounted, __btPanelArt: panelArt });
     mounted.player.bus.on("step:start", ({ step }) => {
       log.append(el("li", {}, `${step.kind}${step.kind === "line" ? `: ${step.text.slice(0, 40)}` : step.kind === "action" ? `: ${step.action}` : ""}`));
       log.scrollTop = log.scrollHeight;

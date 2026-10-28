@@ -114,6 +114,25 @@ def _always(_: CastContext) -> bool:
     return True
 
 
+def _dragon_victory(ctx: CastContext, card: Card) -> Draft | None:
+    pool = ctx.state.alive_participants()
+    if not pool:
+        return None
+    return Draft(setting=card.pick_setting(ctx), roles=[("hero", ctx.stream.choice(pool))])
+
+
+def _dragon_defeat(ctx: CastContext, card: Card) -> Draft | None:
+    pool = [p for p in ctx.victim_pool() if p != ctx.winner]
+    if not pool:
+        return None
+    hero = ctx.stream.choice(pool)
+    return Draft(
+        setting=card.pick_setting(ctx), roles=[("hero", hero)],
+        eliminations=[(hero, "killed")],
+        facts=[ctx.stream.choice(["dragon_slaying", "sword_accident"])],
+    )
+
+
 # --- single-elimination cards -------------------------------------------------------------
 
 
@@ -475,6 +494,10 @@ def _battle_possible(ctx: CastContext) -> bool:
 CARDS: dict[str, Card] = {
     card.id: card
     for card in [
+        Card("dragon_victory", "The Dragon Duel", "drama", ACTS_I_II,
+             ("forest", "battlefield"), 30, True, 0, _always, _dragon_victory),
+        Card("dragon_defeat", "The Dragon Duel", "single", ACTS_I_II,
+             ("forest", "battlefield"), 30, True, 0, _always, _dragon_defeat, "killed"),
         # single eliminations
         Card("knife_in_the_back", "The Knife in the Back", "single", ACTS_ALL,
              ("feast_hall", "dungeon", "city_streets", "forest"), 30, True, 4,
@@ -544,6 +567,6 @@ CARDS: dict[str, Card] = {
     ]
 }
 
-SINGLE_CARDS = [c for c in CARDS.values() if c.kind == "single"]
+SINGLE_CARDS = [c for c in CARDS.values() if c.kind == "single" and c.weight > 0]
 DRAMA_CARDS = [c for c in CARDS.values() if c.kind == "drama" and c.weight > 0]
 CROWD_CARDS = [c for c in CARDS.values() if c.kind == "crowd"]

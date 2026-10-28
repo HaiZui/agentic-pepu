@@ -2,7 +2,7 @@ from fastapi.testclient import TestClient
 
 from bottle_throne.app import create_app
 from bottle_throne.config import Settings
-from bottle_throne.fate.fairness import seal_of_fate
+from bottle_throne.fate.fairness import ENGINE_VERSION, seal_of_fate
 from bottle_throne.fate.validate import validate
 from bottle_throne.models.fate import FateScript
 
@@ -36,7 +36,7 @@ def test_reveal_reproduces_seal() -> None:
 
     reveal = c.post(f"/api/shows/{show['id']}/reveal").json()
 
-    assert reveal == {"seed": "friday-42", "seed_mode": "manual", "engine_version": "fate-1", "seal": fate["seal"]}
+    assert reveal == {"seed": "friday-42", "seed_mode": "manual", "engine_version": ENGINE_VERSION, "seal": fate["seal"]}
     assert seal_of_fate(reveal["seed"], NAMES, "Jukka", reveal["engine_version"]) == fate["seal"]
 
 

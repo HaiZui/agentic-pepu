@@ -16,6 +16,7 @@ from bottle_throne.story.catalog import (
     SFX_CUES,
     reading_seconds,
 )
+from bottle_throne.story.causes import dragon_resolution
 
 MIN_PANELS, MAX_PANELS = 3, 6
 MAX_ONOMATOPOEIA_CHARS = 14
@@ -232,12 +233,52 @@ def validate_scene(
     still_in = [cid for cid in alive | risen if cid not in eliminated and cid in names]
     gone_names = [names[cid] for cid in eliminated if cid in names]
     texts = [line.text for line in scene.lines] + [c.text for c in scene.captions]
+    resolution = dragon_resolution(fate, beat)
+    if resolution:
+        hero = beat.roles[0].character
+        anchors = [i for i, caption in enumerate(scene.captions) if caption.text == resolution]
+        opening = [i for i, caption in enumerate(scene.captions) if caption.before_line == 0 and caption.text != resolution]
+        wide_captions = {p.ref_index for p in scene.panels if p.ref_kind == "caption" and p.framing == "wide"}
+        if len(anchors) != 1 or not opening or not wide_captions.intersection(opening):
+            err("dragon_anchor", "duel needs an opening wide panel and one exact resolution caption")
+        else:
+            anchor = scene.captions[anchors[0]].before_line
+            decisive = [i for i, line in enumerate(scene.lines) if line.speaker == hero and line.action]
+            decisive += [d.line for d in scene.stage_directions if d.character == hero]
+            if anchors[0] not in wide_captions or not decisive or anchor <= max(decisive):
+                err("dragon_anchor", "wide resolution caption must follow the hero's actions")
+        for character, actions in performed.items():
+            if character != hero and actions & {"strike", "draw_weapon", "lunge", "fall", "exit", "flee"}:
+                err("dragon_spectator", "only the hero may fight the dragon")
+        fatal = beat.card == "dragon_defeat"
+        dragon_death = re.compile(
+            r"\b(?:dragon (?:dies|died|falls dead|is dead|is slain|was slain)|"
+            r"(?:slay|slays|slain|kill|kills|killed) the dragon)\b", re.I,
+        )
+        for text in texts:
+            if fatal and dragon_death.search(text):
+                err("dragon_outcome", "the dragon must survive this defeat")
+            if not fatal and re.search(
+                rf"\b(?:{re.escape(names[hero])} (?:dies|died|falls dead|is dead)|"
+                rf"dragon (?:slays|kills) {re.escape(names[hero])})\b", text, re.I,
+            ):
+                err("dragon_outcome", "the hero must survive this victory")
+        if fatal:
+            all_text = " ".join(texts).lower()
+            if "sword_accident" in beat.facts and re.search(r"dragon (?:slays|kills)", all_text):
+                err("dragon_outcome", "the death is an accident, not a dragon kill")
+            if "dragon_slaying" in beat.facts and re.search(r"trips? onto (?:their|his|her) own sword", all_text):
+                err("dragon_outcome", "the dragon kills the hero, not a sword accident")
     if len(eliminated) == 1:
         (gone,) = eliminated
         if not any(names.get(gone, gone).lower() in text.lower() for text in texts):
             err("unnamed_elimination", f"no line or caption names {names.get(gone, gone)}, who leaves the story here")
     for text in texts:
         for sentence in re.split(r"(?<=[.!?])\s+", text):
+            if resolution and beat.card == "dragon_victory" and re.fullmatch(
+                r"(?:The )?dragon (?:dies|is dead|was slain|is slain)\.", sentence, re.I
+            ):
+                continue
             if not DEATH_WORDS.search(sentence) or any(name in sentence for name in gone_names):
                 continue
             if any(names[cid] in sentence for cid in still_in):

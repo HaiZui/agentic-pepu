@@ -58,6 +58,7 @@ def validate(script: FateScript) -> list[str]:
     act3_start_alive: int | None = None
     old_king_beats: list[int] = []
     npc_active = False
+    duels = 0
 
     for beat in beats:
         card = CARDS.get(beat.card)
@@ -90,6 +91,21 @@ def validate(script: FateScript) -> list[str]:
                 npc_active = True
 
         first = lambda name: (roles.get(name) or [None])[0]  # noqa: E731
+        if beat.card in ("dragon_victory", "dragon_defeat"):
+            duels += 1
+            hero = first("hero")
+            variant = set(beat.facts) - {"first_blood"}
+            fatal = beat.card == "dragon_defeat"
+            expected = [(hero, "killed")] if fatal else []
+            if (
+                duels > 1 or beat.section not in ("act_1", "act_2")
+                or len(beat.roles) != 1 or hero not in participants or not state.is_alive(hero or "")
+                or (fatal and (hero == script.winner or variant not in ({"dragon_slaying"}, {"sword_accident"})))
+                or (not fatal and variant)
+                or [(e.character, e.mode) for e in beat.eliminations] != expected
+                or beat.resurrections or beat.alliances_formed or beat.alliances_broken
+            ):
+                err("dragon", f"beat {beat.index}: invalid dragon duel")
         if beat.card in ("knife_in_the_back", "knife_foiled"):
             if not state.allied(first("betrayer") or "", first("victim") or ""):
                 err("precondition", f"beat {beat.index}: betrayal without a standing alliance")

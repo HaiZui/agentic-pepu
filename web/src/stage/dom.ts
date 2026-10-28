@@ -9,6 +9,7 @@ export interface StageLayers {
   mid: SVGSVGElement;
   crowd: SVGSVGElement;
   puppets: SVGSVGElement;
+  creatures: SVGSVGElement;
   particles: HTMLCanvasElement;
   front: SVGSVGElement;
   bubbles: HTMLDivElement;
@@ -64,6 +65,7 @@ export function createStage(host: HTMLElement): StageLayers & { fit(): void; des
     mid: worldSvg("mid"),
     crowd: worldSvg("crowd"),
     puppets: worldSvg("puppets"),
+    creatures: worldSvg("creatures"),
     particles,
     front: worldSvg("front"),
     bubbles: div("layer layer-bubbles"),
@@ -79,6 +81,7 @@ export function createStage(host: HTMLElement): StageLayers & { fit(): void; des
     layers.back,
     layers.mid,
     layers.crowd,
+    layers.creatures,
     layers.puppets,
     layers.particles,
     layers.front,

@@ -19,6 +19,19 @@ Process environment variables override `.env`. The key stays on the backend and 
 
 ## Run the show
 
+### Optional dragon duel
+
+A seeded show can contain at most one dragon duel in Act I or II; some shows have none.
+One living contestant faces the dragon alone and either slays it, is slain by it,
+or trips onto their own sword in a non-graphic theatrical accident. The fate engine,
+not the narrator, fixes the result. Winning the duel does not guarantee winning the raffle.
+Dragon Egg immunity, uniform raffle winner selection, and the normal show budget still apply.
+The live stage and comic share the same outcome, including offline template scenes.
+
+New shows use engine `fate-2`. Replays require the same engine version as the original;
+use the matching older release to verify `fate-1` shows. The verification command's
+`--engine` argument must match the version shown in the credits (defaults to this build's version).
+
 ```powershell
 .\scripts\start.ps1
 ```
@@ -151,7 +164,7 @@ When the curtain rises, the show displays the **Seal of Fate**: a SHA-256 hash o
 
 ```powershell
 # roster.txt: one participant name per line, in any order
-.\.venv\Scripts\python.exe -m bottle_throne verify --seed <seed from the credits> --roster roster.txt --old-king "<last winner>" --engine fate-1
+.\.venv\Scripts\python.exe -m bottle_throne verify --seed <seed from the credits> --roster roster.txt --old-king "<last winner>" --engine fate-2
 ```
 
 The output must show the same Seal of Fate that was displayed at the start and the same winner that was crowned. Leave out `--old-king` if no previous winner was entered. A show started with a manual seed is labelled as such.
@@ -175,6 +188,14 @@ cd web; npm run test:e2e                  # build + Playwright: plays a fallback
 The end-to-end test uses the installed Chrome (set `PW_CHANNEL=msedge` for Edge) and starts its own backend with Foundry switched off.
 
 Visual checks for the stage live at http://127.0.0.1:5173/dev/stage (one scene per action, panel break, montage, cold open, coronation, interlude and full fixture shows, with an fps meter). The fixture shows come from `tests/fixtures/stage`; regenerate them with `.\.venv\Scripts\python.exe scripts\gen_stage_fixtures.py` after changing the fate engine or fallback templates.
+
+Preview each dragon outcome without Foundry at `/dev/stage?demo=dragon-victory`,
+`/dev/stage?demo=dragon-dragon_slaying`, or `/dev/stage?demo=dragon-sword_accident`
+(optionally add `&speed=2`). Each preview also plays the following beat to check
+creature cleanup. The matching printable comics are at `/dev/comic?dragon=victory`,
+`/dev/comic?dragon=dragon_slaying`, and `/dev/comic?dragon=sword_accident`.
+Stage and comic share the same vector dragon and caption-aligned result:
+a fallen dragon for victory, or a fallen hero and surviving dragon for defeat.
 
 ### API contract
 

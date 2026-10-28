@@ -36,6 +36,30 @@ def test_valid_script_has_no_errors(script: FateScript) -> None:
     assert validate(script) == []
 
 
+@pytest.mark.parametrize("mutation", ["duplicate", "act", "npc", "dead", "facts", "effect"])
+def test_invalid_dragon_duels(mutation: str) -> None:
+    script = find(10, lambda s: any(b.card == "dragon_defeat" for b in s.beats))
+    beat = next(b for b in script.beats if b.card == "dragon_defeat")
+    if mutation == "duplicate":
+        script.beats.insert(beat.index + 1, beat.model_copy(deep=True))
+    elif mutation == "act":
+        beat.section = "act_3"
+    elif mutation == "npc":
+        beat.roles[0].character = script.old_king
+    elif mutation == "dead":
+        earlier = next(b for b in script.beats if b.eliminations)
+        if earlier is beat:
+            later = script.beats[-1]
+            later.card, later.roles, later.facts = beat.card, beat.roles, beat.facts
+        else:
+            beat.roles[0].character = earlier.eliminations[0].character
+    elif mutation == "facts":
+        beat.facts = ["sword_accident", "dragon_slaying"]
+    else:
+        beat.eliminations = []
+    assert "dragon" in codes(script)
+
+
 def test_section_order(script: FateScript) -> None:
     script.beats[1].section, script.beats[-2].section = script.beats[-2].section, script.beats[1].section
     assert "section_order" in codes(script)

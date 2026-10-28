@@ -5,6 +5,7 @@ import { Actors } from "./actors";
 import { Lettering } from "./bubbles";
 import { Camera, PARALLAX } from "./camera";
 import { CastSheet } from "./cast";
+import { encounterArt } from "./encounter-art";
 import { IMPACT_CUES, NARRATOR } from "./compiler";
 import { createStage, type StageLayers } from "./dom";
 import { Overlays, type ShowTexts } from "./overlays";
@@ -59,6 +60,7 @@ export class StageRenderer implements Renderer {
     this.camera.add(l.mid, PARALLAX.mid);
     this.camera.add(l.crowd, PARALLAX.crowd);
     this.camera.add(l.puppets, PARALLAX.puppets);
+    this.camera.add(l.creatures, PARALLAX.puppets);
     this.camera.add(l.particles, PARALLAX.particles, false);
     this.camera.add(l.front, PARALLAX.front);
     this.camera.onChange(this.lettering.reposition);
@@ -134,6 +136,15 @@ export class StageRenderer implements Renderer {
       this.actors.apply(credits ? [] : state.onStage);
     }
     this.particlesFor(state);
+    this.showEncounter(state);
+  }
+
+  private showEncounter(state: StageState): void {
+    gsap.set(this.layers.creatures, { opacity: 1 });
+    this.layers.creatures.replaceChildren();
+    if (state.encounter && state.section !== "credits" && state.curtain === "open") {
+      this.layers.creatures.append(encounterArt(state.encounter, this.cast));
+    }
   }
 
   stop(): void {
@@ -164,6 +175,11 @@ export class StageRenderer implements Renderer {
     this.tl = tl;
     const d = step.durationAt1x;
     const next = step.stateAfter;
+    this.showEncounter(next);
+    if (next.encounter && (previous.encounter?.phase !== next.encounter.phase || previous.encounter.hero !== next.encounter.hero)
+      && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      tl.fromTo(this.layers.creatures, { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0);
+    }
     // The tracker changes when a stamp lands or a montage sums up; otherwise it simply follows the state.
     const trackerAt = step.kind === "stamp" ? STAMP_LAND : step.kind === "montage" ? (step.summary ? montageSummaryAt(d) : d - 0.3) : 0;
     if (trackerAt > 0) {
@@ -219,6 +235,7 @@ export class StageRenderer implements Renderer {
         this.actors.transition(tl, 0, next.onStage);
         break;
       case "caption":
+        if (next.encounter) this.camera.moveTo(tl, 0, null, 0.5);
         this.lettering.hideBubble(tl, 0);
         this.lettering.captionBox(tl, 0, step.text);
         break;

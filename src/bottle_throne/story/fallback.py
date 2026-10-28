@@ -20,6 +20,7 @@ from bottle_throne.models.story import (
 )
 from bottle_throne.story.bible import default_exit_reason, default_motivation, default_threads, participant_exits
 from bottle_throne.story.catalog import NARRATOR, reading_seconds
+from bottle_throne.story.causes import dragon_resolution, wording_key
 from bottle_throne.story.storyline import storyline
 
 FALLBACK_VERSION = "fallback-1"
@@ -44,6 +45,36 @@ def V(music: str, caption: str, *lines: L, sfx=(), sound=(), framings=("wide", "
 
 N = NARRATOR
 TEMPLATES: dict[str, list[Variant]] = {
+    "dragon_victory": [
+        V("battle", "ONE HERO. ONE DRAGON.",
+          ("hero", "furious", "draw_weapon", "I challenge you! Please ignore my shaking knees."),
+          ("hero", "triumphant", "strike", "For the bottle!"),
+          sfx=(("dragon_roar", 0), ("sword_clash", 1)), framings=("wide", "wide", "wide")),
+        V("battle", "A VERY LARGE OBSTACLE.",
+          ("hero", "terrified", "draw_weapon", "Nobody mentioned the wings."),
+          ("hero", "triumphant", "strike", "Paper beats dragon!"),
+          sfx=(("dragon_roar", 0), ("sword_clash", 1)), framings=("wide", "wide", "wide")),
+    ],
+    "dragon_defeat:dragon_slaying": [
+        V("battle", "ONE HERO. ONE DRAGON.",
+          ("hero", "terrified", "draw_weapon", "That is rather more dragon than I expected."),
+          ("hero", "terrified", None, "I may have underestimated the teeth."),
+          sfx=(("dragon_roar", 0), ("thud", 1)), framings=("wide", "wide", "wide")),
+        V("battle", "THE DRAGON ACCEPTS.",
+          ("hero", "furious", "draw_weapon", "Stand back! I have a plan."),
+          ("hero", "terrified", None, "The plan needed a smaller dragon."),
+          sfx=(("dragon_roar", 0), ("thud", 1)), framings=("wide", "wide", "wide")),
+    ],
+    "dragon_defeat:sword_accident": [
+        V("battle", "ONE HERO. ONE DRAGON.",
+          ("hero", "smug", "draw_weapon", "Watch my flawless footwork!"),
+          ("hero", "terrified", None, "Who put my feet there?"),
+          sfx=(("dragon_roar", 0), ("thud", 1)), framings=("wide", "wide", "wide")),
+        V("battle", "MIND YOUR STEP.",
+          ("hero", "smug", "draw_weapon", "First, a magnificent entrance."),
+          ("hero", "terrified", None, "No, sword! The OTHER direction!"),
+          sfx=(("dragon_roar", 0), ("thud", 1)), framings=("wide", "wide", "wide")),
+    ],
     "cold_open": [
         V("overture", "A KINGDOM HOLDS ITS BREATH...",
           (N, "neutral", None, "Hear ye! The bottle awaits a worthy hand."),
@@ -441,6 +472,8 @@ def _variant_key(beat: Beat) -> str:
 
 
 def variants_for(beat: Beat) -> list[Variant]:
+    if beat.card in ("dragon_victory", "dragon_defeat"):
+        return TEMPLATES[wording_key(beat)]
     return CROWD_TEMPLATES.get(beat.card) or TEMPLATES[_variant_key(beat)]
 
 
@@ -450,6 +483,7 @@ def fallback_scene(fate: FateScript, beat: Beat, seed: str, variant: int | None 
     roles = _role_map(beat)
     options = variants_for(beat)
     chosen = options[variant if variant is not None else Stream(seed, f"fallback:{beat.index}").uniform_int(len(options))]
+    resolution = dragon_resolution(fate, beat)
 
     victims = [e.character for e in beat.eliminations]
     prophecy = next((b for b in fate.beats if b.card == "prophecy"), None)
@@ -500,7 +534,8 @@ def fallback_scene(fate: FateScript, beat: Beat, seed: str, variant: int | None 
 
     def seconds(core: list[Line]) -> float:
         everything = core + naming(core) + bystander_lines
-        return sum(reading_seconds(x.text) for x in everything) + reading_seconds(chosen.caption)
+        return (sum(reading_seconds(x.text) for x in everything) + reading_seconds(chosen.caption)
+                + (reading_seconds(resolution) if resolution else 0))
 
     while len(lines) > 2 and seconds(lines) > beat.budget_seconds:
         lines.pop(-2)
@@ -521,12 +556,16 @@ def fallback_scene(fate: FateScript, beat: Beat, seed: str, variant: int | None 
         panels.append(
             PanelMoment(framing=framing, ref_kind="line", ref_index=ref, focus=[] if speaker == NARRATOR else [speaker])  # type: ignore[arg-type]
         )
+    captions = [Caption(text=chosen.caption, before_line=0)]
+    if resolution:
+        captions.append(Caption(text=resolution, before_line=last + 1))
+        panels[-1] = PanelMoment(framing="wide", ref_kind="caption", ref_index=1, focus=[roles["hero"]])
     return SceneScript(
         beat_index=beat.index,
         setting=beat.setting,
         music=chosen.music,  # type: ignore[arg-type]
         lines=lines,
-        captions=[Caption(text=chosen.caption, before_line=0)],
+        captions=captions,
         stage_directions=directions,
         onomatopoeia=[Onomatopoeia(text=t, line=min(i, last)) for t, i in chosen.sound],
         cues=[Cue(sfx=s, line=min(i, last)) for s, i in chosen.sfx],  # type: ignore[arg-type]

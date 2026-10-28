@@ -1,0 +1,2848 @@
+{
+ "seed": "dragon-fixture-1",
+ "fate": {
+  "engine_version": "fate-2",
+  "seal": "1bf3508812be15294432dab3d02f35496ec4ca954a636d6e82fb4b18bf00be19",
+  "seed_mode": "auto",
+  "roster_size": 8,
+  "characters": [
+   {
+    "id": "p01",
+    "name": "Aino",
+    "kind": "participant",
+    "house": "raven",
+    "archetype": "fool",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p02",
+    "name": "Jääskeläinen",
+    "kind": "participant",
+    "house": "owl",
+    "archetype": "bard",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p03",
+    "name": "Kalle",
+    "kind": "participant",
+    "house": "owl",
+    "archetype": "coward",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p04",
+    "name": "Liisa",
+    "kind": "participant",
+    "house": "raven",
+    "archetype": "bard",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p05",
+    "name": "Matti",
+    "kind": "participant",
+    "house": "raven",
+    "archetype": "brute",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p06",
+    "name": "Pekka",
+    "kind": "participant",
+    "house": "owl",
+    "archetype": "fool",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p07",
+    "name": "Sanna",
+    "kind": "participant",
+    "house": "owl",
+    "archetype": "honorable",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "p08",
+    "name": "Öhman",
+    "kind": "participant",
+    "house": "raven",
+    "archetype": "honorable",
+    "npc_role": null,
+    "is_old_king": false
+   },
+   {
+    "id": "old_king",
+    "name": "the Mad King",
+    "kind": "old_king",
+    "house": null,
+    "archetype": null,
+    "npc_role": null,
+    "is_old_king": true
+   },
+   {
+    "id": "npc_guard",
+    "name": "the Guard Captain",
+    "kind": "npc",
+    "house": null,
+    "archetype": null,
+    "npc_role": "guard",
+    "is_old_king": false
+   },
+   {
+    "id": "npc_herald",
+    "name": "the Herald",
+    "kind": "npc",
+    "house": null,
+    "archetype": null,
+    "npc_role": "herald",
+    "is_old_king": false
+   },
+   {
+    "id": "npc_jester",
+    "name": "the Jester",
+    "kind": "npc",
+    "house": null,
+    "archetype": null,
+    "npc_role": "jester",
+    "is_old_king": false
+   }
+  ],
+  "houses": [
+   {
+    "id": "owl",
+    "name": "House Owl",
+    "sigil": "Owl",
+    "members": [
+     "p02",
+     "p03",
+     "p06",
+     "p07"
+    ]
+   },
+   {
+    "id": "raven",
+    "name": "House Raven",
+    "sigil": "Raven",
+    "members": [
+     "p01",
+     "p04",
+     "p05",
+     "p08"
+    ]
+   }
+  ],
+  "old_king": "old_king",
+  "winner": "p03",
+  "beats": [
+   {
+    "index": 0,
+    "section": "cold_open",
+    "card": "cold_open",
+    "title": "The Old King's Court",
+    "kind": "structural",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "old_king",
+      "character": "old_king"
+     },
+     {
+      "role": "announcer",
+      "character": "npc_herald"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 52,
+    "dramatic": false
+   },
+   {
+    "index": 1,
+    "section": "act_1",
+    "card": "decree",
+    "title": "The Old King's Decree",
+    "kind": "drama",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "old_king",
+      "character": "old_king"
+     },
+     {
+      "role": "announcer",
+      "character": "npc_herald"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 25,
+    "dramatic": false
+   },
+   {
+    "index": 2,
+    "section": "act_1",
+    "card": "poisoned_goblet",
+    "title": "The Poisoned Goblet",
+    "kind": "single",
+    "setting": "feast_hall",
+    "roles": [
+     {
+      "role": "poisoner",
+      "character": "p03"
+     },
+     {
+      "role": "victim",
+      "character": "p02"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p02",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 32,
+    "dramatic": true
+   },
+   {
+    "index": 3,
+    "section": "act_1",
+    "card": "prophecy",
+    "title": "The Prophecy",
+    "kind": "drama",
+    "setting": "temple",
+    "roles": [
+     {
+      "role": "seer",
+      "character": "npc_jester"
+     },
+     {
+      "role": "listener",
+      "character": "p01"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [
+     {
+      "id": "betrayed",
+      "text": "One who was betrayed by a sworn ally"
+     },
+     {
+      "id": "final_rival:fool",
+      "text": "One who faces a Fool at the last"
+     },
+     {
+      "id": "house:owl",
+      "text": "One who bears the sign of the Owl"
+     }
+    ],
+    "budget_seconds": 29,
+    "dramatic": true
+   },
+   {
+    "index": 4,
+    "section": "act_1",
+    "card": "old_kings_gambit",
+    "title": "The Old King's Gambit",
+    "kind": "single",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "old_king",
+      "character": "old_king"
+     },
+     {
+      "role": "banished",
+      "character": "p01"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p01",
+      "mode": "exiled"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 32,
+    "dramatic": false
+   },
+   {
+    "index": 5,
+    "section": "act_1",
+    "card": "trial_by_combat",
+    "title": "Trial by Combat",
+    "kind": "single",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "challenger",
+      "character": "npc_guard"
+     },
+     {
+      "role": "fallen",
+      "character": "p07"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p07",
+      "mode": "killed"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 32,
+    "dramatic": true
+   },
+   {
+    "index": 6,
+    "section": "act_1",
+    "card": "sworn_alliance",
+    "title": "A Sworn Alliance",
+    "kind": "drama",
+    "setting": "harbor",
+    "roles": [
+     {
+      "role": "ally",
+      "character": "p03"
+     },
+     {
+      "role": "ally",
+      "character": "p06"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [
+     {
+      "a": "p03",
+      "b": "p06"
+     }
+    ],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 23,
+    "dramatic": false
+   },
+   {
+    "index": 7,
+    "section": "act_2",
+    "card": "grey_cloak",
+    "title": "Taking the Grey Cloak",
+    "kind": "single",
+    "setting": "ice_wall",
+    "roles": [
+     {
+      "role": "deserter",
+      "character": "p08"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p08",
+      "mode": "forfeited"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 32,
+    "dramatic": false
+   },
+   {
+    "index": 8,
+    "section": "act_2",
+    "card": "dragon_victory",
+    "title": "The Dragon Duel",
+    "kind": "drama",
+    "setting": "forest",
+    "roles": [
+     {
+      "role": "hero",
+      "character": "p04"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 31,
+    "dramatic": true
+   },
+   {
+    "index": 9,
+    "section": "act_2",
+    "card": "iron_vault_debt",
+    "title": "Debt to the Iron Vault",
+    "kind": "single",
+    "setting": "harbor",
+    "roles": [
+     {
+      "role": "debtor",
+      "character": "p05"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p05",
+      "mode": "exiled"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 31,
+    "dramatic": false
+   },
+   {
+    "index": 10,
+    "section": "act_2",
+    "card": "debt_paid",
+    "title": "The Debt Is Paid",
+    "kind": "drama",
+    "setting": "harbor",
+    "roles": [
+     {
+      "role": "debtor",
+      "character": "p03"
+     },
+     {
+      "role": "payer",
+      "character": "p06"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [
+     "debt_paid"
+    ],
+    "prophecy_hints": [],
+    "budget_seconds": 23,
+    "dramatic": false
+   },
+   {
+    "index": 11,
+    "section": "act_2",
+    "card": "dragon_egg",
+    "title": "The Dragon Egg",
+    "kind": "drama",
+    "setting": "forest",
+    "roles": [
+     {
+      "role": "bearer",
+      "character": "p06"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 23,
+    "dramatic": false
+   },
+   {
+    "index": 12,
+    "section": "act_2",
+    "card": "wound",
+    "title": "A Grievous Wound",
+    "kind": "drama",
+    "setting": "dungeon",
+    "roles": [
+     {
+      "role": "wounded",
+      "character": "p04"
+     },
+     {
+      "role": "attacker",
+      "character": "npc_herald"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 23,
+    "dramatic": false
+   },
+   {
+    "index": 13,
+    "section": "act_2",
+    "card": "knife_foiled",
+    "title": "A Knife in the Dark, Foiled",
+    "kind": "drama",
+    "setting": "forest",
+    "roles": [
+     {
+      "role": "betrayer",
+      "character": "p06"
+     },
+     {
+      "role": "victim",
+      "character": "p03"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [
+     {
+      "a": "p06",
+      "b": "p03"
+     }
+    ],
+    "facts": [
+     "attempt_failed"
+    ],
+    "prophecy_hints": [],
+    "budget_seconds": 23,
+    "dramatic": true
+   },
+   {
+    "index": 14,
+    "section": "act_2",
+    "card": "old_kings_pardon",
+    "title": "The Old King's Pardon",
+    "kind": "drama",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "old_king",
+      "character": "old_king"
+     },
+     {
+      "role": "pardoned",
+      "character": "p06"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [
+     "pardoned"
+    ],
+    "prophecy_hints": [],
+    "budget_seconds": 23,
+    "dramatic": false
+   },
+   {
+    "index": 15,
+    "section": "act_3",
+    "card": "sworn_alliance",
+    "title": "A Sworn Alliance",
+    "kind": "drama",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "ally",
+      "character": "p04"
+     },
+     {
+      "role": "ally",
+      "character": "p06"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [
+     {
+      "a": "p04",
+      "b": "p06"
+     }
+    ],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 23,
+    "dramatic": false
+   },
+   {
+    "index": 16,
+    "section": "act_3",
+    "card": "knife_foiled",
+    "title": "A Knife in the Dark, Foiled",
+    "kind": "drama",
+    "setting": "forest",
+    "roles": [
+     {
+      "role": "betrayer",
+      "character": "p04"
+     },
+     {
+      "role": "victim",
+      "character": "p06"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [
+     {
+      "a": "p04",
+      "b": "p06"
+     }
+    ],
+    "facts": [
+     "attempt_failed"
+    ],
+    "prophecy_hints": [],
+    "budget_seconds": 23,
+    "dramatic": true
+   },
+   {
+    "index": 17,
+    "section": "act_3",
+    "card": "iron_vault_debt",
+    "title": "Debt to the Iron Vault",
+    "kind": "single",
+    "setting": "city_streets",
+    "roles": [
+     {
+      "role": "debtor",
+      "character": "p04"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p04",
+      "mode": "exiled"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 31,
+    "dramatic": false
+   },
+   {
+    "index": 18,
+    "section": "act_3",
+    "card": "final_duel",
+    "title": "The Last Duel",
+    "kind": "structural",
+    "setting": "bridge",
+    "roles": [
+     {
+      "role": "champion",
+      "character": "p03"
+     },
+     {
+      "role": "rival",
+      "character": "p06"
+     }
+    ],
+    "eliminations": [
+     {
+      "character": "p06",
+      "mode": "forfeited"
+     }
+    ],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [
+     "yielded"
+    ],
+    "prophecy_hints": [],
+    "budget_seconds": 42,
+    "dramatic": true
+   },
+   {
+    "index": 19,
+    "section": "coronation",
+    "card": "coronation",
+    "title": "The Coronation",
+    "kind": "structural",
+    "setting": "throne_room",
+    "roles": [
+     {
+      "role": "crowned",
+      "character": "p03"
+     },
+     {
+      "role": "old_king",
+      "character": "old_king"
+     }
+    ],
+    "eliminations": [],
+    "resurrections": [],
+    "alliances_formed": [],
+    "alliances_broken": [],
+    "facts": [],
+    "prophecy_hints": [],
+    "budget_seconds": 47,
+    "dramatic": false
+   }
+  ],
+  "total_budget_seconds": 600
+ },
+ "storyline": {
+  "beats": [
+   {
+    "index": 0,
+    "statement": "The court of the Mad King assembles, and the Herald opens the show.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 1,
+    "statement": "The Mad King decrees that the Friday bottle and the throne go to the last contestant standing. The Herald proclaims it.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08"
+    ],
+    "bystanders": [
+     "p02"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 2,
+    "statement": "Kalle poisons a goblet and serves it to Jääskeläinen. Jääskeläinen drinks it and dies.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p02",
+      "headline": "Jääskeläinen is OUT",
+      "cause": "poisoned by Kalle"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08"
+    ],
+    "survivors_after": [
+     "p01",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 3,
+    "statement": "The Jester speaks a prophecy about who will win the throne, and Aino hears it.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08"
+    ],
+    "survivors_after": [
+     "p01",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08"
+    ],
+    "bystanders": [
+     "p07"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 4,
+    "statement": "The Mad King sees Aino as a threat to the throne and banishes them from the realm.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p01",
+      "headline": "Aino is OUT",
+      "cause": "exiled by the Mad King"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 5,
+    "statement": "The Guard Captain meets Sanna in a trial by combat and wins. Sanna is killed.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p07",
+      "headline": "Sanna is OUT",
+      "cause": "slain by the Guard Captain in Trial by Combat"
+     }
+    ],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p08"
+    ],
+    "bystanders": [
+     "p08"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 6,
+    "statement": "Kalle and Pekka swear an alliance to stand together.",
+    "announcements": [],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p08"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p08"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 7,
+    "statement": "Öhman renounces the crown, takes the Grey Cloak and leaves the contest for the Wall.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p08",
+      "headline": "Öhman is OUT",
+      "cause": "forfeited by taking the Grey Cloak"
+     }
+    ],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p08"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p05",
+     "p06"
+    ],
+    "bystanders": [
+     "p05"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 8,
+    "statement": "Liisa faces the dragon alone and slays it. Liisa survives and stays in the contest.",
+    "announcements": [],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p05",
+     "p06"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p05",
+     "p06"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 9,
+    "statement": "The Iron Vault calls in Matti's debt. Matti cannot pay and is exiled from the realm.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p05",
+      "headline": "Matti is OUT",
+      "cause": "exiled by the Iron Vault for an unpaid debt"
+     }
+    ],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p05",
+     "p06"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 10,
+    "statement": "Pekka pays Kalle's debt to the Iron Vault and saves them from exile.",
+    "announcements": [],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 11,
+    "statement": "Pekka finds a dragon egg, which protects them from harm for a while.",
+    "announcements": [],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 12,
+    "statement": "The Herald wounds Liisa in a fight. Liisa survives, but is hurt.",
+    "announcements": [],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 13,
+    "statement": "Pekka tries to stab their ally Kalle in the back, but fails. Kalle survives, and the alliance between them is broken.",
+    "announcements": [],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 14,
+    "statement": "The Mad King pardons Pekka for an offence against the crown, for now.",
+    "announcements": [],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 15,
+    "statement": "Liisa and Pekka swear an alliance to stand together.",
+    "announcements": [],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 16,
+    "statement": "Liisa tries to stab their ally Pekka in the back, but fails. Pekka survives, and the alliance between them is broken.",
+    "announcements": [],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "survivors_after": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 17,
+    "statement": "The Iron Vault calls in Liisa's debt. Liisa cannot pay and is exiled from the realm.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p04",
+      "headline": "Liisa is OUT",
+      "cause": "exiled by the Iron Vault for an unpaid debt"
+     }
+    ],
+    "survivors_before": [
+     "p03",
+     "p04",
+     "p06"
+    ],
+    "survivors_after": [
+     "p03",
+     "p06"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 18,
+    "statement": "Kalle and Pekka, the last two contestants, face each other. Pekka yields and leaves the contest.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p06",
+      "headline": "Pekka is OUT",
+      "cause": "yielded to Kalle in the Last Duel"
+     }
+    ],
+    "survivors_before": [
+     "p03",
+     "p06"
+    ],
+    "survivors_after": [
+     "p03"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 19,
+    "statement": "Kalle is crowned the new monarch of the Bottle Throne by the Mad King.",
+    "announcements": [],
+    "survivors_before": [
+     "p03"
+    ],
+    "survivors_after": [
+     "p03"
+    ],
+    "bystanders": [],
+    "ghost": null
+   }
+  ],
+  "thread_seeds": [
+   {
+    "title": "The alliance of Kalle and Pekka",
+    "beats": [
+     6,
+     10
+    ],
+    "summary": "Kalle and Pekka swear to stand together, and must face what that costs."
+   },
+   {
+    "title": "Pekka is spared, for now",
+    "beats": [
+     11,
+     13
+    ],
+    "summary": "Pekka escapes once, and the story comes back for them."
+   },
+   {
+    "title": "Liisa's wound",
+    "beats": [
+     12,
+     15
+    ],
+    "summary": "the Herald wounded Liisa, and the wound is not forgotten."
+   },
+   {
+    "title": "Pekka turns on Kalle",
+    "beats": [
+     13,
+     14
+    ],
+    "summary": "After the failed knife, Kalle knows Pekka cannot be trusted."
+   },
+   {
+    "title": "Pekka is spared, for now",
+    "beats": [
+     14,
+     15
+    ],
+    "summary": "Pekka escapes once, and the story comes back for them."
+   },
+   {
+    "title": "The alliance of Liisa and Pekka",
+    "beats": [
+     15,
+     16
+    ],
+    "summary": "Liisa and Pekka swear to stand together, and must face what that costs."
+   },
+   {
+    "title": "Liisa turns on Pekka",
+    "beats": [
+     16,
+     17
+    ],
+    "summary": "After the failed knife, Pekka knows Liisa cannot be trusted."
+   },
+   {
+    "title": "The prophecy",
+    "beats": [
+     3,
+     19
+    ],
+    "summary": "The seer's riddle is spoken early and fulfilled at the coronation."
+   },
+   {
+    "title": "Kalle's road",
+    "beats": [
+     2,
+     6,
+     10,
+     13,
+     18,
+     19
+    ],
+    "summary": "Kalle keeps finding a way through."
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "music": "overture",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Hear ye! The bottle awaits a worthy hand."
+    },
+    {
+     "speaker": "old_king",
+     "emotion": "smug",
+     "action": "point",
+     "text": "I am the Mad King, and this throne is still warm."
+    },
+    {
+     "speaker": "npc_herald",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Let the peasants step forward!"
+    }
+   ],
+   "captions": [
+    {
+     "text": "A KINGDOM HOLDS ITS BREATH...",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "curtain",
+     "line": 0
+    },
+    {
+     "sfx": "horn",
+     "line": 2
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "old_king",
+      "npc_herald"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "old_king"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": [
+      "npc_herald"
+     ]
+    }
+   ],
+   "beat_index": 0,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "npc_herald",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Silence for the crown!"
+    },
+    {
+     "speaker": "old_king",
+     "emotion": "smug",
+     "action": "point",
+     "text": "Only one of you shall wear it. Begin!"
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Somewhere, a goat bleats ominously."
+    },
+    {
+     "speaker": "p02",
+     "emotion": "terrified",
+     "action": null,
+     "text": "Is it always like this around here?"
+    }
+   ],
+   "captions": [
+    {
+     "text": "BY ROYAL DECREE",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "horn",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "npc_herald",
+      "old_king"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "old_king"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 1,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "feast",
+   "lines": [
+    {
+     "speaker": "p02",
+     "emotion": "neutral",
+     "action": "drink",
+     "text": "Strange vintage..."
+    },
+    {
+     "speaker": "p03",
+     "emotion": "scheming",
+     "action": null,
+     "text": "Very rare. Very final."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Jääskeläinen falls, and is out of the contest."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE FEAST GROWS QUIET",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p02",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "gulp",
+     "line": 0
+    },
+    {
+     "sfx": "crowd_gasp",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p02",
+      "p03"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p03"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 2,
+   "setting": "feast_hall",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "dread",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The candles gutter. The seer's eyes roll back."
+    },
+    {
+     "speaker": "npc_jester",
+     "emotion": "terrified",
+     "action": null,
+     "text": "One who was betrayed by a sworn ally. One who faces a Fool at the last."
+    },
+    {
+     "speaker": "p01",
+     "emotion": "smug",
+     "action": null,
+     "text": "Clearly it means me."
+    },
+    {
+     "speaker": "p07",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Somebody should write this down."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE SEER SPEAKS",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [
+    {
+     "text": "KRAKOOM!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "thunder",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "npc_jester",
+      "p01"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "npc_jester"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": [
+      "p01"
+     ]
+    }
+   ],
+   "beat_index": 3,
+   "setting": "temple",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "old_king",
+     "emotion": "scheming",
+     "action": "point",
+     "text": "Aino, you are banished. Today."
+    },
+    {
+     "speaker": "p01",
+     "emotion": "furious",
+     "action": null,
+     "text": "You cannot do this!"
+    },
+    {
+     "speaker": "old_king",
+     "emotion": "smug",
+     "action": null,
+     "text": "Crown says I can."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE OLD KING'S GAMBIT",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p01",
+     "action": "exit",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "gong",
+     "line": 0
+    },
+    {
+     "sfx": "crowd_gasp",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "old_king",
+      "p01",
+      "old_king"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p01"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": [
+      "old_king"
+     ]
+    }
+   ],
+   "beat_index": 4,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "battle",
+   "lines": [
+    {
+     "speaker": "npc_guard",
+     "emotion": "furious",
+     "action": "draw_weapon",
+     "text": "Let the gods decide, Sanna!"
+    },
+    {
+     "speaker": "p07",
+     "emotion": "smug",
+     "action": "draw_weapon",
+     "text": "The gods owe me money."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The gods do not pay. Sanna goes down."
+    },
+    {
+     "speaker": "p08",
+     "emotion": "scheming",
+     "action": null,
+     "text": "Interesting. Very, very interesting."
+    }
+   ],
+   "captions": [
+    {
+     "text": "TRIAL BY COMBAT",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p07",
+     "action": "fall",
+     "line": 2
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "CLANG!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "sword_draw",
+     "line": 0
+    },
+    {
+     "sfx": "sword_clash",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "npc_guard",
+      "p07"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p07"
+     ]
+    },
+    {
+     "framing": "splash",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 5,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p06",
+     "emotion": "neutral",
+     "action": null,
+     "text": "My sword is yours, Kalle."
+    },
+    {
+     "speaker": "p03",
+     "emotion": "triumphant",
+     "action": "embrace",
+     "text": "And mine is... somewhere near yours."
+    }
+   ],
+   "captions": [
+    {
+     "text": "UNDER THE SAME BANNER",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "sword_draw",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p06",
+      "p03"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p03"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p03"
+     ]
+    }
+   ],
+   "beat_index": 6,
+   "setting": "harbor",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "winter",
+   "lines": [
+    {
+     "speaker": "p08",
+     "emotion": "terrified",
+     "action": null,
+     "text": "On second thought, the cold sounds nice."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "And so Öhman leaves the game for good."
+    },
+    {
+     "speaker": "p05",
+     "emotion": "smug",
+     "action": null,
+     "text": "And this is why I never sit near the door."
+    }
+   ],
+   "captions": [
+    {
+     "text": "THE GREY CLOAKS CALL",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p08",
+     "action": "exit",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "horn",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p08"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 7,
+   "setting": "ice_wall",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "battle",
+   "lines": [
+    {
+     "speaker": "p04",
+     "emotion": "furious",
+     "action": "draw_weapon",
+     "text": "I challenge you! Please ignore my shaking knees."
+    },
+    {
+     "speaker": "p04",
+     "emotion": "triumphant",
+     "action": "strike",
+     "text": "For the bottle!"
+    }
+   ],
+   "captions": [
+    {
+     "text": "ONE HERO. ONE DRAGON.",
+     "before_line": 0
+    },
+    {
+     "text": "Liisa slays the dragon and survives.",
+     "before_line": 2
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "dragon_roar",
+     "line": 0
+    },
+    {
+     "sfx": "sword_clash",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p04",
+      "p04"
+     ]
+    },
+    {
+     "framing": "wide",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p04"
+     ]
+    },
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 1,
+     "focus": [
+      "p04"
+     ]
+    }
+   ],
+   "beat_index": 8,
+   "setting": "forest",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p05",
+     "emotion": "grieving",
+     "action": null,
+     "text": "I only borrowed a little crown money."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The Vault exiles Matti with interest."
+    }
+   ],
+   "captions": [
+    {
+     "text": "DEBTS ARE PAID",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p05",
+     "action": "exit",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "bell_toll",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p05"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 9,
+   "setting": "harbor",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p03",
+     "emotion": "terrified",
+     "action": null,
+     "text": "The Iron Vault wants its gold!"
+    },
+    {
+     "speaker": "p06",
+     "emotion": "smug",
+     "action": null,
+     "text": "Here. Now you owe me instead."
+    }
+   ],
+   "captions": [
+    {
+     "text": "A FRIEND IN NEED",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "goblet_clink",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p03",
+      "p06"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p06"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p06"
+     ]
+    }
+   ],
+   "beat_index": 10,
+   "setting": "harbor",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p06",
+     "emotion": "triumphant",
+     "action": null,
+     "text": "A dragon egg! Nobody touch me for a while."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The egg hums. Nobody touches Pekka."
+    }
+   ],
+   "captions": [
+    {
+     "text": "A WARM EGG",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [
+    {
+     "text": "RAWR!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "dragon_roar",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p06"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 11,
+   "setting": "forest",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "battle",
+   "lines": [
+    {
+     "speaker": "p04",
+     "emotion": "grieving",
+     "action": "kneel",
+     "text": "It is only a flesh wound."
+    },
+    {
+     "speaker": "npc_herald",
+     "emotion": "smug",
+     "action": null,
+     "text": "It is quite a lot of flesh."
+    }
+   ],
+   "captions": [
+    {
+     "text": "A GRIEVOUS WOUND",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "thud",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p04",
+      "npc_herald"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "npc_herald"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "npc_herald"
+     ]
+    }
+   ],
+   "beat_index": 12,
+   "setting": "dungeon",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "dread",
+   "lines": [
+    {
+     "speaker": "p03",
+     "emotion": "smug",
+     "action": "point",
+     "text": "I saw that coming, Pekka."
+    },
+    {
+     "speaker": "p06",
+     "emotion": "terrified",
+     "action": "flee",
+     "text": "Saw what? I was... sharpening a spoon."
+    }
+   ],
+   "captions": [
+    {
+     "text": "FOILED!",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "crowd_gasp",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p03",
+      "p06"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p06"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p06"
+     ]
+    }
+   ],
+   "beat_index": 13,
+   "setting": "forest",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "old_king",
+     "emotion": "neutral",
+     "action": null,
+     "text": "I am feeling generous. Rise, Pekka."
+    },
+    {
+     "speaker": "p06",
+     "emotion": "terrified",
+     "action": null,
+     "text": "Thank you? I think?"
+    }
+   ],
+   "captions": [
+    {
+     "text": "A WHIM OF THE CROWN",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "horn",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "old_king",
+      "p06"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p06"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p06"
+     ]
+    }
+   ],
+   "beat_index": 14,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p04",
+     "emotion": "scheming",
+     "action": null,
+     "text": "Together we rise, Pekka."
+    },
+    {
+     "speaker": "p06",
+     "emotion": "smug",
+     "action": "embrace",
+     "text": "Together. Until it is inconvenient."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "They shake on it. Both count their fingers after."
+    }
+   ],
+   "captions": [
+    {
+     "text": "AN ALLIANCE IS SWORN",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "goblet_clink",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p04",
+      "p06"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p06"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": []
+    }
+   ],
+   "beat_index": 15,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "dread",
+   "lines": [
+    {
+     "speaker": "p06",
+     "emotion": "smug",
+     "action": "point",
+     "text": "I saw that coming, Liisa."
+    },
+    {
+     "speaker": "p04",
+     "emotion": "terrified",
+     "action": "flee",
+     "text": "Saw what? I was... sharpening a spoon."
+    }
+   ],
+   "captions": [
+    {
+     "text": "FOILED!",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "crowd_gasp",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p06",
+      "p04"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p04"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p04"
+     ]
+    }
+   ],
+   "beat_index": 16,
+   "setting": "forest",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "intrigue",
+   "lines": [
+    {
+     "speaker": "p04",
+     "emotion": "grieving",
+     "action": null,
+     "text": "I only borrowed a little crown money."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The Vault exiles Liisa with interest."
+    }
+   ],
+   "captions": [
+    {
+     "text": "DEBTS ARE PAID",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p04",
+     "action": "exit",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [],
+   "cues": [
+    {
+     "sfx": "bell_toll",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p04"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": []
+    }
+   ],
+   "beat_index": 17,
+   "setting": "city_streets",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "battle",
+   "lines": [
+    {
+     "speaker": "p03",
+     "emotion": "furious",
+     "action": "draw_weapon",
+     "text": "Yield, Pekka!"
+    },
+    {
+     "speaker": "p06",
+     "emotion": "grieving",
+     "action": "kneel",
+     "text": "I yield! I yield!"
+    }
+   ],
+   "captions": [
+    {
+     "text": "SURRENDER!",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [
+    {
+     "character": "p06",
+     "action": "exit",
+     "line": 1
+    }
+   ],
+   "onomatopoeia": [
+    {
+     "text": "SHING!",
+     "line": 0
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "sword_draw",
+     "line": 0
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p03",
+      "p06"
+     ]
+    },
+    {
+     "framing": "medium",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p06"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p06"
+     ]
+    }
+   ],
+   "beat_index": 18,
+   "setting": "bridge",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  },
+  {
+   "music": "triumph",
+   "lines": [
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "And so the prophecy is fulfilled."
+    },
+    {
+     "speaker": "p03",
+     "emotion": "triumphant",
+     "action": "crown",
+     "text": "The bottle is mine!"
+    },
+    {
+     "speaker": "old_king",
+     "emotion": "grieving",
+     "action": "kneel",
+     "text": "Take good care of it."
+    }
+   ],
+   "captions": [
+    {
+     "text": "LONG LIVE THE MONARCH!",
+     "before_line": 0
+    }
+   ],
+   "stage_directions": [],
+   "onomatopoeia": [
+    {
+     "text": "HUZZAH!",
+     "line": 1
+    }
+   ],
+   "cues": [
+    {
+     "sfx": "choir",
+     "line": 0
+    },
+    {
+     "sfx": "crowd_cheer",
+     "line": 1
+    }
+   ],
+   "panels": [
+    {
+     "framing": "wide",
+     "ref_kind": "caption",
+     "ref_index": 0,
+     "focus": [
+      "p03",
+      "old_king"
+     ]
+    },
+    {
+     "framing": "splash",
+     "ref_kind": "line",
+     "ref_index": 1,
+     "focus": [
+      "p03"
+     ]
+    },
+    {
+     "framing": "close_up",
+     "ref_kind": "line",
+     "ref_index": 2,
+     "focus": [
+      "old_king"
+     ]
+    }
+   ],
+   "beat_index": 19,
+   "setting": "throne_room",
+   "is_fallback": true,
+   "prompt_version": "fallback-1"
+  }
+ ],
+ "bible": {
+  "title": "The Bottle Throne: A Song of Ice and Beer",
+  "prophecy": "One who was betrayed by a sworn ally / One who faces a Fool at the last / One who bears the sign of the Owl",
+  "motifs": [
+   "the bottle",
+   "a suspicious goat",
+   "paper crowns"
+  ],
+  "beats": [
+   {
+    "index": 0,
+    "synopsis": "The court of the Mad King assembles, and the Herald opens the show."
+   },
+   {
+    "index": 1,
+    "synopsis": "The Mad King decrees that the Friday bottle and the throne go to the last contestant standing. The Herald proclaims it."
+   },
+   {
+    "index": 2,
+    "synopsis": "Kalle poisons a goblet and serves it to Jääskeläinen. Jääskeläinen drinks it and dies."
+   },
+   {
+    "index": 3,
+    "synopsis": "The Jester speaks a prophecy about who will win the throne, and Aino hears it."
+   },
+   {
+    "index": 4,
+    "synopsis": "The Mad King sees Aino as a threat to the throne and banishes them from the realm."
+   },
+   {
+    "index": 5,
+    "synopsis": "The Guard Captain meets Sanna in a trial by combat and wins. Sanna is killed."
+   },
+   {
+    "index": 6,
+    "synopsis": "Kalle and Pekka swear an alliance to stand together."
+   },
+   {
+    "index": 7,
+    "synopsis": "Öhman renounces the crown, takes the Grey Cloak and leaves the contest for the Wall."
+   },
+   {
+    "index": 8,
+    "synopsis": "Liisa faces the dragon alone and slays it. Liisa survives and stays in the contest."
+   },
+   {
+    "index": 9,
+    "synopsis": "The Iron Vault calls in Matti's debt. Matti cannot pay and is exiled from the realm."
+   },
+   {
+    "index": 10,
+    "synopsis": "Pekka pays Kalle's debt to the Iron Vault and saves them from exile."
+   },
+   {
+    "index": 11,
+    "synopsis": "Pekka finds a dragon egg, which protects them from harm for a while."
+   },
+   {
+    "index": 12,
+    "synopsis": "The Herald wounds Liisa in a fight. Liisa survives, but is hurt."
+   },
+   {
+    "index": 13,
+    "synopsis": "Pekka tries to stab their ally Kalle in the back, but fails. Kalle survives, and the alliance between them is broken."
+   },
+   {
+    "index": 14,
+    "synopsis": "The Mad King pardons Pekka for an offence against the crown, for now."
+   },
+   {
+    "index": 15,
+    "synopsis": "Liisa and Pekka swear an alliance to stand together."
+   },
+   {
+    "index": 16,
+    "synopsis": "Liisa tries to stab their ally Pekka in the back, but fails. Pekka survives, and the alliance between them is broken."
+   },
+   {
+    "index": 17,
+    "synopsis": "The Iron Vault calls in Liisa's debt. Liisa cannot pay and is exiled from the realm."
+   },
+   {
+    "index": 18,
+    "synopsis": "Kalle and Pekka, the last two contestants, face each other. Pekka yields and leaves the contest."
+   },
+   {
+    "index": 19,
+    "synopsis": "Kalle is crowned the new monarch of the Bottle Throne by the Mad King."
+   }
+  ],
+  "threads": [
+   {
+    "title": "Kalle's road",
+    "beats": [
+     2,
+     6,
+     10,
+     13,
+     18,
+     19
+    ],
+    "summary": "Kalle keeps finding a way through."
+   },
+   {
+    "title": "The prophecy",
+    "beats": [
+     3,
+     19
+    ],
+    "summary": "The seer's riddle is spoken early and fulfilled at the coronation."
+   },
+   {
+    "title": "The alliance of Kalle and Pekka",
+    "beats": [
+     6,
+     10
+    ],
+    "summary": "Kalle and Pekka swear to stand together, and must face what that costs."
+   },
+   {
+    "title": "Pekka is spared, for now",
+    "beats": [
+     11,
+     13
+    ],
+    "summary": "Pekka escapes once, and the story comes back for them."
+   }
+  ],
+  "motivations": [
+   {
+    "character": "p01",
+    "want": "Aino wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p02",
+    "want": "Jääskeläinen wants the throne and a song about winning it."
+   },
+   {
+    "character": "p03",
+    "want": "Kalle wants the throne without ever being in danger."
+   },
+   {
+    "character": "p04",
+    "want": "Liisa wants the throne and a song about winning it."
+   },
+   {
+    "character": "p05",
+    "want": "Matti wants the throne and means to take it by force."
+   },
+   {
+    "character": "p06",
+    "want": "Pekka wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p07",
+    "want": "Sanna wants to win the throne the honest way."
+   },
+   {
+    "character": "p08",
+    "want": "Öhman wants to win the throne the honest way."
+   }
+  ],
+  "exit_reasons": [
+   {
+    "character": "p02",
+    "beat": 2,
+    "reason": "Jääskeläinen is out, poisoned by Kalle."
+   },
+   {
+    "character": "p01",
+    "beat": 4,
+    "reason": "Aino is out, exiled by the Mad King."
+   },
+   {
+    "character": "p07",
+    "beat": 5,
+    "reason": "Sanna is out, slain by the Guard Captain in Trial by Combat."
+   },
+   {
+    "character": "p08",
+    "beat": 7,
+    "reason": "Öhman is out, forfeited by taking the Grey Cloak."
+   },
+   {
+    "character": "p05",
+    "beat": 9,
+    "reason": "Matti is out, exiled by the Iron Vault for an unpaid debt."
+   },
+   {
+    "character": "p04",
+    "beat": 17,
+    "reason": "Liisa is out, exiled by the Iron Vault for an unpaid debt."
+   },
+   {
+    "character": "p06",
+    "beat": 18,
+    "reason": "Pekka is out, yielded to Kalle in the Last Duel."
+   }
+  ]
+ },
+ "chronicle": {
+  "act_titles": {
+   "act_1": "The Call",
+   "act_2": "The Game",
+   "act_3": "The Throne"
+  },
+  "epilogue": "When the dust settled, Kalle the Coward sat upon the Bottle Throne. 7 rivals fell, fled or were sent away along the way. The old crown passed on, the prophecy came true, and the bottle was finally opened. Long may Kalle reign, at least until next Friday.",
+  "cover_title": "The Bottle Throne: Knives Out at the Pub",
+  "blurb": "8 peasants. One bottle. Alliances, betrayals and a very suspicious goat. Who will be crowned when the curtain falls?"
+ }
+}

@@ -1,8 +1,8 @@
 {
  "seed": "stage-fixture-6",
  "fate": {
-  "engine_version": "fate-1",
-  "seal": "c683e149bf5aa48a19f67d0eb5cd47a86b193f49c821ee8caad1e0668d3b4446",
+  "engine_version": "fate-2",
+  "seal": "e7f2aa59a6432e7143de0ec9bd0a94ef6303e8708246a2e54f89393422177024",
   "seed_mode": "auto",
   "roster_size": 6,
   "characters": [
