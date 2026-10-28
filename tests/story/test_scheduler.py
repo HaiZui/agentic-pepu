@@ -1,12 +1,18 @@
 import asyncio
+import json
+import sqlite3
+from contextlib import closing
+from pathlib import Path
 
+import httpx
 import pytest
 
+from bottle_throne.config import Settings
 from bottle_throne.fate.solver import generate_fate
 from bottle_throne.models.fate import FateScript
 from bottle_throne.models.story import ActTitles, BeatSynopsis, ChronicleTexts, SceneDraft, ShowBible
-from bottle_throne.story.fallback import fallback_scene
-from bottle_throne.story.llm import LLMError
+from bottle_throne.story.fallback import fallback_bible, fallback_chronicle, fallback_scene
+from bottle_throne.story.llm import LLMError, create_llm
 from bottle_throne.story.scheduler import StoryState, StoryWorker, generate_story
 
 NAMES = ["Matti", "Aino", "Kalle", "Jääskeläinen", "Öhman", "Liisa"]
@@ -147,11 +153,12 @@ async def test_rate_limit_waits_before_retry(fate: FateScript, monkeypatch: pyte
     assert state.statuses[0] == "ready"
 
 
-async def test_no_llm_means_all_fallbacks(fate: FateScript) -> None:
+async def test_no_llm_means_all_fallbacks(fate: FateScript, llm_log_path: Path) -> None:
     state = StoryState(fate=fate, seed="s")
     await generate_story(state, None)
     assert state.statuses == ["fallback"] * len(fate.beats)
     assert state.bible is not None and state.chronicle is not None and state.complete
+    assert not llm_log_path.exists()
 
 
 async def test_scenes_are_immutable(fate: FateScript) -> None:
@@ -180,3 +187,80 @@ def test_worker_runs_in_background_thread(fate: FateScript) -> None:
         assert state.complete
     finally:
         worker.stop()
+
+
+async def test_real_client_logs_concurrent_scheduler_and_corrective_retries(
+    fate: FateScript, llm_log_path: Path
+) -> None:
+    attempts: dict[int, int] = {}
+    sent: list[str] = []
+    returned: list[str] = []
+    release_first = asyncio.Event()
+
+    async def handler(req: httpx.Request) -> httpx.Response:
+        body = json.loads(req.content)
+        name = body["response_format"]["json_schema"]["name"]
+        messages = body["messages"]
+        if name == "ShowBible":
+            content = fallback_bible(fate, "s").model_dump_json()
+            tag = "bible"
+        elif name == "ChronicleTexts":
+            content = fallback_chronicle(fate, "s").model_dump_json()
+            tag = "chronicle"
+        else:
+            index = beat_index_of(messages)
+            attempts[index] = attempts.get(index, 0) + 1
+            tag = f"scene-{index}-{attempts[index]}"
+            sent.append(tag)
+            if index == 0 and attempts[index] == 1:
+                await asyncio.wait_for(release_first.wait(), 5)
+            elif index == 1:
+                release_first.set()
+            if index == 0 or (index == 1 and attempts[index] == 1):
+                content = '{"invalid":'
+            else:
+                scene = fallback_scene(fate, fate.beats[index], "s")
+                content = SceneDraft(**scene.model_dump(include=set(SceneDraft.model_fields))).model_dump_json()
+        returned.append(tag)
+        return httpx.Response(200, json={
+            "id": tag, "object": "chat.completion", "created": 0, "model": "test",
+            "choices": [{"index": 0, "message": {"role": "assistant", "content": content}, "finish_reason": "stop"}],
+        })
+
+    config = Settings(
+        _env_file=None, FOUNDRY_API_KEY="test-scheduler-key",
+        FOUNDRY_API_ENDPOINT="https://r.services.ai.azure.com", FOUNDRY_LLM_DEPLOYMENT_NAME="test",
+    )
+    llm = create_llm(config, httpx.AsyncClient(transport=httpx.MockTransport(handler)))
+    assert llm is not None
+    state = StoryState(fate=fate, seed="s")
+    await generate_story(state, llm, concurrency=4)
+    await llm.client.close()
+    assert state.complete and state.statuses[0] == "fallback"
+    assert state.statuses[1:] == ["ready"] * (len(fate.beats) - 1)
+    assert attempts[0] == attempts[1] == 2
+    assert sent.index("scene-0-1") < sent.index("scene-1-1")
+    assert returned.index("scene-1-1") < returned.index("scene-0-1")
+    with closing(sqlite3.connect(llm_log_path)) as connection:
+        connection.row_factory = sqlite3.Row
+        records = connection.execute(
+            "SELECT * FROM model_requests JOIN model_responses USING(attempt_id) ORDER BY model_requests.rowid"
+        ).fetchall()
+    assert len(records) == len(fate.beats) + 4
+    kinds = [json.loads(row["request_body"])["response_format"]["json_schema"]["name"] for row in records]
+    assert kinds.count("ShowBible") == kinds.count("ChronicleTexts") == 1
+    retries: dict[int, list[sqlite3.Row]] = {}
+    for row in records:
+        request = json.loads(row["request_body"])
+        if request["response_format"]["json_schema"]["name"] != "SceneDraft":
+            continue
+        index = beat_index_of(request["messages"])
+        retries.setdefault(index, []).append(row)
+        tag = json.loads(row["response_body"])["id"]
+        assert tag.startswith(f"scene-{index}-")
+    for index in (0, 1):
+        first, retry = retries[index]
+        assert len(json.loads(first["request_body"])["messages"]) == 2
+        assert len(json.loads(retry["request_body"])["messages"]) == 3
+        assert first["invocation_id"] != retry["invocation_id"]
+    assert len(records) == len(returned)

@@ -58,14 +58,23 @@ def create_app(settings: Settings | None = None, static_dir: Path | None = None)
 
 def _mount_spa(app: FastAPI, static_dir: Path) -> None:
     """Serve built front-end files, falling back to index.html for client-side routes."""
+    database = app.state.settings.llm_log_db.resolve()
+    private_files = {
+        database,
+        *(database.with_name(database.name + suffix).resolve() for suffix in ("-wal", "-shm", "-journal")),
+    }
 
     @app.get("/{full_path:path}", include_in_schema=False)
     def spa(full_path: str):
         index = static_dir / "index.html"
+        if index.resolve() in private_files:
+            raise HTTPException(status_code=404, detail="Not Found")
         if not index.is_file():
             return HTMLResponse(NOT_BUILT_HTML, status_code=503)
         if full_path:
             candidate = (static_dir / full_path).resolve()
+            if candidate in private_files:
+                raise HTTPException(status_code=404, detail="Not Found")
             if candidate.is_relative_to(static_dir) and candidate.is_file():
                 return FileResponse(candidate)
         return FileResponse(index)

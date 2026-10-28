@@ -36,6 +36,48 @@ Options:
 - `BOTTLE_THRONE_HOST`: interface to bind, default `127.0.0.1` (loopback only).
 - `BOTTLE_THRONE_COMIC`: set to `0` to skip the comic PDF.
 - `BOTTLE_THRONE_OUTPUT_DIR`: where comics are saved, default `output` in the repository.
+- `BOTTLE_THRONE_LLM_LOG_DB`: SQLite model-exchange log, default `output/model-exchanges.sqlite3` in the repository. Relative overrides also resolve against the repository root, independently of the comic output directory.
+
+### Model exchange history
+
+Every actual Azure Foundry request is logged locally, including bible, scene, chronicle, connectivity-check, and retry requests. Logging is always enabled; the database and parent directories are created on the first request, not at application startup. Template-only fallback shows do not create model-exchange records.
+
+The SQLite database has two tables:
+
+- `model_requests`: one row per HTTP attempt, with `attempt_id`, `invocation_id`, `attempt_number`, UTC `started_at`, `api_mode`, `deployment`, and the complete JSON `request_body` (ordered messages, schema and generation parameters).
+- `model_responses`: one row per result, joined by `attempt_id`, with UTC `finished_at`, `duration_ms`, `outcome`, `http_status`, raw `response_body`, `error_type`, and `error_message`. Outcomes distinguish `http_response`, `transport_error`, and `cancelled`. Compatibility retries share an invocation ID; application-level retries have new invocation IDs.
+
+Raw output is captured before SDK parsing, so rejected or malformed model replies remain inspectable. An HTTP 200 response does **not** mean that the story passed validation. A request without a response row is incomplete or its result could not be logged; it is not evidence of success.
+
+If an older running version recorded only `transport_error` / `AssertionError` results, restart the backend after updating to the HTTP transport compatibility fix. Existing failure rows are retained; their missing response bodies cannot be recovered. New requests should record `http_response` when the endpoint returns a response.
+
+History persists across restarts without automatic deletion. It contains participant names, full prompts and generated story content, including spoilers. Keep the database private. Authentication headers are never recorded, and configured secret values are masked even if echoed in content. The application does not provide an exchange-log API or serve this database to the browser. The default database and its SQLite companion files are ignored by Git; add your own ignore rule when using a custom basename inside the checkout.
+
+Database failures produce explicit application-log errors, but model generation continues normally. Lock waits are bounded (a 250 ms SQLite busy timeout and up to 250 ms waiting for the local writer); a busy or unavailable database can leave gaps. Later operations attempt logging again.
+
+Open the file with a local SQLite viewer. If you already have the optional SQLite CLI, use `sqlite3 -readonly ".\output\model-exchanges.sqlite3"` from the repository root. These read-only queries show each full prompt and raw result:
+
+```sql
+SELECT q.attempt_id, q.invocation_id, q.attempt_number, q.started_at,
+       json_extract(q.request_body, '$.messages') AS messages,
+       q.request_body, s.outcome, s.http_status, s.response_body,
+       s.error_type, s.error_message
+FROM model_requests AS q
+LEFT JOIN model_responses AS s USING (attempt_id)
+ORDER BY q.started_at, q.invocation_id, q.attempt_number;
+```
+
+Find requests whose result is missing (for example after interruption):
+
+```sql
+SELECT q.attempt_id, q.started_at, q.request_body
+FROM model_requests AS q
+LEFT JOIN model_responses AS s USING (attempt_id)
+WHERE s.attempt_id IS NULL
+ORDER BY q.started_at;
+```
+
+To clear history, stop the application and close database viewers, then delete the configured database and its `-wal`, `-shm`, and `-journal` companion files if present. Deleting the database permanently removes the recorded prompts and outputs; the next request creates an empty one.
 
 ### Presenter controls
 

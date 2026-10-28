@@ -12,6 +12,7 @@ from openai import AsyncAzureOpenAI, AsyncOpenAI
 from pydantic import BaseModel, ValidationError
 
 from bottle_throne.config import Settings
+from bottle_throne.story.exchange_log import ExchangeCapture, ExchangeLog
 
 log = logging.getLogger(__name__)
 
@@ -54,6 +55,7 @@ class LLMClient:
     client: AsyncOpenAI
     deployment: str
     mode: Literal["v1", "azure"]
+    exchange_capture: ExchangeCapture | None = field(default=None, repr=False, kw_only=True)
     strict_schema: bool = True
     custom_temperature: bool = True
     reasoning_effort: str | None = "low"
@@ -68,6 +70,14 @@ class LLMClient:
         timeout: float = DEFAULT_TIMEOUT,
     ) -> M:
         """One chat completion whose reply must validate as `schema`. Raises LLMError."""
+        if self.exchange_capture is not None:
+            async with self.exchange_capture.invocation():
+                return await self._json(messages, schema, temperature, timeout)
+        return await self._json(messages, schema, temperature, timeout)
+
+    async def _json(
+        self, messages: list[dict[str, str]], schema: type[M], temperature: float, timeout: float
+    ) -> M:
         try:
             for _ in range(4):
                 try:
@@ -204,15 +214,35 @@ def create_llm(settings: Settings, http_client: httpx.AsyncClient | None = None)
         return None
     assert settings.foundry_api_key and settings.foundry_api_endpoint and settings.foundry_llm_deployment_name
     key = settings.foundry_api_key.get_secret_value()
+    endpoint = resource_root(settings.foundry_api_endpoint)
+    mode: Literal["v1", "azure"] = "azure" if settings.foundry_api_version else "v1"
+    capture = ExchangeCapture(
+        ExchangeLog(settings.llm_log_db, settings.secret_values()),
+        endpoint, mode, settings.foundry_llm_deployment_name,
+    )
+    if http_client is None:
+        # Newer SDK defaults use httpx2 streams; capture uses the project's httpx transport.
+        limits = openai.DEFAULT_CONNECTION_LIMITS
+        http_client = httpx.AsyncClient(
+            timeout=DEFAULT_TIMEOUT,
+            limits=httpx.Limits(
+                max_connections=limits.max_connections,
+                max_keepalive_connections=limits.max_keepalive_connections,
+                keepalive_expiry=limits.keepalive_expiry,
+            ),
+            follow_redirects=True,
+        )
+    http_client.event_hooks["request"].append(capture.on_request)
+    http_client.event_hooks["response"].append(capture.on_response)
     common = {"api_key": key, "timeout": DEFAULT_TIMEOUT, "max_retries": 0, "http_client": http_client}
     if settings.foundry_api_version:
         client: AsyncOpenAI = AsyncAzureOpenAI(
-            azure_endpoint=resource_root(settings.foundry_api_endpoint),
+            azure_endpoint=endpoint,
             api_version=settings.foundry_api_version,
             **common,  # type: ignore[arg-type]
         )
-        mode: Literal["v1", "azure"] = "azure"
     else:
         client = AsyncOpenAI(base_url=v1_base_url(settings.foundry_api_endpoint), **common)  # type: ignore[arg-type]
-        mode = "v1"
-    return LLMClient(client=client, deployment=settings.foundry_llm_deployment_name, mode=mode)
+    return LLMClient(
+        client=client, deployment=settings.foundry_llm_deployment_name, mode=mode, exchange_capture=capture
+    )

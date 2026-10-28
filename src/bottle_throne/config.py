@@ -1,7 +1,7 @@
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import Field, SecretStr
+from pydantic import Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -35,6 +35,15 @@ class Settings(BaseSettings):
     port: int = Field(default=8765, ge=1, le=65535, validation_alias="BOTTLE_THRONE_PORT")
     comic_enabled: bool = Field(default=True, validation_alias="BOTTLE_THRONE_COMIC")
     output_dir: Path = Field(default=REPO_ROOT / "output", validation_alias="BOTTLE_THRONE_OUTPUT_DIR")
+    llm_log_db: Path = Field(
+        default=REPO_ROOT / "output" / "model-exchanges.sqlite3",
+        validation_alias="BOTTLE_THRONE_LLM_LOG_DB",
+    )
+
+    @field_validator("llm_log_db")
+    @classmethod
+    def resolve_llm_log_db(cls, value: Path) -> Path:
+        return value if value.is_absolute() else REPO_ROOT / value
 
     def foundry_presence(self) -> dict[str, bool]:
         return {

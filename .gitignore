@@ -1,5 +1,9 @@
 .env
 output/
+model-exchanges.sqlite3
+model-exchanges.sqlite3-wal
+model-exchanges.sqlite3-shm
+model-exchanges.sqlite3-journal
 web/node_modules/
 web/dist/
 web/test-results/

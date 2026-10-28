@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from bottle_throne.config import FOUNDRY_VARIABLES, Settings
+from bottle_throne.config import FOUNDRY_VARIABLES, REPO_ROOT, Settings
 
 ENV_CONTENT = (
     "FOUNDRY_API_KEY=key-from-dotenv\n"
@@ -77,3 +77,24 @@ def test_defaults_bind_loopback_and_port_configurable(tmp_path: Path, monkeypatc
 
     monkeypatch.setenv("BOTTLE_THRONE_PORT", "9001")
     assert Settings(_env_file=tmp_path / "none.env").port == 9001
+
+
+def test_llm_log_default(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("BOTTLE_THRONE_LLM_LOG_DB", raising=False)
+    assert Settings(_env_file=None).llm_log_db == REPO_ROOT / "output" / "model-exchanges.sqlite3"
+
+
+def test_llm_log_paths(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("BOTTLE_THRONE_LLM_LOG_DB", "local-logs/exchanges.sqlite3")
+    monkeypatch.chdir(tmp_path)
+    assert Settings(_env_file=None).llm_log_db == REPO_ROOT / "local-logs" / "exchanges.sqlite3"
+
+    absolute = tmp_path / "exchanges.sqlite3"
+    monkeypatch.setenv("BOTTLE_THRONE_LLM_LOG_DB", str(absolute))
+    assert Settings(_env_file=None).llm_log_db == absolute
+
+
+def test_llm_log_environment_overrides_dotenv(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    env_file = write_env(tmp_path, "BOTTLE_THRONE_LLM_LOG_DB=dotenv.sqlite3\n")
+    monkeypatch.setenv("BOTTLE_THRONE_LLM_LOG_DB", "process.sqlite3")
+    assert Settings(_env_file=env_file).llm_log_db == REPO_ROOT / "process.sqlite3"

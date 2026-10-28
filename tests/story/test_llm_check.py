@@ -1,3 +1,8 @@
+import json
+import sqlite3
+from contextlib import closing
+from pathlib import Path
+
 import httpx
 import pytest
 
@@ -25,13 +30,14 @@ def patch_transport(monkeypatch: pytest.MonkeyPatch, handler) -> None:
     monkeypatch.setattr(check, "create_llm", fake_create)
 
 
-async def test_missing_config() -> None:
+async def test_missing_config(llm_log_path: Path) -> None:
     ok, lines = await check.llm_check(settings(FOUNDRY_LLM_DEPLOYMENT_NAME=""))
     assert not ok
     assert lines[0] == "FAIL config: missing FOUNDRY_LLM_DEPLOYMENT_NAME"
+    assert not llm_log_path.exists()
 
 
-async def test_deployment_not_found(monkeypatch: pytest.MonkeyPatch) -> None:
+async def test_deployment_not_found(monkeypatch: pytest.MonkeyPatch, llm_log_path: Path) -> None:
     patch_transport(monkeypatch, lambda r: httpx.Response(404, json={"error": {"code": "DeploymentNotFound"}}))
 
     ok, lines = await check.llm_check(settings())
@@ -39,9 +45,12 @@ async def test_deployment_not_found(monkeypatch: pytest.MonkeyPatch) -> None:
     assert not ok
     assert lines[0].startswith("FAIL not_found")
     assert all(KEY not in line for line in lines)
+    with closing(sqlite3.connect(llm_log_path)) as connection:
+        row, = connection.execute("SELECT http_status, response_body FROM model_responses").fetchall()
+    assert row[0] == 404 and json.loads(row[1])["error"]["code"] == "DeploymentNotFound"
 
 
-async def test_success_reports_mode(monkeypatch: pytest.MonkeyPatch) -> None:
+async def test_success_reports_mode(monkeypatch: pytest.MonkeyPatch, llm_log_path: Path) -> None:
     body = {
         "id": "c",
         "object": "chat.completion",
@@ -59,3 +68,9 @@ async def test_success_reports_mode(monkeypatch: pytest.MonkeyPatch) -> None:
     assert "Structured output: strict JSON schema" in lines
     assert lines[-1] == "OK"
     assert all(KEY not in line for line in lines)
+    with closing(sqlite3.connect(llm_log_path)) as connection:
+        row, = connection.execute(
+            "SELECT request_body, response_body FROM model_requests JOIN model_responses USING(attempt_id)"
+        ).fetchall()
+    assert "connectivity check" in json.loads(row[0])["messages"][0]["content"]
+    assert json.loads(row[1]) == body
