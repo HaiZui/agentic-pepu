@@ -58,6 +58,18 @@ No control changes the outcome: skipped beats still happen, and the crowned winn
 
 To rehearse without network access, run `.\.venv\Scripts\python.exe scripts\serve_fallback.py 8765`; every scene then uses its template.
 
+### Following the story
+
+The show is written to be followed like an episode of a series, from the roll call to the crowning:
+
+- **Survivor tracker.** After the roll call, a strip along the top of the stage shows every contestant with their house sigil and the count still in the contest ("8 remain" ... "1 remains"). Contestants who are out are crossed out. Above 16 contestants the chips show initials.
+- **OUT and RETURNS stamps.** Every elimination is followed by a stamp such as "Belzebub is OUT, slain by the Jester in Trial by Combat"; crowd events show the cause on each montage tile and a summary ("3 are OUT in the Grey Plague"). The wording comes from the fate, not from the AI, so it is always right.
+- **Introductions and threads.** Contestants who have no part in the story before their exit appear earlier as bystanders, and the winner appears in every act. The AI is given the whole story so far and the plot threads (grudges, debts, contracts, alliances) that link one scene to the next.
+- **Resurrection.** At most once per show (rosters of six or more, Act II), the Red Priestess brings a contestant back to life. A golden "RETURNS" stamp announces it and their tracker chip is restored; they are alive again, not a ghost.
+- **The ghost.** At most one ghost per show, planned from the fate: a contestant who is out returns as a ghost to watch the one who caused their exit leave the story. The figure is pale, its name card and speech bubble read "Ghost of ...", and the tracker keeps them crossed out. No other eliminated contestant can appear.
+
+The comic book shows the same stamps in the panels where the exits happen, and a "still standing" strip at the foot of every scene page.
+
 ### Sound
 
 Pressing START unlocks the browser's audio, so the overture plays with the cold open. Each scene's music mood loops and crossfades, dialogue ducks the music, and sound effects land with the comic lettering. On dramatic beats the music drops out just before the first impact. If the browser still blocks audio, a "Click to enable sound" button appears; the show keeps playing either way.
@@ -77,7 +89,7 @@ While the show plays, the backend prints the whole story as an A4 comic book (16
 
 ```
 output/<YYYY-MM-DD_HHMM>/bottle-throne_<YYYY-MM-DD>.pdf
-output/<YYYY-MM-DD_HHMM>/show.json      # fate, scenes and chronicle texts
+output/<YYYY-MM-DD_HHMM>/show.json      # fate, storyline, scenes and chronicle texts
 ```
 
 The credits show the comic status with **Open comic** and **Show in folder**. If printing fails, the show is unaffected; the credits show the reason and a **Retry** button. Printing uses Playwright's Chromium, falling back to the installed Chrome or Edge. Preview the layout with fixture shows at http://127.0.0.1:5173/dev/comic?fixture=15 (`6`, `15` or `40`; add `&worst=1` for the longest name and line).

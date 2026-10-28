@@ -837,6 +837,768 @@
   ],
   "total_budget_seconds": 600
  },
+ "storyline": {
+  "beats": [
+   {
+    "index": 0,
+    "statement": "The court of the Mad King assembles to open the show.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 1,
+    "statement": "The Mad King decrees that the Friday bottle and the throne go to the last contestant standing. The court proclaims it.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "bystanders": [
+     "p15"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 2,
+    "statement": "Matti secretly pays the Faceless assassins to kill Sanna. The contract is not carried out yet.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "bystanders": [
+     "p01",
+     "p02"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 3,
+    "statement": "A seer speaks a prophecy about who will win the throne, and Åsa hears it.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 4,
+    "statement": "Pekka poisons a goblet and serves it to Aino. Aino drinks it and dies. This is the first blood of the contest.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p01",
+      "headline": "Aino is OUT",
+      "cause": "poisoned by Pekka"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "survivors_after": [
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 5,
+    "statement": "A Faceless assassin hired by Matti carries out the contract and kills Sanna.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p10",
+      "headline": "Sanna is OUT",
+      "cause": "slain by a Faceless assassin hired by Matti"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "survivors_after": [
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 6,
+    "statement": "Ville and Liisa lead their houses into battle on a muddy field. Heli and Pekka are killed. Åsa escapes.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p03",
+      "headline": "Heli is OUT",
+      "cause": "killed in the Battle of the Muddy Field"
+     },
+     {
+      "kind": "out",
+      "character": "p09",
+      "headline": "Pekka is OUT",
+      "cause": "killed in the Battle of the Muddy Field"
+     },
+     {
+      "kind": "summary",
+      "character": null,
+      "headline": "2 are OUT",
+      "cause": "in the Battle of the Muddy Field"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "survivors_after": [
+     "p02",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "bystanders": [
+     "p06"
+    ],
+    "ghost": "p01"
+   },
+   {
+    "index": 7,
+    "statement": "Åsa renounces the crown, takes the Grey Cloak and leaves the contest for the Wall.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p14",
+      "headline": "Åsa is OUT",
+      "cause": "forfeited by taking the Grey Cloak"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ],
+    "survivors_after": [
+     "p02",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p11",
+     "p12",
+     "p13",
+     "p15"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 8,
+    "statement": "The Mad King sees Öhman as a threat to the throne and banishes them from the realm.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p15",
+      "headline": "Öhman is OUT",
+      "cause": "exiled by the Mad King"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p11",
+     "p12",
+     "p13",
+     "p15"
+    ],
+    "survivors_after": [
+     "p02",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p11",
+     "p12",
+     "p13"
+    ],
+    "bystanders": [
+     "p12"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 9,
+    "statement": "Ville meets Kalle in a trial by combat and wins. Kalle is killed.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p06",
+      "headline": "Kalle is OUT",
+      "cause": "slain by Ville in Trial by Combat"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p11",
+     "p12",
+     "p13"
+    ],
+    "survivors_after": [
+     "p02",
+     "p04",
+     "p05",
+     "p07",
+     "p08",
+     "p11",
+     "p12",
+     "p13"
+    ],
+    "bystanders": [
+     "p05"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 10,
+    "statement": "The Iron Vault calls in Ulla's debt. Ulla cannot pay and is exiled from the realm.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p12",
+      "headline": "Ulla is OUT",
+      "cause": "exiled by the Iron Vault for an unpaid debt"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p04",
+     "p05",
+     "p07",
+     "p08",
+     "p11",
+     "p12",
+     "p13"
+    ],
+    "survivors_after": [
+     "p02",
+     "p04",
+     "p05",
+     "p07",
+     "p08",
+     "p11",
+     "p13"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 11,
+    "statement": "Timo meets Jääskeläinen in a trial by combat and wins. Jääskeläinen is killed.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p05",
+      "headline": "Jääskeläinen is OUT",
+      "cause": "slain by Timo in Trial by Combat"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p04",
+     "p05",
+     "p07",
+     "p08",
+     "p11",
+     "p13"
+    ],
+    "survivors_after": [
+     "p02",
+     "p04",
+     "p07",
+     "p08",
+     "p11",
+     "p13"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 12,
+    "statement": "The kingsmoot votes to exile Iiro, Liisa and Timo from the realm. Eero escapes.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p04",
+      "headline": "Iiro is OUT",
+      "cause": "exiled by the kingsmoot"
+     },
+     {
+      "kind": "out",
+      "character": "p07",
+      "headline": "Liisa is OUT",
+      "cause": "exiled by the kingsmoot"
+     },
+     {
+      "kind": "out",
+      "character": "p11",
+      "headline": "Timo is OUT",
+      "cause": "exiled by the kingsmoot"
+     },
+     {
+      "kind": "summary",
+      "character": null,
+      "headline": "3 are OUT",
+      "cause": "in the Kingsmoot"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p04",
+     "p07",
+     "p08",
+     "p11",
+     "p13"
+    ],
+    "survivors_after": [
+     "p02",
+     "p08",
+     "p13"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 13,
+    "statement": "The Red Priestess brings Aino back from the dead. Aino is alive again and back in the contest.",
+    "announcements": [
+     {
+      "kind": "return",
+      "character": "p01",
+      "headline": "Aino RETURNS",
+      "cause": "raised from the dead by the Red Priestess and back in the contest"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p08",
+     "p13"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p08",
+     "p13"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 14,
+    "statement": "The Iron Vault calls in Ville's debt. Ville cannot pay and is exiled from the realm.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p13",
+      "headline": "Ville is OUT",
+      "cause": "exiled by the Iron Vault for an unpaid debt"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p08",
+     "p13"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p08"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 15,
+    "statement": "Eero narrowly escapes a deadly accident and stays in the contest.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p08"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p08"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 16,
+    "statement": "The Mad King sees Aino as a threat to the throne and banishes them from the realm.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p01",
+      "headline": "Aino is OUT",
+      "cause": "exiled by the Mad King"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p08"
+    ],
+    "survivors_after": [
+     "p02",
+     "p08"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 17,
+    "statement": "Eero and Matti swear an alliance to stand together.",
+    "announcements": [],
+    "survivors_before": [
+     "p02",
+     "p08"
+    ],
+    "survivors_after": [
+     "p02",
+     "p08"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 18,
+    "statement": "Matti tries to stab their ally Eero in the back, but fails. Eero survives, and the alliance between them is broken.",
+    "announcements": [],
+    "survivors_before": [
+     "p02",
+     "p08"
+    ],
+    "survivors_after": [
+     "p02",
+     "p08"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 19,
+    "statement": "Eero and Matti, the last two contestants, fight the final duel. Matti is killed.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p08",
+      "headline": "Matti is OUT",
+      "cause": "defeated by Eero in the Last Duel"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p08"
+    ],
+    "survivors_after": [
+     "p02"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 20,
+    "statement": "Eero is crowned the new monarch of the Bottle Throne by the Mad King.",
+    "announcements": [],
+    "survivors_before": [
+     "p02"
+    ],
+    "survivors_after": [
+     "p02"
+    ],
+    "bystanders": [],
+    "ghost": null
+   }
+  ],
+  "thread_seeds": [
+   {
+    "title": "The Faceless contract on Sanna",
+    "beats": [
+     2,
+     5
+    ],
+    "summary": "Matti pays the Faceless to kill Sanna; the contract hangs over them."
+   },
+   {
+    "title": "Aino cheats death",
+    "beats": [
+     4,
+     13,
+     16
+    ],
+    "summary": "Aino falls, is raised by the Red Priestess, and must live with the price."
+   },
+   {
+    "title": "Eero is spared, for now",
+    "beats": [
+     15,
+     17
+    ],
+    "summary": "Eero escapes once, and the story comes back for them."
+   },
+   {
+    "title": "The alliance of Eero and Matti",
+    "beats": [
+     17,
+     18
+    ],
+    "summary": "Eero and Matti swear to stand together, and must face what that costs."
+   },
+   {
+    "title": "Matti turns on Eero",
+    "beats": [
+     18,
+     19
+    ],
+    "summary": "After the failed knife, Eero knows Matti cannot be trusted."
+   },
+   {
+    "title": "The prophecy",
+    "beats": [
+     3,
+     20
+    ],
+    "summary": "The seer's riddle is spoken early and fulfilled at the coronation."
+   },
+   {
+    "title": "Eero's road",
+    "beats": [
+     12,
+     15,
+     17,
+     18,
+     19,
+     20
+    ],
+    "summary": "Eero keeps finding a way through."
+   }
+  ]
+ },
  "scenes": [
   {
    "music": "overture",
@@ -921,6 +1683,12 @@
      "emotion": "neutral",
      "action": null,
      "text": "Nobody dares to ask what the old rules were."
+    },
+    {
+     "speaker": "p15",
+     "emotion": "smug",
+     "action": null,
+     "text": "I would have done it with more style."
     }
    ],
    "captions": [
@@ -978,6 +1746,18 @@
      "emotion": "neutral",
      "action": null,
      "text": "The name on the parchment reads: Sanna."
+    },
+    {
+     "speaker": "p01",
+     "emotion": "scheming",
+     "action": null,
+     "text": "Interesting. Very, very interesting."
+    },
+    {
+     "speaker": "p02",
+     "emotion": "scheming",
+     "action": null,
+     "text": "Interesting. Very, very interesting."
     }
    ],
    "captions": [
@@ -1110,6 +1890,12 @@
      "emotion": "scheming",
      "action": null,
      "text": "Very rare. Very final."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Aino falls, and is out of the contest."
     }
    ],
    "captions": [
@@ -1122,7 +1908,7 @@
     {
      "character": "p01",
      "action": "fall",
-     "line": 1
+     "line": 2
     }
    ],
    "onomatopoeia": [],
@@ -1157,10 +1943,8 @@
     {
      "framing": "close_up",
      "ref_kind": "line",
-     "ref_index": 1,
-     "focus": [
-      "p09"
-     ]
+     "ref_index": 2,
+     "focus": []
     }
    ],
    "beat_index": 4,
@@ -1182,6 +1966,12 @@
      "emotion": "terrified",
      "action": null,
      "text": "Who is standing behind me?"
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Sanna falls, and is out of the contest."
     }
    ],
    "captions": [
@@ -1194,7 +1984,7 @@
     {
      "character": "p10",
      "action": "fall",
-     "line": 1
+     "line": 2
     }
    ],
    "onomatopoeia": [
@@ -1234,10 +2024,8 @@
     {
      "framing": "close_up",
      "ref_kind": "line",
-     "ref_index": 1,
-     "focus": [
-      "p10"
-     ]
+     "ref_index": 2,
+     "focus": []
     }
    ],
    "beat_index": 5,
@@ -1265,6 +2053,24 @@
      "emotion": "grieving",
      "action": null,
      "text": "Heli and Pekka fall in the muck."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The ghost of Aino has come to watch."
+    },
+    {
+     "speaker": "p01",
+     "emotion": "dead",
+     "action": null,
+     "text": "Now we are even."
+    },
+    {
+     "speaker": "p06",
+     "emotion": "smug",
+     "action": null,
+     "text": "And this is why I never sit near the door."
     }
    ],
    "captions": [
@@ -1408,6 +2214,12 @@
      "emotion": "smug",
      "action": null,
      "text": "Crown says I can."
+    },
+    {
+     "speaker": "p12",
+     "emotion": "smug",
+     "action": null,
+     "text": "And this is why I never sit near the door."
     }
    ],
    "captions": [
@@ -1481,6 +2293,18 @@
      "emotion": "triumphant",
      "action": "strike",
      "text": "Have at thee harder!"
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Kalle falls, and is out of the contest."
+    },
+    {
+     "speaker": "p05",
+     "emotion": "terrified",
+     "action": null,
+     "text": "I saw nothing. I will remember everything."
     }
    ],
    "captions": [
@@ -1493,7 +2317,7 @@
     {
      "character": "p06",
      "action": "fall",
-     "line": 1
+     "line": 2
     }
    ],
    "onomatopoeia": [
@@ -1533,10 +2357,8 @@
     {
      "framing": "close_up",
      "ref_kind": "line",
-     "ref_index": 1,
-     "focus": [
-      "p13"
-     ]
+     "ref_index": 2,
+     "focus": []
     }
    ],
    "beat_index": 9,
@@ -2197,6 +3019,12 @@
      "emotion": "neutral",
      "action": null,
      "text": "Steel rings. The rival's rod snaps. It is over."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Matti falls, and is out of the contest."
     }
    ],
    "captions": [
@@ -2209,7 +3037,7 @@
     {
      "character": "p08",
      "action": "fall",
-     "line": 2
+     "line": 3
     }
    ],
    "onomatopoeia": [
@@ -2249,7 +3077,7 @@
     {
      "framing": "splash",
      "ref_kind": "line",
-     "ref_index": 2,
+     "ref_index": 3,
      "focus": []
     }
    ],
@@ -2347,87 +3175,265 @@
   "beats": [
    {
     "index": 0,
-    "synopsis": "The Old King's Court"
+    "synopsis": "The court of the Mad King assembles to open the show."
    },
    {
     "index": 1,
-    "synopsis": "The Old King's Decree"
+    "synopsis": "The Mad King decrees that the Friday bottle and the throne go to the last contestant standing. The court proclaims it."
    },
    {
     "index": 2,
-    "synopsis": "The Faceless Contract"
+    "synopsis": "Matti secretly pays the Faceless assassins to kill Sanna. The contract is not carried out yet."
    },
    {
     "index": 3,
-    "synopsis": "The Prophecy"
+    "synopsis": "A seer speaks a prophecy about who will win the throne, and Åsa hears it."
    },
    {
     "index": 4,
-    "synopsis": "The Poisoned Goblet"
+    "synopsis": "Pekka poisons a goblet and serves it to Aino. Aino drinks it and dies. This is the first blood of the contest."
    },
    {
     "index": 5,
-    "synopsis": "The Faceless Strike"
+    "synopsis": "A Faceless assassin hired by Matti carries out the contract and kills Sanna."
    },
    {
     "index": 6,
-    "synopsis": "Battle of the Muddy Field"
+    "synopsis": "Ville and Liisa lead their houses into battle on a muddy field. Heli and Pekka are killed. Åsa escapes."
    },
    {
     "index": 7,
-    "synopsis": "Taking the Grey Cloak"
+    "synopsis": "Åsa renounces the crown, takes the Grey Cloak and leaves the contest for the Wall."
    },
    {
     "index": 8,
-    "synopsis": "The Old King's Gambit"
+    "synopsis": "The Mad King sees Öhman as a threat to the throne and banishes them from the realm."
    },
    {
     "index": 9,
-    "synopsis": "Trial by Combat"
+    "synopsis": "Ville meets Kalle in a trial by combat and wins. Kalle is killed."
    },
    {
     "index": 10,
-    "synopsis": "Debt to the Iron Vault"
+    "synopsis": "The Iron Vault calls in Ulla's debt. Ulla cannot pay and is exiled from the realm."
    },
    {
     "index": 11,
-    "synopsis": "Trial by Combat"
+    "synopsis": "Timo meets Jääskeläinen in a trial by combat and wins. Jääskeläinen is killed."
    },
    {
     "index": 12,
-    "synopsis": "The Kingsmoot Exile"
+    "synopsis": "The kingsmoot votes to exile Iiro, Liisa and Timo from the realm. Eero escapes."
    },
    {
     "index": 13,
-    "synopsis": "The Red Priestess"
+    "synopsis": "The Red Priestess brings Aino back from the dead. Aino is alive again and back in the contest."
    },
    {
     "index": 14,
-    "synopsis": "Debt to the Iron Vault"
+    "synopsis": "The Iron Vault calls in Ville's debt. Ville cannot pay and is exiled from the realm."
    },
    {
     "index": 15,
-    "synopsis": "A Near Miss"
+    "synopsis": "Eero narrowly escapes a deadly accident and stays in the contest."
    },
    {
     "index": 16,
-    "synopsis": "The Old King's Gambit"
+    "synopsis": "The Mad King sees Aino as a threat to the throne and banishes them from the realm."
    },
    {
     "index": 17,
-    "synopsis": "A Sworn Alliance"
+    "synopsis": "Eero and Matti swear an alliance to stand together."
    },
    {
     "index": 18,
-    "synopsis": "A Knife in the Dark, Foiled"
+    "synopsis": "Matti tries to stab their ally Eero in the back, but fails. Eero survives, and the alliance between them is broken."
    },
    {
     "index": 19,
-    "synopsis": "The Last Duel"
+    "synopsis": "Eero and Matti, the last two contestants, fight the final duel. Matti is killed."
    },
    {
     "index": 20,
-    "synopsis": "The Coronation"
+    "synopsis": "Eero is crowned the new monarch of the Bottle Throne by the Mad King."
+   }
+  ],
+  "threads": [
+   {
+    "title": "Eero's road",
+    "beats": [
+     12,
+     15,
+     17,
+     18,
+     19,
+     20
+    ],
+    "summary": "Eero keeps finding a way through."
+   },
+   {
+    "title": "The prophecy",
+    "beats": [
+     3,
+     20
+    ],
+    "summary": "The seer's riddle is spoken early and fulfilled at the coronation."
+   },
+   {
+    "title": "Aino cheats death",
+    "beats": [
+     4,
+     13,
+     16
+    ],
+    "summary": "Aino falls, is raised by the Red Priestess, and must live with the price."
+   },
+   {
+    "title": "The Faceless contract on Sanna",
+    "beats": [
+     2,
+     5
+    ],
+    "summary": "Matti pays the Faceless to kill Sanna; the contract hangs over them."
+   }
+  ],
+  "motivations": [
+   {
+    "character": "p01",
+    "want": "Aino wants the throne and a song about winning it."
+   },
+   {
+    "character": "p02",
+    "want": "Eero believes the throne is a sacred duty."
+   },
+   {
+    "character": "p03",
+    "want": "Heli wants the throne without ever being in danger."
+   },
+   {
+    "character": "p04",
+    "want": "Iiro believes the throne is a sacred duty."
+   },
+   {
+    "character": "p05",
+    "want": "Jääskeläinen wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p06",
+    "want": "Kalle wants the throne and a song about winning it."
+   },
+   {
+    "character": "p07",
+    "want": "Liisa wants the throne and plots every step toward it."
+   },
+   {
+    "character": "p08",
+    "want": "Matti believes the throne is a sacred duty."
+   },
+   {
+    "character": "p09",
+    "want": "Pekka wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p10",
+    "want": "Sanna wants to win the throne the honest way."
+   },
+   {
+    "character": "p11",
+    "want": "Timo wants to win the throne the honest way."
+   },
+   {
+    "character": "p12",
+    "want": "Ulla wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p13",
+    "want": "Ville believes the throne is a sacred duty."
+   },
+   {
+    "character": "p14",
+    "want": "Åsa wants to win the throne the honest way."
+   },
+   {
+    "character": "p15",
+    "want": "Öhman wants the throne and a song about winning it."
+   }
+  ],
+  "exit_reasons": [
+   {
+    "character": "p01",
+    "beat": 4,
+    "reason": "Aino is out, poisoned by Pekka."
+   },
+   {
+    "character": "p10",
+    "beat": 5,
+    "reason": "Sanna is out, slain by a Faceless assassin hired by Matti."
+   },
+   {
+    "character": "p03",
+    "beat": 6,
+    "reason": "Heli is out, killed in the Battle of the Muddy Field."
+   },
+   {
+    "character": "p09",
+    "beat": 6,
+    "reason": "Pekka is out, killed in the Battle of the Muddy Field."
+   },
+   {
+    "character": "p14",
+    "beat": 7,
+    "reason": "Åsa is out, forfeited by taking the Grey Cloak."
+   },
+   {
+    "character": "p15",
+    "beat": 8,
+    "reason": "Öhman is out, exiled by the Mad King."
+   },
+   {
+    "character": "p06",
+    "beat": 9,
+    "reason": "Kalle is out, slain by Ville in Trial by Combat."
+   },
+   {
+    "character": "p12",
+    "beat": 10,
+    "reason": "Ulla is out, exiled by the Iron Vault for an unpaid debt."
+   },
+   {
+    "character": "p05",
+    "beat": 11,
+    "reason": "Jääskeläinen is out, slain by Timo in Trial by Combat."
+   },
+   {
+    "character": "p04",
+    "beat": 12,
+    "reason": "Iiro is out, exiled by the kingsmoot."
+   },
+   {
+    "character": "p07",
+    "beat": 12,
+    "reason": "Liisa is out, exiled by the kingsmoot."
+   },
+   {
+    "character": "p11",
+    "beat": 12,
+    "reason": "Timo is out, exiled by the kingsmoot."
+   },
+   {
+    "character": "p13",
+    "beat": 14,
+    "reason": "Ville is out, exiled by the Iron Vault for an unpaid debt."
+   },
+   {
+    "character": "p01",
+    "beat": 16,
+    "reason": "Aino is out, exiled by the Mad King."
+   },
+   {
+    "character": "p08",
+    "beat": 19,
+    "reason": "Matti is out, defeated by Eero in the Last Duel."
    }
   ]
  },

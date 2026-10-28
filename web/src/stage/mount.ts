@@ -7,7 +7,7 @@ import { createHud, type AudioControls } from "./hud";
 import type { ShowTexts } from "./overlays";
 import { Player } from "./player";
 import { StageRenderer } from "./renderer";
-import type { FateScript, SceneScript } from "./types";
+import type { FateScript, SceneScript, Storyline } from "./types";
 
 export interface MountedStage {
   program: Program;
@@ -20,6 +20,8 @@ export interface MountedStage {
 
 export interface MountOptions {
   fate: FateScript;
+  /** Survivor tracker and OUT / RETURNS stamps; without it the tracker still runs from the fate alone. */
+  storyline?: Storyline | null;
   scenes?: readonly SceneScript[];
   /** A hand-built program (dev demos); defaults to the whole show. */
   program?: Program;
@@ -47,7 +49,7 @@ function enableBanner(viewport: HTMLElement): void {
 /** Builds the program, the stage and the presenter controls inside `host`. Call `player.run()` to start. */
 export function mountStage(host: HTMLElement, options: MountOptions): MountedStage {
   const texts: ShowTexts = { bible: null, chronicle: null, reveal: async () => null, ...options.texts };
-  const program = options.program ?? createProgram(options.fate, options.scenes ?? []);
+  const program = options.program ?? createProgram(options.fate, options.scenes ?? [], options.storyline ?? null);
   const renderer = new StageRenderer(host, options.fate, texts);
   const clock = new GsapClock();
   clock.setPaused(false);

@@ -637,6 +637,476 @@
   ],
   "total_budget_seconds": 600
  },
+ "storyline": {
+  "beats": [
+   {
+    "index": 0,
+    "statement": "The court of Jukka assembles, and the Royal Adviser opens the show.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 1,
+    "statement": "Jukka decrees that the Friday bottle and the throne go to the last contestant standing. The Royal Adviser proclaims it.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06"
+    ],
+    "bystanders": [
+     "p06"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 2,
+    "statement": "The Jester speaks a prophecy about who will win the throne, and Liisa hears it.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 3,
+    "statement": "Öhman renounces the crown, takes the Grey Cloak and leaves the contest for the Wall.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p06",
+      "headline": "Öhman is OUT",
+      "cause": "forfeited by taking the Grey Cloak"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05"
+    ],
+    "bystanders": [
+     "p05"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 4,
+    "statement": "Jukka pardons Jääskeläinen for an offence against the crown, for now.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 5,
+    "statement": "The Iron Vault calls in Matti's debt. Matti cannot pay and is exiled from the realm.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p05",
+      "headline": "Matti is OUT",
+      "cause": "exiled by the Iron Vault for an unpaid debt"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 6,
+    "statement": "Jukka pardons Aino for an offence against the crown, for now.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04"
+    ],
+    "bystanders": [
+     "p03"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 7,
+    "statement": "Jääskeläinen narrowly escapes a deadly accident and stays in the contest.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 8,
+    "statement": "Jukka sees Kalle as a threat to the throne and banishes them from the realm.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p03",
+      "headline": "Kalle is OUT",
+      "cause": "exiled by Jukka"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p04"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 9,
+    "statement": "Aino and Liisa swear an alliance to stand together.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p04"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p04"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 10,
+    "statement": "Liisa secretly pays the Faceless assassins to kill Jääskeläinen. The contract is not carried out yet.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p04"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p04"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 11,
+    "statement": "Aino tries to stab their ally Liisa in the back, but fails. Liisa survives, and the alliance between them is broken.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p04"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p04"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 12,
+    "statement": "Liisa wounds Aino in a fight. Aino survives, but is hurt.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p04"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p04"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 13,
+    "statement": "Jukka sees Jääskeläinen as a threat to the throne and banishes them from the realm.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p02",
+      "headline": "Jääskeläinen is OUT",
+      "cause": "exiled by Jukka"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p04"
+    ],
+    "survivors_after": [
+     "p01",
+     "p04"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 14,
+    "statement": "Liisa wounds Aino in a fight. Aino survives, but is hurt.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p04"
+    ],
+    "survivors_after": [
+     "p01",
+     "p04"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 15,
+    "statement": "The Royal Adviser wounds Liisa in a fight. Liisa survives, but is hurt.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p04"
+    ],
+    "survivors_after": [
+     "p01",
+     "p04"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 16,
+    "statement": "Liisa and Aino, the last two contestants, face each other. Aino yields and leaves the contest.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p01",
+      "headline": "Aino is OUT",
+      "cause": "yielded to Liisa in the Last Duel"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p04"
+    ],
+    "survivors_after": [
+     "p04"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 17,
+    "statement": "Liisa is crowned the new monarch of the Bottle Throne by Jukka.",
+    "announcements": [],
+    "survivors_before": [
+     "p04"
+    ],
+    "survivors_after": [
+     "p04"
+    ],
+    "bystanders": [],
+    "ghost": null
+   }
+  ],
+  "thread_seeds": [
+   {
+    "title": "Jääskeläinen is spared, for now",
+    "beats": [
+     4,
+     7
+    ],
+    "summary": "Jääskeläinen escapes once, and the story comes back for them."
+   },
+   {
+    "title": "Aino is spared, for now",
+    "beats": [
+     6,
+     9
+    ],
+    "summary": "Aino escapes once, and the story comes back for them."
+   },
+   {
+    "title": "Jääskeläinen is spared, for now",
+    "beats": [
+     7,
+     10
+    ],
+    "summary": "Jääskeläinen escapes once, and the story comes back for them."
+   },
+   {
+    "title": "The alliance of Aino and Liisa",
+    "beats": [
+     9,
+     11
+    ],
+    "summary": "Aino and Liisa swear to stand together, and must face what that costs."
+   },
+   {
+    "title": "The Faceless contract on Jääskeläinen",
+    "beats": [
+     10,
+     13
+    ],
+    "summary": "Liisa pays the Faceless to kill Jääskeläinen; the contract hangs over them."
+   },
+   {
+    "title": "Aino turns on Liisa",
+    "beats": [
+     11,
+     12
+    ],
+    "summary": "After the failed knife, Liisa knows Aino cannot be trusted."
+   },
+   {
+    "title": "Aino's wound",
+    "beats": [
+     12,
+     14
+    ],
+    "summary": "Liisa wounded Aino, and the wound is not forgotten."
+   },
+   {
+    "title": "Aino's wound",
+    "beats": [
+     14,
+     16
+    ],
+    "summary": "Liisa wounded Aino, and the wound is not forgotten."
+   },
+   {
+    "title": "Liisa's wound",
+    "beats": [
+     15,
+     16
+    ],
+    "summary": "the Royal Adviser wounded Liisa, and the wound is not forgotten."
+   },
+   {
+    "title": "The prophecy",
+    "beats": [
+     2,
+     17
+    ],
+    "summary": "The seer's riddle is spoken early and fulfilled at the coronation."
+   },
+   {
+    "title": "Liisa's road",
+    "beats": [
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     16,
+     17
+    ],
+    "summary": "Liisa keeps finding a way through."
+   }
+  ]
+ },
  "scenes": [
   {
    "music": "overture",
@@ -730,6 +1200,12 @@
      "emotion": "neutral",
      "action": null,
      "text": "Somewhere, a goat bleats ominously."
+    },
+    {
+     "speaker": "p06",
+     "emotion": "terrified",
+     "action": null,
+     "text": "I saw nothing. I will remember everything."
     }
    ],
    "captions": [
@@ -869,6 +1345,12 @@
      "emotion": "neutral",
      "action": null,
      "text": "Öhman walks north, wrapped in grey."
+    },
+    {
+     "speaker": "p05",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Somebody should write this down."
     }
    ],
    "captions": [
@@ -1057,6 +1539,12 @@
      "emotion": "grieving",
      "action": "kneel",
      "text": "Your Majesty is too kind."
+    },
+    {
+     "speaker": "p03",
+     "emotion": "terrified",
+     "action": null,
+     "text": "I saw nothing. I will remember everything."
     }
    ],
    "captions": [
@@ -1850,75 +2338,168 @@
   "beats": [
    {
     "index": 0,
-    "synopsis": "The Old King's Court"
+    "synopsis": "The court of Jukka assembles, and the Royal Adviser opens the show."
    },
    {
     "index": 1,
-    "synopsis": "The Old King's Decree"
+    "synopsis": "Jukka decrees that the Friday bottle and the throne go to the last contestant standing. The Royal Adviser proclaims it."
    },
    {
     "index": 2,
-    "synopsis": "The Prophecy"
+    "synopsis": "The Jester speaks a prophecy about who will win the throne, and Liisa hears it."
    },
    {
     "index": 3,
-    "synopsis": "Taking the Grey Cloak"
+    "synopsis": "Öhman renounces the crown, takes the Grey Cloak and leaves the contest for the Wall."
    },
    {
     "index": 4,
-    "synopsis": "The Old King's Pardon"
+    "synopsis": "Jukka pardons Jääskeläinen for an offence against the crown, for now."
    },
    {
     "index": 5,
-    "synopsis": "Debt to the Iron Vault"
+    "synopsis": "The Iron Vault calls in Matti's debt. Matti cannot pay and is exiled from the realm."
    },
    {
     "index": 6,
-    "synopsis": "The Old King's Pardon"
+    "synopsis": "Jukka pardons Aino for an offence against the crown, for now."
    },
    {
     "index": 7,
-    "synopsis": "A Near Miss"
+    "synopsis": "Jääskeläinen narrowly escapes a deadly accident and stays in the contest."
    },
    {
     "index": 8,
-    "synopsis": "The Old King's Gambit"
+    "synopsis": "Jukka sees Kalle as a threat to the throne and banishes them from the realm."
    },
    {
     "index": 9,
-    "synopsis": "A Sworn Alliance"
+    "synopsis": "Aino and Liisa swear an alliance to stand together."
    },
    {
     "index": 10,
-    "synopsis": "The Faceless Contract"
+    "synopsis": "Liisa secretly pays the Faceless assassins to kill Jääskeläinen. The contract is not carried out yet."
    },
    {
     "index": 11,
-    "synopsis": "A Knife in the Dark, Foiled"
+    "synopsis": "Aino tries to stab their ally Liisa in the back, but fails. Liisa survives, and the alliance between them is broken."
    },
    {
     "index": 12,
-    "synopsis": "A Grievous Wound"
+    "synopsis": "Liisa wounds Aino in a fight. Aino survives, but is hurt."
    },
    {
     "index": 13,
-    "synopsis": "The Old King's Gambit"
+    "synopsis": "Jukka sees Jääskeläinen as a threat to the throne and banishes them from the realm."
    },
    {
     "index": 14,
-    "synopsis": "A Grievous Wound"
+    "synopsis": "Liisa wounds Aino in a fight. Aino survives, but is hurt."
    },
    {
     "index": 15,
-    "synopsis": "A Grievous Wound"
+    "synopsis": "The Royal Adviser wounds Liisa in a fight. Liisa survives, but is hurt."
    },
    {
     "index": 16,
-    "synopsis": "The Last Duel"
+    "synopsis": "Liisa and Aino, the last two contestants, face each other. Aino yields and leaves the contest."
    },
    {
     "index": 17,
-    "synopsis": "The Coronation"
+    "synopsis": "Liisa is crowned the new monarch of the Bottle Throne by Jukka."
+   }
+  ],
+  "threads": [
+   {
+    "title": "Liisa's road",
+    "beats": [
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     16,
+     17
+    ],
+    "summary": "Liisa keeps finding a way through."
+   },
+   {
+    "title": "The prophecy",
+    "beats": [
+     2,
+     17
+    ],
+    "summary": "The seer's riddle is spoken early and fulfilled at the coronation."
+   },
+   {
+    "title": "Jääskeläinen is spared, for now",
+    "beats": [
+     4,
+     7
+    ],
+    "summary": "Jääskeläinen escapes once, and the story comes back for them."
+   },
+   {
+    "title": "Aino is spared, for now",
+    "beats": [
+     6,
+     9
+    ],
+    "summary": "Aino escapes once, and the story comes back for them."
+   }
+  ],
+  "motivations": [
+   {
+    "character": "p01",
+    "want": "Aino wants the throne and a song about winning it."
+   },
+   {
+    "character": "p02",
+    "want": "Jääskeläinen believes the throne is a sacred duty."
+   },
+   {
+    "character": "p03",
+    "want": "Kalle wants to win the throne the honest way."
+   },
+   {
+    "character": "p04",
+    "want": "Liisa wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p05",
+    "want": "Matti believes the throne is a sacred duty."
+   },
+   {
+    "character": "p06",
+    "want": "Öhman wants the throne and means to take it by force."
+   }
+  ],
+  "exit_reasons": [
+   {
+    "character": "p06",
+    "beat": 3,
+    "reason": "Öhman is out, forfeited by taking the Grey Cloak."
+   },
+   {
+    "character": "p05",
+    "beat": 5,
+    "reason": "Matti is out, exiled by the Iron Vault for an unpaid debt."
+   },
+   {
+    "character": "p03",
+    "beat": 8,
+    "reason": "Kalle is out, exiled by Jukka."
+   },
+   {
+    "character": "p02",
+    "beat": 13,
+    "reason": "Jääskeläinen is out, exiled by Jukka."
+   },
+   {
+    "character": "p01",
+    "beat": 16,
+    "reason": "Aino is out, yielded to Liisa in the Last Duel."
    }
   ]
  },

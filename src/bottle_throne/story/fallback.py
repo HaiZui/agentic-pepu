@@ -18,7 +18,9 @@ from bottle_throne.models.story import (
     ShowBible,
     StageDirection,
 )
+from bottle_throne.story.bible import default_exit_reason, default_motivation, default_threads, participant_exits
 from bottle_throne.story.catalog import NARRATOR, reading_seconds
+from bottle_throne.story.storyline import storyline
 
 FALLBACK_VERSION = "fallback-1"
 
@@ -390,6 +392,27 @@ MISSING_ROLE_TEXT = {
     "old_king": "the old crown",
 }
 
+# Short reactions for contestants planned into a scene without a role (all under 60 characters).
+BYSTANDER_LINES = [
+    ("terrified", "I saw nothing. I will remember everything."),
+    ("smug", "And this is why I never sit near the door."),
+    ("neutral", "Somebody should write this down."),
+    ("scheming", "Interesting. Very, very interesting."),
+    ("terrified", "Is it always like this around here?"),
+    ("smug", "I would have done it with more style."),
+]
+# The planned ghost watches the one who caused their exit leave the story.
+GHOST_LINES = [
+    "I told you I would see this.",
+    "Now we are even.",
+    "Mind the step. I did not.",
+]
+NAMING_TEXT = {
+    "killed": "{name} falls, and is out of the contest.",
+    "exiled": "{name} is exiled, and out of the contest.",
+    "forfeited": "{name} gives up the crown, and leaves the contest.",
+}
+
 
 def _short_list(names: list[str]) -> str:
     if len(names) <= 2:
@@ -450,15 +473,47 @@ def fallback_scene(fate: FateScript, beat: Beat, seed: str, variant: int | None 
             action = None
         lines.append(Line(speaker=speaker, emotion=emotion, action=action, text=text.format(**values)))  # type: ignore[arg-type]
 
-    while len(lines) > 2 and sum(reading_seconds(x.text) for x in lines) + reading_seconds(chosen.caption) > beat.budget_seconds:
-        lines.pop(-2)
+    plan = storyline(fate).beats[beat.index]
+    bystander_lines = [
+        Line(speaker=who, emotion=emotion, action=None, text=text)  # type: ignore[arg-type]
+        for i, who in enumerate(plan.bystanders)
+        for emotion, text in [Stream(seed, f"fallback:bystander:{beat.index}:{i}").choice(BYSTANDER_LINES)]
+    ]
+    if plan.ghost:
+        bystander_lines = [
+            Line(speaker=NARRATOR, emotion="neutral", action=None, text=f"The ghost of {names[plan.ghost]} has come to watch."),
+            Line(speaker=plan.ghost, emotion="dead", action=None, text=Stream(seed, f"fallback:ghost:{beat.index}").choice(GHOST_LINES)),
+        ] + bystander_lines
 
+    def naming(core: list[Line]) -> list[Line]:
+        """A narrator line naming the one character who leaves, if the template never names them."""
+        if len(beat.eliminations) != 1:
+            return []
+        (gone,) = beat.eliminations
+        name = names[gone.character]
+        if any(name.lower() in t.lower() for t in [x.text for x in core] + [chosen.caption]):
+            return []
+        text = NAMING_TEXT[gone.mode].format(name=name)
+        if text.startswith("the "):
+            text = "The" + text[3:]
+        return [Line(speaker=NARRATOR, emotion="neutral", action=None, text=text)]
+
+    def seconds(core: list[Line]) -> float:
+        everything = core + naming(core) + bystander_lines
+        return sum(reading_seconds(x.text) for x in everything) + reading_seconds(chosen.caption)
+
+    while len(lines) > 2 and seconds(lines) > beat.budget_seconds:
+        lines.pop(-2)
+    lines += naming(lines)
+
+    # Cues, directions and panels stay on the template lines; bystanders react at the end.
     last = len(lines) - 1
+    lines += bystander_lines
     directions = [
         StageDirection(character=e.character, action="fall" if e.mode == "killed" else "exit", line=last)
         for e in beat.eliminations
     ]
-    focus = [line.speaker for line in lines if line.speaker != NARRATOR]
+    focus = [line.speaker for line in lines[: last + 1] if line.speaker != NARRATOR]
     panels = [PanelMoment(framing=chosen.framings[0], ref_kind="caption", ref_index=0, focus=focus[:3])]  # type: ignore[arg-type]
     for i, framing in enumerate(chosen.framings[1:], start=1):
         ref = min(i, last) if i < 2 else last
@@ -497,13 +552,17 @@ COVER_TITLES = [
 
 
 def fallback_bible(fate: FateScript, seed: str) -> ShowBible:
+    story = storyline(fate)
     prophecy = next(b for b in fate.beats if b.card == "prophecy")
     title = Stream(seed, "fallback:title").choice(COVER_TITLES)
     return ShowBible(
         title=title,
         prophecy=" / ".join(h.text for h in prophecy.prophecy_hints) or "One shall rise, and one shall reign.",
         motifs=["the bottle", "a suspicious goat", "paper crowns"],
-        beats=[BeatSynopsis(index=b.index, synopsis=b.title) for b in fate.beats],
+        beats=[BeatSynopsis(index=b.index, synopsis=s.statement) for b, s in zip(fate.beats, story.beats, strict=True)],
+        threads=default_threads(story),
+        motivations=[default_motivation(fate, c.id) for c in fate.characters if c.kind == "participant"],
+        exit_reasons=[default_exit_reason(fate, story, cid, i) for cid, i in participant_exits(fate)],
     )
 
 

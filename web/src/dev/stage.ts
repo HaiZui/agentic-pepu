@@ -25,6 +25,7 @@ function startState(fate: FateScript, beat: Beat): StageState {
     seal: false,
     rollCall: null,
     alive: fate.characters.map((c) => c.id),
+    tracker: fate.characters.filter((c) => c.kind === "participant").map((c) => c.id),
     onStage: [],
     crowned: null,
   };
@@ -34,7 +35,7 @@ function single(fixture: StageFixture, beat: Beat, scene: SceneScript): Program 
   const before = startState(fixture.fate, beat);
   const segment: Segment = { key: `demo-${beat.index}`, beat: beat.index, section: beat.section, stateBefore: before, steps: null };
   segment.steps = compileBeat(fixture.fate, beat, scene, before);
-  return { fate: fixture.fate, segments: [segment] };
+  return { fate: fixture.fate, storyline: null, segments: [segment] };
 }
 
 /** A small scene where the first character performs `action`, so each catalog action can be checked. */
@@ -100,14 +101,44 @@ function beatDemo(id: string, label: string, size: 6 | 15 | 40, pickBeat: (fate:
   };
 }
 
+/** One beat of the real show with its true survivor state and stamps; `tweak` may add lines to the scene. */
+function storyDemo(id: string, label: string, size: 6 | 15 | 40, pickBeat: (fate: FateScript) => Beat | undefined, tweak?: (fixture: StageFixture, scene: SceneScript) => SceneScript): Demo {
+  return {
+    id,
+    label,
+    build: () => {
+      const fixture = FIXTURES[size];
+      const beat = pickBeat(fixture.fate) ?? fixture.fate.beats[1];
+      const full = createProgram(fixture.fate, [], fixture.storyline);
+      const segment = full.segments.find((s) => s.beat === beat.index)!;
+      const scene = tweak ? tweak(fixture, fixture.scenes[beat.index]) : fixture.scenes[beat.index];
+      segment.steps = compileBeat(fixture.fate, beat, scene, segment.stateBefore, fixture.storyline.beats[beat.index]);
+      return { fixture, program: { ...full, segments: [segment] } };
+    },
+  };
+}
+
+/** A ghost speaks: the first participant eliminated in the show haunts a later scene. */
+const firstOut = (fate: FateScript) => fate.beats.find((b) => b.eliminations.some((e) => fate.characters.find((c) => c.id === e.character)?.kind === "participant"))!;
+const ghostDemo = storyDemo(
+  "ghost",
+  "Ghost speaks (tracker keeps them out)",
+  6,
+  (f) => f.beats.find((b) => b.index > firstOut(f).index && !b.eliminations.length && b.card !== "coronation"),
+  (fixture, scene) => {
+    const ghost = firstOut(fixture.fate).eliminations[0].character;
+    return { ...scene, lines: [...scene.lines, { speaker: ghost, emotion: "dead", action: null, text: "You have not seen the last of me. Well, you have." }] };
+  },
+);
+
 function introDemo(size: 6 | 15 | 40): Demo {
   return {
     id: `cold-open-${size}`,
     label: `Cold open (${size})`,
     build: () => {
       const fixture = FIXTURES[size];
-      const full = createProgram(fixture.fate, fixture.scenes);
-      return { fixture, program: { fate: fixture.fate, segments: full.segments.slice(0, 2) } };
+      const full = createProgram(fixture.fate, fixture.scenes, fixture.storyline);
+      return { fixture, program: { ...full, segments: full.segments.slice(0, 2) } };
     },
   };
 }
@@ -118,7 +149,7 @@ function showDemo(size: 6 | 15 | 40, trickle: boolean): Demo {
     label: trickle ? `Show (${size}), scenes arrive slowly` : `Full show (${size})`,
     build: () => {
       const fixture = FIXTURES[size];
-      const program = createProgram(fixture.fate, trickle ? [] : fixture.scenes);
+      const program = createProgram(fixture.fate, trickle ? [] : fixture.scenes, fixture.storyline);
       const later = trickle
         ? (stage: MountedStage) => {
             fixture.scenes.forEach((scene, i) => window.setTimeout(() => stage.addScene(scene), 4000 + i * 2500));
@@ -152,8 +183,8 @@ const DEMOS: Demo[] = [
     label: "Coronation and credits",
     build: () => {
       const fixture = FIXTURES[15];
-      const full = createProgram(fixture.fate, fixture.scenes);
-      return { fixture, program: { fate: fixture.fate, segments: full.segments.slice(-2) } };
+      const full = createProgram(fixture.fate, fixture.scenes, fixture.storyline);
+      return { fixture, program: { ...full, segments: full.segments.slice(-2) } };
     },
   },
   {
@@ -161,9 +192,9 @@ const DEMOS: Demo[] = [
     label: "Delayed scene (interlude)",
     build: () => {
       const fixture = FIXTURES[6];
-      const full = createProgram(fixture.fate, []);
+      const full = createProgram(fixture.fate, [], fixture.storyline);
       // Starts on a pending scene: the curtain stays closed with the interlude until it arrives.
-      const program = { fate: fixture.fate, segments: full.segments.slice(2, 4) };
+      const program = { ...full, segments: full.segments.slice(2, 4) };
       return {
         fixture,
         program,
@@ -174,6 +205,10 @@ const DEMOS: Demo[] = [
       };
     },
   },
+  ghostDemo,
+  storyDemo("return", "Return from death (RETURNS stamp)", 15, (f) => f.beats.find((b) => b.resurrections.length > 0)),
+  storyDemo("out", "Single elimination (OUT stamp)", 6, (f) => f.beats.find((b) => b.kind !== "crowd" && b.eliminations.length === 1)),
+  storyDemo("crowd-out", "Crowd montage with causes and summary", 40, (f) => f.beats.find((b) => b.kind === "crowd")),
   showDemo(6, false),
   showDemo(15, false),
   showDemo(40, false),

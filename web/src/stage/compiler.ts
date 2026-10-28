@@ -2,7 +2,9 @@ import { ensureForeground, initialBlocking, layoutBackground, MAX_FOREGROUND } f
 import { DURATION, MAX_STRETCH, readingSeconds } from "./timing";
 import type {
   Action,
+  Announcement,
   Beat,
+  BeatStory,
   Camera,
   EliminationMode,
   Emotion,
@@ -15,6 +17,7 @@ import type {
   StageState,
   Step,
   StepBody,
+  Storyline,
 } from "./types";
 
 export const NARRATOR = "narrator";
@@ -38,6 +41,8 @@ export const sectionRank = (section: Section | "credits") => SECTION_RANK[sectio
 
 export interface Program {
   fate: FateScript;
+  /** Survivors, stamps and bystander plan from the backend; null on hand-built dev programs. */
+  storyline: Storyline | null;
   segments: Segment[];
 }
 
@@ -45,6 +50,7 @@ function cloneState(state: StageState): StageState {
   return {
     ...state,
     alive: [...state.alive],
+    tracker: state.tracker && [...state.tracker],
     onStage: state.onStage.map((p) => ({ ...p })),
     rollCall: state.rollCall && { house: state.rollCall.house, members: [...state.rollCall.members] },
   };
@@ -72,6 +78,12 @@ class Writer {
   }
 }
 
+/** Participants in the contest before each beat, plus one final entry after the last beat (the survivor tracker). */
+export function survivorTimeline(fate: FateScript): string[][] {
+  const participants = new Set(fate.characters.filter((c) => c.kind === "participant").map((c) => c.id));
+  return aliveTimeline(fate).map((alive) => alive.filter((id) => participants.has(id)));
+}
+
 /** Alive character ids before each beat, plus one final entry after the last beat. */
 export function aliveTimeline(fate: FateScript): string[][] {
   let alive = fate.characters.map((c) => c.id);
@@ -84,7 +96,7 @@ export function aliveTimeline(fate: FateScript): string[][] {
   return timeline;
 }
 
-function emptyState(section: Section | "credits", beat: number | null, alive: string[]): StageState {
+function emptyState(section: Section | "credits", beat: number | null, alive: string[], tracker: string[] | null = null): StageState {
   return {
     section,
     beat,
@@ -95,6 +107,7 @@ function emptyState(section: Section | "credits", beat: number | null, alive: st
     seal: false,
     rollCall: null,
     alive: [...alive],
+    tracker: tracker && [...tracker],
     onStage: [],
     crowned: null,
   };
@@ -143,8 +156,28 @@ interface Moment {
 }
 
 /** Compiles one beat's scene into steps, starting from the fate-only state before the beat. */
-export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, before: StageState): Step[] {
+export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, before: StageState, story: BeatStory | null = null): Step[] {
   const w = new Writer(before, beat.index, beat.section);
+  const announcement = (kind: Announcement["kind"], character: string | null) =>
+    story?.announcements.find((a) => a.kind === kind && a.character === character) ?? null;
+  const participants = new Set(fate.characters.filter((c) => c.kind === "participant").map((c) => c.id));
+  const dropFromTracker = (s: StageState, ids: string[]) => {
+    if (s.tracker) s.tracker = s.tracker.filter((id) => !ids.includes(id));
+  };
+  // A return is announced once the risen character is visibly back: after their entrance.
+  const returned = new Set<string>();
+  const announceReturns = (ids: string[]) => {
+    for (const id of ids) {
+      if (returned.has(id) || !beat.resurrections.includes(id)) continue;
+      returned.add(id);
+      const back = announcement("return", id);
+      const addBack = (s: StageState) => {
+        if (s.tracker && participants.has(id) && !s.tracker.includes(id)) s.tracker = [...s.tracker, id];
+      };
+      if (back) w.push({ kind: "stamp", announcement: back }, DURATION.stamp, addBack);
+      else addBack(w.state);
+    }
+  };
   const known = new Set(fate.characters.map((c) => c.id));
   const aliveStart = [...before.alive, ...beat.resurrections.filter((id) => !before.alive.includes(id))];
   const eliminated = new Map<string, EliminationMode>(beat.eliminations.map((e) => [e.character, e.mode]));
@@ -216,6 +249,8 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
     const placements = initialBlocking(present, [...needs.flat(), ...roles], startEmotion);
     w.push({ kind: "enter", characters: placements.map((p) => p.id) }, DURATION.enter, (s) => (s.onStage = placements));
   }
+  const entersLater = new Set(moments.flat().filter((m) => m.action === "enter").map((m) => m.character));
+  announceReturns(beat.resurrections.filter((id) => present.includes(id) && !entersLater.has(id)));
 
   // Panel break and montage placement.
   const eliminationLine = lines.findIndex((_, i) => moments[i].some((m) => eliminated.has(m.character) && isLeaving(m.action)));
@@ -231,19 +266,26 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
 
   const leave = (character: string, action: Action) => {
     const duration = action === "fall" ? DURATION.fall : DURATION.exit;
+    const out = eliminated.has(character) ? announcement("out", character) : null;
     w.push({ kind: "action", character, action }, duration, (s) => {
       s.onStage = s.onStage.filter((p) => p.id !== character);
       if (eliminated.has(character)) s.alive = s.alive.filter((id) => id !== character);
+      if (eliminated.has(character) && !out) dropFromTracker(s, [character]);
       layoutBackground(s.onStage);
     });
+    if (out) w.push({ kind: "stamp", announcement: out }, DURATION.stamp, (s) => dropFromTracker(s, [character]));
   };
+
 
   const montage = () => {
     montageDone = true;
-    const victims = beat.eliminations.map((e) => ({ id: e.character, mode: e.mode }));
-    w.push({ kind: "montage", victims }, DURATION.montageBase + DURATION.montagePerVictim * victims.length, (s) => {
+    const victims = beat.eliminations.map((e) => ({ id: e.character, mode: e.mode, cause: announcement("out", e.character)?.cause ?? null }));
+    const summary = story?.announcements.find((a) => a.kind === "summary") ?? null;
+    const duration = DURATION.montageBase + DURATION.montagePerVictim * victims.length + (summary ? DURATION.montageSummary : 0);
+    w.push({ kind: "montage", victims, summary }, duration, (s) => {
       s.onStage = s.onStage.filter((p) => !eliminated.has(p.id));
       s.alive = s.alive.filter((id) => !eliminated.has(id));
+      dropFromTracker(s, [...eliminated.keys()]);
       layoutBackground(s.onStage);
     });
   };
@@ -291,6 +333,7 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
         emotion: line.emotion,
         text: line.text,
         gestures: moments[i].filter((m) => !isLeaving(m.action)),
+        ghost: line.speaker !== NARRATOR && ghosts.has(line.speaker),
         cues: scene.cues.filter((c) => c.line === i).map((c) => c.sfx),
         sounds: scene.onomatopoeia.filter((o) => o.line === i).map((o) => o.text),
         camera,
@@ -305,6 +348,7 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
       },
     );
     lineSnapshots[i] = step.stateAfter;
+    announceReturns(moments[i].filter((m) => m.action === "enter").map((m) => m.character));
 
     for (const m of moments[i].filter((x) => isLeaving(x.action))) {
       const pending = eliminated.has(m.character) && w.state.alive.includes(m.character);
@@ -331,6 +375,7 @@ export function compileBeat(fate: FateScript, beat: Beat, scene: SceneScript, be
   } else {
     for (const e of unstaged) leave(e.character, e.mode === "killed" ? "fall" : "exit");
   }
+  announceReturns(beat.resurrections);
   if (beat.dramatic && !breakDone) panelBreak(lines.length);
 
   if (beat.card === "coronation") {
@@ -387,8 +432,13 @@ function compileCredits(fate: FateScript, before: StageState): Step[] {
 }
 
 /** Program skeleton: the intro and credits are compiled at once, beat segments wait for their scenes. */
-export function createProgram(fate: FateScript, scenes: readonly (SceneScript | null | undefined)[] = []): Program {
+export function createProgram(
+  fate: FateScript,
+  scenes: readonly (SceneScript | null | undefined)[] = [],
+  storyline: Storyline | null = null,
+): Program {
   const alive = aliveTimeline(fate);
+  const survivors = survivorTimeline(fate);
   const intro: Segment = {
     key: "intro",
     beat: null,
@@ -402,7 +452,7 @@ export function createProgram(fate: FateScript, scenes: readonly (SceneScript | 
     beat: beat.index,
     section: beat.section,
     stateBefore: {
-      ...emptyState(beat.section, beat.index, alive[beat.index]),
+      ...emptyState(beat.section, beat.index, alive[beat.index], storyline?.beats[beat.index]?.survivors_before ?? survivors[beat.index]),
       setting: beat.index > 0 ? fate.beats[beat.index - 1].setting : "throne_room",
       curtain: "open",
     },
@@ -412,7 +462,7 @@ export function createProgram(fate: FateScript, scenes: readonly (SceneScript | 
   const creditsBefore = { ...emptyState("coronation", null, alive[fate.beats.length]), crowned: fate.winner };
   const credits: Segment = { key: "credits", beat: null, section: "credits", stateBefore: creditsBefore, steps: null };
   credits.steps = compileCredits(fate, creditsBefore);
-  const program = { fate, segments: [intro, ...beats, credits] };
+  const program = { fate, storyline, segments: [intro, ...beats, credits] };
   scenes.forEach((scene) => scene && addScene(program, scene));
   return program;
 }
@@ -422,7 +472,7 @@ export function addScene(program: Program, scene: SceneScript): Segment | null {
   const segment = program.segments.find((s) => s.beat === scene.beat_index);
   const beat = program.fate.beats[scene.beat_index];
   if (!segment || !beat || segment.steps) return null;
-  segment.steps = compileBeat(program.fate, beat, scene, segment.stateBefore);
+  segment.steps = compileBeat(program.fate, beat, scene, segment.stateBefore, program.storyline?.beats[beat.index] ?? null);
   return segment;
 }
 

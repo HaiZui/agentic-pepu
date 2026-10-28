@@ -68,7 +68,7 @@ def test_fallback_show_prints_an_a4_comic(tmp_path: Path) -> None:
             pdf = folders[0] / info["file_name"]
             assert pdf.is_file()
             record = json.loads((folders[0] / "show.json").read_text(encoding="utf-8"))
-            assert {"show", "reveal", "roster", "fate", "bible", "scenes", "chronicle"} <= record.keys()
+            assert {"show", "reveal", "roster", "fate", "storyline", "bible", "scenes", "chronicle"} <= record.keys()
             assert record["show"]["id"] == show["id"]
 
             reader = PdfReader(pdf)

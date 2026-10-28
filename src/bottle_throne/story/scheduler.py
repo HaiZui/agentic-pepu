@@ -9,10 +9,11 @@ from dataclasses import dataclass, field
 from typing import Any, TypeVar
 
 from bottle_throne.models.fate import FateScript
-from bottle_throne.models.story import BeatStatus, ChronicleTexts, GenerationStatus, SceneScript, ShowBible
+from bottle_throne.models.story import BeatStatus, ChronicleTexts, GenerationStatus, SceneScript, ShowBible, Storyline
 from bottle_throne.story import agents
 from bottle_throne.story.fallback import fallback_bible, fallback_chronicle, fallback_scene
 from bottle_throne.story.llm import LLMClient, LLMError
+from bottle_throne.story.storyline import storyline
 from bottle_throne.story.validate import alive_before_each_beat
 
 log = logging.getLogger(__name__)
@@ -29,6 +30,7 @@ class StoryState:
 
     fate: FateScript
     seed: str
+    storyline: Storyline = field(init=False)
     bible: ShowBible | None = None
     chronicle: ChronicleTexts | None = None
     scenes: dict[int, SceneScript] = field(default_factory=dict)
@@ -39,6 +41,7 @@ class StoryState:
 
     def __post_init__(self) -> None:
         self.statuses = ["pending"] * len(self.fate.beats)
+        self.storyline = storyline(self.fate)
 
     def _publish(self, event: dict[str, Any]) -> None:
         self.events.append(event)

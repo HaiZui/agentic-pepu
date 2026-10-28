@@ -4,6 +4,7 @@ import {
   getScene,
   getBible,
   getShow,
+  getStoryline,
   revealSeed,
   type ChronicleTexts,
   type ShowBible,
@@ -16,7 +17,7 @@ declare global {
   interface Window {
     __comicReady?: boolean;
     __comicError?: string;
-    __comicStats?: { pages: number; panels: number; unfit: string[] };
+    __comicStats?: { pages: number; panels: number; unfit: string[]; stampsMissing: string[] };
   }
 }
 
@@ -41,14 +42,15 @@ export async function renderComicRoute(root: HTMLElement, showId: string): Promi
   try {
     const [show, fate] = await Promise.all([getShow(showId), getFate(showId)]);
     const optional = <T,>(promise: Promise<T>) => promise.catch(() => null);
-    const [scenes, chronicle, bible, reveal, attributions] = await Promise.all([
+    const [scenes, chronicle, bible, reveal, attributions, storyline] = await Promise.all([
       Promise.all(fate.beats.map((b) => getScene(showId, b.index))),
       optional<ChronicleTexts>(getChronicleTexts(showId)),
       optional<ShowBible>(getBible(showId)),
       optional(revealSeed(showId)),
       audioAttributions(),
+      optional(getStoryline(showId)),
     ]);
-    await showComic(root, { fate, scenes, chronicle, bible, reveal, createdAt: show.created_at, attributions });
+    await showComic(root, { fate, scenes, chronicle, bible, reveal, createdAt: show.created_at, attributions, storyline });
   } catch (error) {
     window.__comicError = error instanceof Error ? error.message : String(error);
     root.replaceChildren(el("p", { role: "alert" }, `The comic could not be loaded: ${window.__comicError}`));

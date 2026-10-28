@@ -6,8 +6,8 @@ import { SVG_NS } from "../render/svg";
 import { shortSeal } from "../show/seal";
 import type { CastSheet } from "./cast";
 import type { ComicLink } from "./comic-link";
-import { MOMENT } from "./timing";
-import type { FateScript } from "./types";
+import { MOMENT, STAMP_LAND } from "./timing";
+import type { Announcement, FateScript } from "./types";
 
 const ROMAN = ["", "I", "II", "III"];
 const DEFAULT_ACT_TITLES = ["", "The Call", "The Game", "The Throne"];
@@ -126,6 +126,24 @@ export class Overlays {
     if (options.seal) this.showCornerSeal();
     if (options.rollHouse !== undefined) this.layer.append((this.rollHeading = this.rollTitle(options.rollHouse)));
     if (options.credits) this.layer.append(this.buildCredits());
+  }
+
+  /** A rubber stamp slammed onto the stage: "Davido is OUT" with the cause, or a golden "RETURNS". */
+  stamp(tl: gsap.core.Timeline, at: number, duration: number, announcement: Announcement): void {
+    const node = el(
+      "div",
+      { class: `stamp stamp-${announcement.kind}`, "data-testid": "stamp", "data-kind": announcement.kind },
+      el("div", { class: "stamp-headline" }, announcement.headline),
+      el("div", { class: "stamp-cause" }, announcement.cause),
+    );
+    this.transient(tl, node, at, at + duration);
+    tl.fromTo(
+      node,
+      { opacity: 0, scale: 2.6, rotation: announcement.kind === "return" ? 6 : -14 },
+      { opacity: 1, scale: 1, rotation: announcement.kind === "return" ? 2 : -6, duration: STAMP_LAND, ease: "power4.in" },
+      at,
+    );
+    tl.to(node, { opacity: 0, duration: 0.3 }, at + duration - 0.35);
   }
 
   private transient(tl: gsap.core.Timeline, node: HTMLElement, at: number, until: number): void {

@@ -4,6 +4,7 @@ import { STAGE_W } from "../shared/panels";
 
 const BUBBLE_MAX_WIDTH = 620;
 const MARGIN = 48;
+const MIN_TOP = MARGIN + 70;
 
 interface Anchor {
   (): { x: number; y: number } | null;
@@ -19,8 +20,16 @@ interface LiveBubble {
 export class Lettering {
   private bubble: LiveBubble | null = null;
   private caption: HTMLElement | null = null;
+  /** Highest pixel row a bubble may use; raised below the survivor tracker while it is shown. */
+  private topLimit = MIN_TOP;
 
   constructor(private readonly layer: HTMLElement) {}
+
+  /** Keeps bubbles clear of a strip along the top edge that ends at `bottom` (null: no strip). */
+  reserveTop(bottom: number | null): void {
+    this.topLimit = bottom === null ? MIN_TOP : Math.max(MIN_TOP, bottom + 10);
+    this.reposition();
+  }
 
   clear(): void {
     this.layer.replaceChildren();
@@ -38,7 +47,7 @@ export class Lettering {
     const width = box.offsetWidth || BUBBLE_MAX_WIDTH;
     const height = box.offsetHeight || 120;
     const left = Math.min(Math.max(head.x - width / 2, MARGIN), STAGE_W - MARGIN - width);
-    const top = Math.max(MARGIN + 70, head.y - height - 90);
+    const top = Math.max(this.topLimit, head.y - height - 90);
     box.style.left = `${left}px`;
     box.style.top = `${top}px`;
     if (live.tail) {
@@ -68,7 +77,7 @@ export class Lettering {
   }
 
   /** A speech bubble (or a narration box for the narrator) that types out its text. */
-  line(tl: gsap.core.Timeline, at: number, options: { name: string; text: string; anchor: Anchor | null; hold: number; shout?: boolean }): void {
+  line(tl: gsap.core.Timeline, at: number, options: { name: string; text: string; anchor: Anchor | null; hold: number; shout?: boolean; ghost?: boolean }): void {
     this.dropBubble(tl, at);
     const chars = [...options.text];
     const shown = el("span", { class: "typed" });
@@ -77,10 +86,10 @@ export class Lettering {
     const box = el(
       "div",
       {
-        class: `bubble ${narration ? "narration" : "speech"}${chars.length > 100 ? " long" : ""}${options.shout ? " shout" : ""}`,
+        class: `bubble ${narration ? "narration" : "speech"}${chars.length > 100 ? " long" : ""}${options.shout ? " shout" : ""}${options.ghost ? " ghost" : ""}`,
         "data-testid": narration ? "narration" : "bubble",
       },
-      narration ? null : el("span", { class: "bubble-name" }, options.name),
+      narration ? null : el("span", { class: "bubble-name", "data-testid": "bubble-name" }, options.name),
       el("p", { class: "bubble-text" }, shown, rest),
     );
     box.style.opacity = "0";

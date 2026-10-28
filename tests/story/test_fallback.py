@@ -76,3 +76,36 @@ def test_fallback_bible_covers_every_beat() -> None:
     assert [b.index for b in bible.beats] == [b.index for b in fate.beats]
     winner = next(c.name for c in fate.characters if c.id == fate.winner)
     assert winner not in bible.prophecy
+
+
+def test_fallback_scenes_stage_bystanders_names_and_returns() -> None:
+    from bottle_throne.story.storyline import storyline
+
+    checked = {"bystander": 0, "named": 0, "risen": 0, "ghost": 0}
+    for n in (6, 9, 16, 30):
+        for fate in fates(n):
+            names = {c.id: c.name for c in fate.characters}
+            story = storyline(fate)
+            for beat in fate.beats:
+                scene = fallback_scene(fate, beat, "seed")
+                speakers = [line.speaker for line in scene.lines]
+                for who in story.beats[beat.index].bystanders:
+                    assert who in speakers
+                    assert all(len(line.text) < 60 for line in scene.lines if line.speaker == who)
+                    checked["bystander"] += 1
+                if len(beat.eliminations) == 1:
+                    gone = names[beat.eliminations[0].character].lower()
+                    assert any(gone in t.text.lower() for t in [*scene.lines, *scene.captions])
+                    checked["named"] += 1
+                ghost = story.beats[beat.index].ghost
+                if ghost:
+                    assert any(line.speaker == ghost and line.emotion == "dead" for line in scene.lines)
+                    assert any("ghost" in line.text.lower() for line in scene.lines)
+                    checked["ghost"] += 1
+                for risen in beat.resurrections:
+                    entered = {d.character for d in scene.stage_directions if d.action == "enter"}
+                    entered |= {line.speaker for line in scene.lines if line.action == "enter"}
+                    assert risen in entered
+                    assert all(line.emotion != "dead" for line in scene.lines if line.speaker == risen)
+                    checked["risen"] += 1
+    assert all(checked.values()), checked

@@ -1280,6 +1280,1578 @@
   ],
   "total_budget_seconds": 600
  },
+ "storyline": {
+  "beats": [
+   {
+    "index": 0,
+    "statement": "The court of Aino assembles to open the show.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p19",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p24",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p19",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p24",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 1,
+    "statement": "Aino decrees that the Friday bottle and the throne go to the last contestant standing. The court proclaims it.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p19",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p24",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p19",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p24",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "bystanders": [
+     "p19"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 2,
+    "statement": "Aino sees Kirsi as a threat to the throne and banishes them from the realm.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p19",
+      "headline": "Kirsi is OUT",
+      "cause": "exiled by Aino"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p19",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p24",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p24",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 3,
+    "statement": "A seer speaks a prophecy about who will win the throne, and Iiro hears it.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p24",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p24",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "bystanders": [
+     "p24"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 4,
+    "statement": "Niko secretly pays the Faceless assassins to kill Elina. The contract is not carried out yet.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p24",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p24",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "bystanders": [
+     "p30"
+    ],
+    "ghost": null
+   },
+   {
+    "index": 5,
+    "statement": "The Iron Vault calls in Minna's debt. Minna cannot pay and is exiled from the realm.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p24",
+      "headline": "Minna is OUT",
+      "cause": "exiled by the Iron Vault for an unpaid debt"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p24",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 6,
+    "statement": "A Faceless assassin hired by Niko carries out the contract and kills Elina.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p07",
+      "headline": "Elina is OUT",
+      "cause": "slain by a Faceless assassin hired by Niko"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p07",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 7,
+    "statement": "Joonas and Öhman swear an alliance to stand together.",
+    "announcements": [],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 8,
+    "statement": "Wildfire explodes beneath the city. Niko, Sanna, Tiina, Ville and Åsa die in the blaze. Saku and Ykä escape.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p25",
+      "headline": "Niko is OUT",
+      "cause": "lost in the wildfire"
+     },
+     {
+      "kind": "out",
+      "character": "p31",
+      "headline": "Sanna is OUT",
+      "cause": "lost in the wildfire"
+     },
+     {
+      "kind": "out",
+      "character": "p32",
+      "headline": "Tiina is OUT",
+      "cause": "lost in the wildfire"
+     },
+     {
+      "kind": "out",
+      "character": "p37",
+      "headline": "Ville is OUT",
+      "cause": "lost in the wildfire"
+     },
+     {
+      "kind": "out",
+      "character": "p39",
+      "headline": "Åsa is OUT",
+      "cause": "lost in the wildfire"
+     },
+     {
+      "kind": "summary",
+      "character": null,
+      "headline": "5 are OUT",
+      "cause": "in the wildfire"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p25",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p31",
+     "p32",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p37",
+     "p38",
+     "p39",
+     "p40"
+    ],
+    "survivors_after": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p38",
+     "p40"
+    ],
+    "bystanders": [],
+    "ghost": "p07"
+   },
+   {
+    "index": 9,
+    "statement": "Pekka hosts a feast that turns into a massacre. Aino, Cecilia, Outi and Ulla are killed. Inka escapes.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p01",
+      "headline": "Aino is OUT",
+      "cause": "killed at the Crimson Feast hosted by Pekka"
+     },
+     {
+      "kind": "out",
+      "character": "p04",
+      "headline": "Cecilia is OUT",
+      "cause": "killed at the Crimson Feast hosted by Pekka"
+     },
+     {
+      "kind": "out",
+      "character": "p26",
+      "headline": "Outi is OUT",
+      "cause": "killed at the Crimson Feast hosted by Pekka"
+     },
+     {
+      "kind": "out",
+      "character": "p34",
+      "headline": "Ulla is OUT",
+      "cause": "killed at the Crimson Feast hosted by Pekka"
+     },
+     {
+      "kind": "summary",
+      "character": null,
+      "headline": "4 are OUT",
+      "cause": "in the Crimson Feast"
+     }
+    ],
+    "survivors_before": [
+     "p01",
+     "p02",
+     "p03",
+     "p04",
+     "p05",
+     "p06",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p26",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p33",
+     "p34",
+     "p35",
+     "p36",
+     "p38",
+     "p40"
+    ],
+    "survivors_after": [
+     "p02",
+     "p03",
+     "p05",
+     "p06",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p33",
+     "p35",
+     "p36",
+     "p38",
+     "p40"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 10,
+    "statement": "Joonas betrays their ally Öhman with a knife in the back. Öhman is killed and the alliance is over.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p40",
+      "headline": "Öhman is OUT",
+      "cause": "stabbed in the back by their ally Joonas"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p03",
+     "p05",
+     "p06",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p33",
+     "p35",
+     "p36",
+     "p38",
+     "p40"
+    ],
+    "survivors_after": [
+     "p02",
+     "p03",
+     "p05",
+     "p06",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p33",
+     "p35",
+     "p36",
+     "p38"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 11,
+    "statement": "The Pale Ones march from beyond the ice wall. Bea, Fredrik, Greta, Heli and Kaisa are killed. Hannu escapes.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p03",
+      "headline": "Bea is OUT",
+      "cause": "taken by the Pale Ones"
+     },
+     {
+      "kind": "out",
+      "character": "p08",
+      "headline": "Fredrik is OUT",
+      "cause": "taken by the Pale Ones"
+     },
+     {
+      "kind": "out",
+      "character": "p09",
+      "headline": "Greta is OUT",
+      "cause": "taken by the Pale Ones"
+     },
+     {
+      "kind": "out",
+      "character": "p11",
+      "headline": "Heli is OUT",
+      "cause": "taken by the Pale Ones"
+     },
+     {
+      "kind": "out",
+      "character": "p17",
+      "headline": "Kaisa is OUT",
+      "cause": "taken by the Pale Ones"
+     },
+     {
+      "kind": "summary",
+      "character": null,
+      "headline": "5 are OUT",
+      "cause": "in the March of the Pale Ones"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p03",
+     "p05",
+     "p06",
+     "p08",
+     "p09",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p17",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p33",
+     "p35",
+     "p36",
+     "p38"
+    ],
+    "survivors_after": [
+     "p02",
+     "p05",
+     "p06",
+     "p10",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p33",
+     "p35",
+     "p36",
+     "p38"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 12,
+    "statement": "Wildfire explodes beneath the city. Joonas, Jääskeläinen, Lauri, Liisa and Timo die in the blaze. Inka escapes.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p15",
+      "headline": "Joonas is OUT",
+      "cause": "lost in the wildfire"
+     },
+     {
+      "kind": "out",
+      "character": "p16",
+      "headline": "Jääskeläinen is OUT",
+      "cause": "lost in the wildfire"
+     },
+     {
+      "kind": "out",
+      "character": "p20",
+      "headline": "Lauri is OUT",
+      "cause": "lost in the wildfire"
+     },
+     {
+      "kind": "out",
+      "character": "p22",
+      "headline": "Liisa is OUT",
+      "cause": "lost in the wildfire"
+     },
+     {
+      "kind": "out",
+      "character": "p33",
+      "headline": "Timo is OUT",
+      "cause": "lost in the wildfire"
+     },
+     {
+      "kind": "summary",
+      "character": null,
+      "headline": "5 are OUT",
+      "cause": "in the wildfire"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p05",
+     "p06",
+     "p10",
+     "p12",
+     "p13",
+     "p14",
+     "p15",
+     "p16",
+     "p18",
+     "p20",
+     "p21",
+     "p22",
+     "p23",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p33",
+     "p35",
+     "p36",
+     "p38"
+    ],
+    "survivors_after": [
+     "p02",
+     "p05",
+     "p06",
+     "p10",
+     "p12",
+     "p13",
+     "p14",
+     "p18",
+     "p21",
+     "p23",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p35",
+     "p36",
+     "p38"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 13,
+    "statement": "A bridge gives way. Hannu, Inka, Leevi and Matti fall to their doom. Riikka escapes.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p10",
+      "headline": "Hannu is OUT",
+      "cause": "lost when the bridge gave way"
+     },
+     {
+      "kind": "out",
+      "character": "p13",
+      "headline": "Inka is OUT",
+      "cause": "lost when the bridge gave way"
+     },
+     {
+      "kind": "out",
+      "character": "p21",
+      "headline": "Leevi is OUT",
+      "cause": "lost when the bridge gave way"
+     },
+     {
+      "kind": "out",
+      "character": "p23",
+      "headline": "Matti is OUT",
+      "cause": "lost when the bridge gave way"
+     },
+     {
+      "kind": "summary",
+      "character": null,
+      "headline": "4 are OUT",
+      "cause": "in the bridge collapse"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p05",
+     "p06",
+     "p10",
+     "p12",
+     "p13",
+     "p14",
+     "p18",
+     "p21",
+     "p23",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p35",
+     "p36",
+     "p38"
+    ],
+    "survivors_after": [
+     "p02",
+     "p05",
+     "p06",
+     "p12",
+     "p14",
+     "p18",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p35",
+     "p36",
+     "p38"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 14,
+    "statement": "Jari poisons a goblet and serves it to Pekka. Pekka drinks it and dies.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p28",
+      "headline": "Pekka is OUT",
+      "cause": "poisoned by Jari"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p05",
+     "p06",
+     "p12",
+     "p14",
+     "p18",
+     "p27",
+     "p28",
+     "p29",
+     "p30",
+     "p35",
+     "p36",
+     "p38"
+    ],
+    "survivors_after": [
+     "p02",
+     "p05",
+     "p06",
+     "p12",
+     "p14",
+     "p18",
+     "p27",
+     "p29",
+     "p30",
+     "p35",
+     "p36",
+     "p38"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 15,
+    "statement": "Aleksi, Daniel, Eero, Kalle and Veera take the Grey Cloak together and leave the contest for the Wall. Saku and Paavo escape.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p02",
+      "headline": "Aleksi is OUT",
+      "cause": "forfeited by joining the Grey Cloaks"
+     },
+     {
+      "kind": "out",
+      "character": "p05",
+      "headline": "Daniel is OUT",
+      "cause": "forfeited by joining the Grey Cloaks"
+     },
+     {
+      "kind": "out",
+      "character": "p06",
+      "headline": "Eero is OUT",
+      "cause": "forfeited by joining the Grey Cloaks"
+     },
+     {
+      "kind": "out",
+      "character": "p18",
+      "headline": "Kalle is OUT",
+      "cause": "forfeited by joining the Grey Cloaks"
+     },
+     {
+      "kind": "out",
+      "character": "p36",
+      "headline": "Veera is OUT",
+      "cause": "forfeited by joining the Grey Cloaks"
+     },
+     {
+      "kind": "summary",
+      "character": null,
+      "headline": "5 are OUT",
+      "cause": "in the Mutiny of the Grey Cloaks"
+     }
+    ],
+    "survivors_before": [
+     "p02",
+     "p05",
+     "p06",
+     "p12",
+     "p14",
+     "p18",
+     "p27",
+     "p29",
+     "p30",
+     "p35",
+     "p36",
+     "p38"
+    ],
+    "survivors_after": [
+     "p12",
+     "p14",
+     "p27",
+     "p29",
+     "p30",
+     "p35",
+     "p38"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 16,
+    "statement": "Urho and Saku lead their houses into battle on a muddy field. Iiro, Jari, Paavo, Riikka and Ykä are killed.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p12",
+      "headline": "Iiro is OUT",
+      "cause": "killed in the Battle of the Muddy Field"
+     },
+     {
+      "kind": "out",
+      "character": "p14",
+      "headline": "Jari is OUT",
+      "cause": "killed in the Battle of the Muddy Field"
+     },
+     {
+      "kind": "out",
+      "character": "p27",
+      "headline": "Paavo is OUT",
+      "cause": "killed in the Battle of the Muddy Field"
+     },
+     {
+      "kind": "out",
+      "character": "p29",
+      "headline": "Riikka is OUT",
+      "cause": "killed in the Battle of the Muddy Field"
+     },
+     {
+      "kind": "out",
+      "character": "p38",
+      "headline": "Ykä is OUT",
+      "cause": "killed in the Battle of the Muddy Field"
+     },
+     {
+      "kind": "summary",
+      "character": null,
+      "headline": "5 are OUT",
+      "cause": "in the Battle of the Muddy Field"
+     }
+    ],
+    "survivors_before": [
+     "p12",
+     "p14",
+     "p27",
+     "p29",
+     "p30",
+     "p35",
+     "p38"
+    ],
+    "survivors_after": [
+     "p30",
+     "p35"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 17,
+    "statement": "Urho narrowly escapes a deadly accident and stays in the contest.",
+    "announcements": [],
+    "survivors_before": [
+     "p30",
+     "p35"
+    ],
+    "survivors_after": [
+     "p30",
+     "p35"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 18,
+    "statement": "Urho narrowly escapes a deadly accident and stays in the contest.",
+    "announcements": [],
+    "survivors_before": [
+     "p30",
+     "p35"
+    ],
+    "survivors_after": [
+     "p30",
+     "p35"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 19,
+    "statement": "Saku and Urho, the last two contestants, fight the final duel. Urho is killed.",
+    "announcements": [
+     {
+      "kind": "out",
+      "character": "p35",
+      "headline": "Urho is OUT",
+      "cause": "defeated by Saku in the Last Duel"
+     }
+    ],
+    "survivors_before": [
+     "p30",
+     "p35"
+    ],
+    "survivors_after": [
+     "p30"
+    ],
+    "bystanders": [],
+    "ghost": null
+   },
+   {
+    "index": 20,
+    "statement": "Saku is crowned the new monarch of the Bottle Throne.",
+    "announcements": [],
+    "survivors_before": [
+     "p30"
+    ],
+    "survivors_after": [
+     "p30"
+    ],
+    "bystanders": [],
+    "ghost": null
+   }
+  ],
+  "thread_seeds": [
+   {
+    "title": "The Faceless contract on Elina",
+    "beats": [
+     4,
+     6
+    ],
+    "summary": "Niko pays the Faceless to kill Elina; the contract hangs over them."
+   },
+   {
+    "title": "The alliance of Joonas and Öhman",
+    "beats": [
+     7,
+     10
+    ],
+    "summary": "Joonas and Öhman swear to stand together, and must face what that costs."
+   },
+   {
+    "title": "Urho is spared, for now",
+    "beats": [
+     17,
+     18
+    ],
+    "summary": "Urho escapes once, and the story comes back for them."
+   },
+   {
+    "title": "Urho is spared, for now",
+    "beats": [
+     18,
+     19
+    ],
+    "summary": "Urho escapes once, and the story comes back for them."
+   },
+   {
+    "title": "The prophecy",
+    "beats": [
+     3,
+     20
+    ],
+    "summary": "The seer's riddle is spoken early and fulfilled at the coronation."
+   },
+   {
+    "title": "Saku's road",
+    "beats": [
+     8,
+     15,
+     16,
+     19,
+     20
+    ],
+    "summary": "Saku keeps finding a way through."
+   }
+  ]
+ },
  "scenes": [
   {
    "music": "overture",
@@ -1360,6 +2932,12 @@
      "emotion": "neutral",
      "action": null,
      "text": "Nobody dares to ask what the old rules were."
+    },
+    {
+     "speaker": "p19",
+     "emotion": "smug",
+     "action": null,
+     "text": "I would have done it with more style."
     }
    ],
    "captions": [
@@ -1508,6 +3086,12 @@
      "emotion": "terrified",
      "action": null,
      "text": "That could be anyone!"
+    },
+    {
+     "speaker": "p24",
+     "emotion": "smug",
+     "action": null,
+     "text": "And this is why I never sit near the door."
     }
    ],
    "captions": [
@@ -1571,6 +3155,12 @@
      "emotion": "neutral",
      "action": null,
      "text": "The name on the parchment reads: Elina."
+    },
+    {
+     "speaker": "p30",
+     "emotion": "terrified",
+     "action": null,
+     "text": "Is it always like this around here?"
     }
    ],
    "captions": [
@@ -1831,6 +3421,18 @@
      "emotion": "terrified",
      "action": "flee",
      "text": "Run!"
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "The ghost of Elina has come to watch."
+    },
+    {
+     "speaker": "p07",
+     "emotion": "dead",
+     "action": null,
+     "text": "Mind the step. I did not."
     }
    ],
    "captions": [
@@ -2749,6 +4351,12 @@
      "emotion": "neutral",
      "action": null,
      "text": "Steel rings. The rival's rod snaps. It is over."
+    },
+    {
+     "speaker": "narrator",
+     "emotion": "neutral",
+     "action": null,
+     "text": "Urho falls, and is out of the contest."
     }
    ],
    "captions": [
@@ -2761,7 +4369,7 @@
     {
      "character": "p35",
      "action": "fall",
-     "line": 2
+     "line": 3
     }
    ],
    "onomatopoeia": [
@@ -2801,7 +4409,7 @@
     {
      "framing": "splash",
      "ref_kind": "line",
-     "ref_index": 2,
+     "ref_index": 3,
      "focus": []
     }
    ],
@@ -2896,87 +4504,483 @@
   "beats": [
    {
     "index": 0,
-    "synopsis": "The Old King's Court"
+    "synopsis": "The court of Aino assembles to open the show."
    },
    {
     "index": 1,
-    "synopsis": "The Old King's Decree"
+    "synopsis": "Aino decrees that the Friday bottle and the throne go to the last contestant standing. The court proclaims it."
    },
    {
     "index": 2,
-    "synopsis": "The Old King's Gambit"
+    "synopsis": "Aino sees Kirsi as a threat to the throne and banishes them from the realm."
    },
    {
     "index": 3,
-    "synopsis": "The Prophecy"
+    "synopsis": "A seer speaks a prophecy about who will win the throne, and Iiro hears it."
    },
    {
     "index": 4,
-    "synopsis": "The Faceless Contract"
+    "synopsis": "Niko secretly pays the Faceless assassins to kill Elina. The contract is not carried out yet."
    },
    {
     "index": 5,
-    "synopsis": "Debt to the Iron Vault"
+    "synopsis": "The Iron Vault calls in Minna's debt. Minna cannot pay and is exiled from the realm."
    },
    {
     "index": 6,
-    "synopsis": "The Faceless Strike"
+    "synopsis": "A Faceless assassin hired by Niko carries out the contract and kills Elina."
    },
    {
     "index": 7,
-    "synopsis": "A Sworn Alliance"
+    "synopsis": "Joonas and Öhman swear an alliance to stand together."
    },
    {
     "index": 8,
-    "synopsis": "Wildfire Below the City"
+    "synopsis": "Wildfire explodes beneath the city. Niko, Sanna, Tiina, Ville and Åsa die in the blaze. Saku and Ykä escape."
    },
    {
     "index": 9,
-    "synopsis": "The Crimson Feast"
+    "synopsis": "Pekka hosts a feast that turns into a massacre. Aino, Cecilia, Outi and Ulla are killed. Inka escapes."
    },
    {
     "index": 10,
-    "synopsis": "The Knife in the Back"
+    "synopsis": "Joonas betrays their ally Öhman with a knife in the back. Öhman is killed and the alliance is over."
    },
    {
     "index": 11,
-    "synopsis": "March of the Pale Ones"
+    "synopsis": "The Pale Ones march from beyond the ice wall. Bea, Fredrik, Greta, Heli and Kaisa are killed. Hannu escapes."
    },
    {
     "index": 12,
-    "synopsis": "Wildfire Below the City"
+    "synopsis": "Wildfire explodes beneath the city. Joonas, Jääskeläinen, Lauri, Liisa and Timo die in the blaze. Inka escapes."
    },
    {
     "index": 13,
-    "synopsis": "The Bridge Gives Way"
+    "synopsis": "A bridge gives way. Hannu, Inka, Leevi and Matti fall to their doom. Riikka escapes."
    },
    {
     "index": 14,
-    "synopsis": "The Poisoned Goblet"
+    "synopsis": "Jari poisons a goblet and serves it to Pekka. Pekka drinks it and dies."
    },
    {
     "index": 15,
-    "synopsis": "Mutiny of the Grey Cloaks"
+    "synopsis": "Aleksi, Daniel, Eero, Kalle and Veera take the Grey Cloak together and leave the contest for the Wall. Saku and Paavo escape."
    },
    {
     "index": 16,
-    "synopsis": "Battle of the Muddy Field"
+    "synopsis": "Urho and Saku lead their houses into battle on a muddy field. Iiro, Jari, Paavo, Riikka and Ykä are killed."
    },
    {
     "index": 17,
-    "synopsis": "A Near Miss"
+    "synopsis": "Urho narrowly escapes a deadly accident and stays in the contest."
    },
    {
     "index": 18,
-    "synopsis": "A Near Miss"
+    "synopsis": "Urho narrowly escapes a deadly accident and stays in the contest."
    },
    {
     "index": 19,
-    "synopsis": "The Last Duel"
+    "synopsis": "Saku and Urho, the last two contestants, fight the final duel. Urho is killed."
    },
    {
     "index": 20,
-    "synopsis": "The Coronation"
+    "synopsis": "Saku is crowned the new monarch of the Bottle Throne."
+   }
+  ],
+  "threads": [
+   {
+    "title": "Saku's road",
+    "beats": [
+     8,
+     15,
+     16,
+     19,
+     20
+    ],
+    "summary": "Saku keeps finding a way through."
+   },
+   {
+    "title": "The prophecy",
+    "beats": [
+     3,
+     20
+    ],
+    "summary": "The seer's riddle is spoken early and fulfilled at the coronation."
+   },
+   {
+    "title": "The Faceless contract on Elina",
+    "beats": [
+     4,
+     6
+    ],
+    "summary": "Niko pays the Faceless to kill Elina; the contract hangs over them."
+   },
+   {
+    "title": "The alliance of Joonas and Öhman",
+    "beats": [
+     7,
+     10
+    ],
+    "summary": "Joonas and Öhman swear to stand together, and must face what that costs."
+   }
+  ],
+  "motivations": [
+   {
+    "character": "p01",
+    "want": "Aino wants the throne without ever being in danger."
+   },
+   {
+    "character": "p02",
+    "want": "Aleksi believes the throne is a sacred duty."
+   },
+   {
+    "character": "p03",
+    "want": "Bea wants the throne and a song about winning it."
+   },
+   {
+    "character": "p04",
+    "want": "Cecilia believes the throne is a sacred duty."
+   },
+   {
+    "character": "p05",
+    "want": "Daniel wants the throne without ever being in danger."
+   },
+   {
+    "character": "p06",
+    "want": "Eero wants the throne and means to take it by force."
+   },
+   {
+    "character": "p07",
+    "want": "Elina wants the throne and plots every step toward it."
+   },
+   {
+    "character": "p08",
+    "want": "Fredrik believes the throne is a sacred duty."
+   },
+   {
+    "character": "p09",
+    "want": "Greta wants the throne and means to take it by force."
+   },
+   {
+    "character": "p10",
+    "want": "Hannu wants the throne without ever being in danger."
+   },
+   {
+    "character": "p11",
+    "want": "Heli wants the throne and a song about winning it."
+   },
+   {
+    "character": "p12",
+    "want": "Iiro believes the throne is a sacred duty."
+   },
+   {
+    "character": "p13",
+    "want": "Inka believes the throne is a sacred duty."
+   },
+   {
+    "character": "p14",
+    "want": "Jari believes the throne is a sacred duty."
+   },
+   {
+    "character": "p15",
+    "want": "Joonas wants the throne and plots every step toward it."
+   },
+   {
+    "character": "p16",
+    "want": "Jääskeläinen believes the throne is a sacred duty."
+   },
+   {
+    "character": "p17",
+    "want": "Kaisa wants the throne without ever being in danger."
+   },
+   {
+    "character": "p18",
+    "want": "Kalle wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p19",
+    "want": "Kirsi wants the throne and a song about winning it."
+   },
+   {
+    "character": "p20",
+    "want": "Lauri wants the throne and a song about winning it."
+   },
+   {
+    "character": "p21",
+    "want": "Leevi wants the throne and means to take it by force."
+   },
+   {
+    "character": "p22",
+    "want": "Liisa wants the throne and means to take it by force."
+   },
+   {
+    "character": "p23",
+    "want": "Matti wants the throne without ever being in danger."
+   },
+   {
+    "character": "p24",
+    "want": "Minna wants the throne and plots every step toward it."
+   },
+   {
+    "character": "p25",
+    "want": "Niko wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p26",
+    "want": "Outi wants the throne and plots every step toward it."
+   },
+   {
+    "character": "p27",
+    "want": "Paavo wants the throne without ever being in danger."
+   },
+   {
+    "character": "p28",
+    "want": "Pekka wants the throne without ever being in danger."
+   },
+   {
+    "character": "p29",
+    "want": "Riikka wants the throne and means to take it by force."
+   },
+   {
+    "character": "p30",
+    "want": "Saku wants the throne and means to take it by force."
+   },
+   {
+    "character": "p31",
+    "want": "Sanna wants the throne and a song about winning it."
+   },
+   {
+    "character": "p32",
+    "want": "Tiina wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p33",
+    "want": "Timo wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p34",
+    "want": "Ulla wants the throne and means to take it by force."
+   },
+   {
+    "character": "p35",
+    "want": "Urho wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p36",
+    "want": "Veera wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p37",
+    "want": "Ville wants the throne, or at least the bottle."
+   },
+   {
+    "character": "p38",
+    "want": "Ykä believes the throne is a sacred duty."
+   },
+   {
+    "character": "p39",
+    "want": "Åsa wants the throne and a song about winning it."
+   },
+   {
+    "character": "p40",
+    "want": "Öhman wants the throne and a song about winning it."
+   }
+  ],
+  "exit_reasons": [
+   {
+    "character": "p19",
+    "beat": 2,
+    "reason": "Kirsi is out, exiled by Aino."
+   },
+   {
+    "character": "p24",
+    "beat": 5,
+    "reason": "Minna is out, exiled by the Iron Vault for an unpaid debt."
+   },
+   {
+    "character": "p07",
+    "beat": 6,
+    "reason": "Elina is out, slain by a Faceless assassin hired by Niko."
+   },
+   {
+    "character": "p25",
+    "beat": 8,
+    "reason": "Niko is out, lost in the wildfire."
+   },
+   {
+    "character": "p31",
+    "beat": 8,
+    "reason": "Sanna is out, lost in the wildfire."
+   },
+   {
+    "character": "p32",
+    "beat": 8,
+    "reason": "Tiina is out, lost in the wildfire."
+   },
+   {
+    "character": "p37",
+    "beat": 8,
+    "reason": "Ville is out, lost in the wildfire."
+   },
+   {
+    "character": "p39",
+    "beat": 8,
+    "reason": "Åsa is out, lost in the wildfire."
+   },
+   {
+    "character": "p01",
+    "beat": 9,
+    "reason": "Aino is out, killed at the Crimson Feast hosted by Pekka."
+   },
+   {
+    "character": "p04",
+    "beat": 9,
+    "reason": "Cecilia is out, killed at the Crimson Feast hosted by Pekka."
+   },
+   {
+    "character": "p26",
+    "beat": 9,
+    "reason": "Outi is out, killed at the Crimson Feast hosted by Pekka."
+   },
+   {
+    "character": "p34",
+    "beat": 9,
+    "reason": "Ulla is out, killed at the Crimson Feast hosted by Pekka."
+   },
+   {
+    "character": "p40",
+    "beat": 10,
+    "reason": "Öhman is out, stabbed in the back by their ally Joonas."
+   },
+   {
+    "character": "p03",
+    "beat": 11,
+    "reason": "Bea is out, taken by the Pale Ones."
+   },
+   {
+    "character": "p08",
+    "beat": 11,
+    "reason": "Fredrik is out, taken by the Pale Ones."
+   },
+   {
+    "character": "p09",
+    "beat": 11,
+    "reason": "Greta is out, taken by the Pale Ones."
+   },
+   {
+    "character": "p11",
+    "beat": 11,
+    "reason": "Heli is out, taken by the Pale Ones."
+   },
+   {
+    "character": "p17",
+    "beat": 11,
+    "reason": "Kaisa is out, taken by the Pale Ones."
+   },
+   {
+    "character": "p15",
+    "beat": 12,
+    "reason": "Joonas is out, lost in the wildfire."
+   },
+   {
+    "character": "p16",
+    "beat": 12,
+    "reason": "Jääskeläinen is out, lost in the wildfire."
+   },
+   {
+    "character": "p20",
+    "beat": 12,
+    "reason": "Lauri is out, lost in the wildfire."
+   },
+   {
+    "character": "p22",
+    "beat": 12,
+    "reason": "Liisa is out, lost in the wildfire."
+   },
+   {
+    "character": "p33",
+    "beat": 12,
+    "reason": "Timo is out, lost in the wildfire."
+   },
+   {
+    "character": "p10",
+    "beat": 13,
+    "reason": "Hannu is out, lost when the bridge gave way."
+   },
+   {
+    "character": "p13",
+    "beat": 13,
+    "reason": "Inka is out, lost when the bridge gave way."
+   },
+   {
+    "character": "p21",
+    "beat": 13,
+    "reason": "Leevi is out, lost when the bridge gave way."
+   },
+   {
+    "character": "p23",
+    "beat": 13,
+    "reason": "Matti is out, lost when the bridge gave way."
+   },
+   {
+    "character": "p28",
+    "beat": 14,
+    "reason": "Pekka is out, poisoned by Jari."
+   },
+   {
+    "character": "p02",
+    "beat": 15,
+    "reason": "Aleksi is out, forfeited by joining the Grey Cloaks."
+   },
+   {
+    "character": "p05",
+    "beat": 15,
+    "reason": "Daniel is out, forfeited by joining the Grey Cloaks."
+   },
+   {
+    "character": "p06",
+    "beat": 15,
+    "reason": "Eero is out, forfeited by joining the Grey Cloaks."
+   },
+   {
+    "character": "p18",
+    "beat": 15,
+    "reason": "Kalle is out, forfeited by joining the Grey Cloaks."
+   },
+   {
+    "character": "p36",
+    "beat": 15,
+    "reason": "Veera is out, forfeited by joining the Grey Cloaks."
+   },
+   {
+    "character": "p12",
+    "beat": 16,
+    "reason": "Iiro is out, killed in the Battle of the Muddy Field."
+   },
+   {
+    "character": "p14",
+    "beat": 16,
+    "reason": "Jari is out, killed in the Battle of the Muddy Field."
+   },
+   {
+    "character": "p27",
+    "beat": 16,
+    "reason": "Paavo is out, killed in the Battle of the Muddy Field."
+   },
+   {
+    "character": "p29",
+    "beat": 16,
+    "reason": "Riikka is out, killed in the Battle of the Muddy Field."
+   },
+   {
+    "character": "p38",
+    "beat": 16,
+    "reason": "Ykä is out, killed in the Battle of the Muddy Field."
+   },
+   {
+    "character": "p35",
+    "beat": 19,
+    "reason": "Urho is out, defeated by Saku in the Last Duel."
    }
   ]
  },

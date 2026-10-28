@@ -13,11 +13,57 @@ class BeatSynopsis(BaseModel):
     synopsis: str
 
 
+class StoryThread(BaseModel):
+    title: str = Field(description="Short name of the thread, e.g. 'The Faceless contract on Aino'.")
+    beats: list[int] = Field(description="Beat indexes the thread runs through, ascending: setup first, payoff last.")
+    summary: str = Field(description="One sentence linking the setup to its payoff.")
+
+
+class Motivation(BaseModel):
+    character: str = Field(description="Participant id.")
+    want: str = Field(description="One line: what this character wants in the story, from archetype and house only.")
+
+
+class ExitReason(BaseModel):
+    character: str = Field(description="Id of the eliminated participant.")
+    beat: int = Field(description="Index of the beat that eliminates them.")
+    reason: str = Field(description="One sentence: why they leave, consistent with the beat facts. Names them.")
+
+
 class ShowBible(BaseModel):
     title: str = Field(description="Title of this week's show, like a comic issue title.")
     prophecy: str = Field(description="The seer's prophecy, two or three cryptic lines, never naming anyone.")
     motifs: list[str] = Field(description="Two to five recurring images or running jokes.")
     beats: list[BeatSynopsis] = Field(description="One-sentence synopsis for every beat index.")
+    threads: list[StoryThread] = Field(description="One to four story threads linking setups to payoffs.")
+    motivations: list[Motivation] = Field(description="One line per participant.")
+    exit_reasons: list[ExitReason] = Field(description="One per participant elimination.")
+
+
+class Announcement(BaseModel):
+    """A stamp built from the fate script alone; the stage and the comic show the same words."""
+
+    kind: Literal["out", "return", "summary"]
+    character: str | None = Field(description="Character id, or null for a crowd summary.")
+    headline: str = Field(description="For example 'Davido is OUT' or 'Davido RETURNS'.")
+    cause: str = Field(description="For example 'poisoned by the goblet meant for Caesar'.")
+
+
+class BeatStory(BaseModel):
+    index: int
+    statement: str = Field(description="Plain-language, role-aware description of what happens in the beat.")
+    announcements: list[Announcement]
+    survivors_before: list[str] = Field(description="Participant ids in the contest at the start of the beat.")
+    survivors_after: list[str] = Field(description="Participant ids in the contest at the end of the beat.")
+    bystanders: list[str] = Field(description="Participant ids planned to appear without a role in this scene.")
+    ghost: str | None = Field(description="The one planned ghost of the show, if it appears in this beat, else null.")
+
+
+class Storyline(BaseModel):
+    """Deterministic story facts derived from the fate script: no LLM, never changes for a show."""
+
+    beats: list[BeatStory]
+    thread_seeds: list[StoryThread]
 
 
 class Line(BaseModel):

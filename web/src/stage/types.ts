@@ -14,6 +14,9 @@ export type MusicMood = SceneScript["music"];
 export type Framing = Schemas["PanelMoment"]["framing"];
 export type SfxCue = Schemas["Cue"]["sfx"];
 export type EliminationMode = Schemas["Elimination"]["mode"];
+export type Storyline = Schemas["Storyline"];
+export type BeatStory = Schemas["BeatStory"];
+export type Announcement = Schemas["Announcement"];
 
 /** Where a character stands: one of up to six foreground slots, or the smaller background crowd. */
 export interface Placement {
@@ -38,6 +41,8 @@ export interface StageState {
   /** House group currently standing for the roll call. */
   rollCall: { house: string | null; members: string[] } | null;
   alive: string[];
+  /** Participants still in the contest, as the survivor tracker shows them; null hides the tracker. */
+  tracker: string[] | null;
   onStage: Placement[];
   crowned: string | null;
 }
@@ -74,6 +79,8 @@ export type StepBody =
       text: string;
       /** Non-final gestures that play during the line (speaker's action and stage directions). */
       gestures: { character: string; action: Action }[];
+      /** The speaker is out of the contest and speaks as a ghost. */
+      ghost: boolean;
       cues: SfxCue[];
       sounds: string[];
       camera: Camera | null;
@@ -83,8 +90,14 @@ export type StepBody =
     }
   | { kind: "caption"; text: string; index: number; readSeconds: number }
   | { kind: "action"; character: string; action: Action }
+  /** An OUT or RETURNS announcement from the storyline; the tracker updates as it lands. */
+  | { kind: "stamp"; announcement: Announcement }
   | { kind: "panel_break"; panels: PanelShot[]; sounds: string[] }
-  | { kind: "montage"; victims: { id: string; mode: EliminationMode }[] }
+  | {
+      kind: "montage";
+      victims: { id: string; mode: EliminationMode; cause: string | null }[];
+      summary: Announcement | null;
+    }
   | { kind: "tableau" }
   | { kind: "coronation"; winner: string }
   | { kind: "credits" }

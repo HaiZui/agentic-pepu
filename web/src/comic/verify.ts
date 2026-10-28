@@ -1,4 +1,4 @@
-import type { FateScript } from "../stage/types";
+import type { FateScript, Storyline } from "../stage/types";
 
 const MAD_KING = "the Mad King";
 
@@ -15,6 +15,16 @@ export function oldKingArgument(fate: FateScript): string | null {
   const king = fate.characters.find((c) => c.id === fate.old_king);
   if (!king || (king.kind === "old_king" && king.name === MAD_KING)) return null;
   return king.name;
+}
+
+/** Every OUT / RETURNS announcement and crowd summary of the show, as "headline | cause". */
+export function expectedStamps(storyline: Storyline): string[] {
+  return storyline.beats.flatMap((b) => b.announcements.map((a) => `${a.headline} | ${a.cause}`));
+}
+
+/** The stamps a rendered comic actually shows (stamp captions and montage tile causes). */
+export function renderedStamps(root: ParentNode): string[] {
+  return [...root.querySelectorAll<HTMLElement>("[data-stamp]")].map((n) => n.dataset.stamp ?? "");
 }
 
 const quote = (value: string) => `"${value.replace(/"/g, '\\"')}"`;

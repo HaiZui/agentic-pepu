@@ -30,8 +30,8 @@ export type ComicPage =
   | { kind: "cast"; part: number; parts: number; groups: CastGroup[] }
   | { kind: "dramatis"; side: number; members: string[] }
   | { kind: "act"; act: 1 | 2 | 3 }
-  | { kind: "scenes"; act: 1 | 2 | 3; blocks: SceneBlock[] }
-  | { kind: "montage"; act: 1 | 2 | 3; beat: number; victims: { id: string; mode: string }[] }
+  | { kind: "scenes"; act: 1 | 2 | 3; blocks: SceneBlock[]; survivors: string[] }
+  | { kind: "montage"; act: 1 | 2 | 3; beat: number; victims: { id: string; mode: string }[]; survivors: string[] }
   | { kind: "coronation" }
   | { kind: "epilogue" }
   | { kind: "back" };
@@ -108,8 +108,21 @@ function castPages(fate: FateScript): ComicPage[] {
 
 const ACT_OF: Record<string, 1 | 2 | 3> = { cold_open: 1, act_1: 1, act_2: 2, act_3: 3, coronation: 3 };
 
+/** Participants still in the contest after each beat, for the survivor strip. */
+export function survivorsAfter(fate: FateScript): string[][] {
+  let alive = fate.characters.filter((c) => c.kind === "participant").map((c) => c.id);
+  const participants = new Set(alive);
+  return fate.beats.map((beat) => {
+    const out = new Set(beat.eliminations.map((e) => e.character));
+    const back = (beat.resurrections ?? []).filter((id) => participants.has(id) && !alive.includes(id));
+    alive = [...alive.filter((id) => !out.has(id)), ...back].sort();
+    return alive;
+  });
+}
+
 function scenePages(fate: FateScript, scenes: Map<number, SceneScript>, act: 1 | 2 | 3, density: Density): ComicPage[] {
   const pages: ComicPage[] = [];
+  const after = survivorsAfter(fate);
   const share = SHARE[density];
   const beats = fate.beats.filter((b) => ACT_OF[b.section] === act && scenes.has(b.index));
   let open: { page: Extract<ComicPage, { kind: "scenes" }>; panels: number; chars: number; montage: boolean } | null = null;
@@ -129,16 +142,23 @@ function scenePages(fate: FateScript, scenes: Map<number, SceneScript>, act: 1 |
     const block: SceneBlock = { beat: beat.index, rows: sceneRows(scene), meanwhile: !!fits };
     if (fits && open) {
       open.page.blocks.push(block);
+      open.page.survivors = after[beat.index];
       open.panels += panels;
       open.chars += chars;
       open.montage = montage;
     } else {
-      const page: Extract<ComicPage, { kind: "scenes" }> = { kind: "scenes", act, blocks: [block] };
+      const page: Extract<ComicPage, { kind: "scenes" }> = { kind: "scenes", act, blocks: [block], survivors: after[beat.index] };
       pages.push(page);
       open = { page, panels, chars, montage };
     }
     if (montage) {
-      pages.push({ kind: "montage", act, beat: beat.index, victims: beat.eliminations.map((e) => ({ id: e.character, mode: e.mode })) });
+      pages.push({
+        kind: "montage",
+        act,
+        beat: beat.index,
+        victims: beat.eliminations.map((e) => ({ id: e.character, mode: e.mode })),
+        survivors: after[beat.index],
+      });
       open = null;
     }
   }

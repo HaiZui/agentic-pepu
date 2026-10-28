@@ -69,3 +69,26 @@ def test_invalid_requests_create_no_session(client: TestClient, payload: dict, r
     assert response.status_code == 422
     assert rule in {e["type"] for e in response.json()["detail"]}
     assert session_count(client) == 0
+
+
+def test_storyline_is_served_at_creation_and_archived(client: TestClient) -> None:
+    from bottle_throne.comic.job import show_record
+
+    created = client.post("/api/shows", json={"participants": ["Matti", "Aino", "Jääskeläinen", "Öhman"]}).json()
+
+    response = client.get(f"/api/shows/{created['id']}/storyline")
+
+    assert response.status_code == 200
+    story = response.json()
+    fate = client.get(f"/api/shows/{created['id']}/fate").json()
+    assert [b["index"] for b in story["beats"]] == [b["index"] for b in fate["beats"]]
+    assert len(story["beats"][0]["survivors_before"]) == 4
+    assert story["beats"][-1]["survivors_after"] == [fate["winner"]]
+    assert any(a["headline"].endswith(" is OUT") for b in story["beats"] for a in b["announcements"])
+
+    record = show_record(client.app.state.sessions.get(created["id"]))
+    assert record["storyline"] == story
+
+
+def test_storyline_of_unknown_show_is_404(client: TestClient) -> None:
+    assert client.get("/api/shows/nope/storyline").status_code == 404

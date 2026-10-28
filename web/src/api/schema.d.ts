@@ -102,6 +102,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/shows/{show_id}/storyline": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Storyline
+         * @description Survivors, stamps and bystander plan for every beat, derived from the fate script. Ready at creation.
+         */
+        get: operations["get_storyline_api_shows__show_id__storyline_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/shows/{show_id}/story": {
         parameters: {
             query?: never;
@@ -279,6 +299,32 @@ export interface components {
             /** B */
             b: string;
         };
+        /**
+         * Announcement
+         * @description A stamp built from the fate script alone; the stage and the comic show the same words.
+         */
+        Announcement: {
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "out" | "return" | "summary";
+            /**
+             * Character
+             * @description Character id, or null for a crowd summary.
+             */
+            character: string | null;
+            /**
+             * Headline
+             * @description For example 'Davido is OUT' or 'Davido RETURNS'.
+             */
+            headline: string;
+            /**
+             * Cause
+             * @description For example 'poisoned by the goblet meant for Caesar'.
+             */
+            cause: string;
+        };
         /** Beat */
         Beat: {
             /** Index */
@@ -323,6 +369,38 @@ export interface components {
             budget_seconds: number;
             /** Dramatic */
             dramatic: boolean;
+        };
+        /** BeatStory */
+        BeatStory: {
+            /** Index */
+            index: number;
+            /**
+             * Statement
+             * @description Plain-language, role-aware description of what happens in the beat.
+             */
+            statement: string;
+            /** Announcements */
+            announcements: components["schemas"]["Announcement"][];
+            /**
+             * Survivors Before
+             * @description Participant ids in the contest at the start of the beat.
+             */
+            survivors_before: string[];
+            /**
+             * Survivors After
+             * @description Participant ids in the contest at the end of the beat.
+             */
+            survivors_after: string[];
+            /**
+             * Bystanders
+             * @description Participant ids planned to appear without a role in this scene.
+             */
+            bystanders: string[];
+            /**
+             * Ghost
+             * @description The one planned ghost of the show, if it appears in this beat, else null.
+             */
+            ghost: string | null;
         };
         /** BeatSynopsis */
         BeatSynopsis: {
@@ -437,6 +515,24 @@ export interface components {
              */
             mode: "killed" | "forfeited" | "exiled";
         };
+        /** ExitReason */
+        ExitReason: {
+            /**
+             * Character
+             * @description Id of the eliminated participant.
+             */
+            character: string;
+            /**
+             * Beat
+             * @description Index of the beat that eliminates them.
+             */
+            beat: number;
+            /**
+             * Reason
+             * @description One sentence: why they leave, consistent with the beat facts. Names them.
+             */
+            reason: string;
+        };
         /**
          * FateScript
          * @description The complete, fixed story timeline. Never contains the seed.
@@ -531,6 +627,19 @@ export interface components {
             action: ("enter" | "exit" | "draw_weapon" | "strike" | "fall" | "kneel" | "drink" | "point" | "embrace" | "flee" | "crown") | null;
             /** Text */
             text: string;
+        };
+        /** Motivation */
+        Motivation: {
+            /**
+             * Character
+             * @description Participant id.
+             */
+            character: string;
+            /**
+             * Want
+             * @description One line: what this character wants in the story, from archetype and house only.
+             */
+            want: string;
         };
         /** OldKing */
         OldKing: {
@@ -686,6 +795,21 @@ export interface components {
              * @description One-sentence synopsis for every beat index.
              */
             beats: components["schemas"]["BeatSynopsis"][];
+            /**
+             * Threads
+             * @description One to four story threads linking setups to payoffs.
+             */
+            threads: components["schemas"]["StoryThread"][];
+            /**
+             * Motivations
+             * @description One line per participant.
+             */
+            motivations: components["schemas"]["Motivation"][];
+            /**
+             * Exit Reasons
+             * @description One per participant elimination.
+             */
+            exit_reasons: components["schemas"]["ExitReason"][];
         };
         /** ShowRequest */
         ShowRequest: {
@@ -744,6 +868,34 @@ export interface components {
              * @description Index of the line during which it happens.
              */
             line: number;
+        };
+        /** StoryThread */
+        StoryThread: {
+            /**
+             * Title
+             * @description Short name of the thread, e.g. 'The Faceless contract on Aino'.
+             */
+            title: string;
+            /**
+             * Beats
+             * @description Beat indexes the thread runs through, ascending: setup first, payoff last.
+             */
+            beats: number[];
+            /**
+             * Summary
+             * @description One sentence linking the setup to its payoff.
+             */
+            summary: string;
+        };
+        /**
+         * Storyline
+         * @description Deterministic story facts derived from the fate script: no LLM, never changes for a show.
+         */
+        Storyline: {
+            /** Beats */
+            beats: components["schemas"]["BeatStory"][];
+            /** Thread Seeds */
+            thread_seeds: components["schemas"]["StoryThread"][];
         };
         /** ValidationError */
         ValidationError: {
@@ -920,6 +1072,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Reveal"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_storyline_api_shows__show_id__storyline_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                show_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Storyline"];
                 };
             };
             /** @description Validation Error */

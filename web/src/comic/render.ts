@@ -14,12 +14,12 @@ import { FLOOR, frame } from "../shared/panels";
 import { puppetNode } from "../stage/actors";
 import { CastSheet } from "../stage/cast";
 import { panelArt } from "../stage/panels-view";
-import type { FateScript, SceneScript, SettingId } from "../stage/types";
+import type { Announcement, FateScript, SceneScript, SettingId, Storyline } from "../stage/types";
 import "./comic.css";
 import { comicPanels, type ComicPanel } from "./content";
 import { fitPanel } from "./fit";
 import { planComic, type ComicPage, type PanelRow, type SceneBlock } from "./plan";
-import { rosterNames, verifyCommand } from "./verify";
+import { expectedStamps, renderedStamps, rosterNames, verifyCommand } from "./verify";
 
 export interface ComicData {
   fate: FateScript;
@@ -30,6 +30,8 @@ export interface ComicData {
   /** ISO date-time of the show (the issue date). */
   createdAt: string;
   attributions: string[];
+  /** Survivors and OUT / RETURNS wording from the backend; without it the comic has strips but no stamps. */
+  storyline?: Storyline | null;
 }
 
 const MM = 96 / 25.4;
@@ -40,6 +42,10 @@ const GUTTER = 3.2 * MM;
 const INNER_W = PAGE_W - 2 * MARGIN;
 const BLOCK_HEADER = 8 * MM;
 const FOOTER = 6 * MM;
+/** Survivor strip band at the foot of every scene page; panels shrink to make room, so no page is added. */
+const STRIP = 10.5 * MM;
+/** Smallest lettering the survivor strip may shrink to before it counts as not fitting. */
+const STRIP_MIN_PX = 6;
 /** Normal lettering size inside panels, in CSS px. */
 export const LETTERING_PX = 13;
 
@@ -121,7 +127,7 @@ export class ComicRenderer {
 
   constructor(private readonly data: ComicData) {
     this.cast = new CastSheet(data.fate);
-    this.panels = comicPanels(data.fate, data.scenes);
+    this.panels = comicPanels(data.fate, data.scenes, data.storyline ?? null);
   }
 
   private page(kind: string, ...children: (Node | null)[]): HTMLElement {
@@ -158,9 +164,9 @@ export class ComicRenderer {
       case "act":
         return this.actPage(p.act);
       case "scenes":
-        return this.scenesPage(p.blocks);
+        return this.scenesPage(p.blocks, p.survivors);
       case "montage":
-        return this.montagePage(p.beat, p.victims);
+        return this.montagePage(p.beat, p.victims, p.survivors);
       case "coronation":
         return this.coronation();
       case "epilogue":
@@ -239,8 +245,21 @@ export class ComicRenderer {
     );
   }
 
-  private scenesPage(blocks: SceneBlock[]): HTMLElement {
-    const available = PAGE_H - 2 * MARGIN - FOOTER;
+  /** "Still standing": who is in the contest after the last scene on the page, and how many. */
+  private survivorStrip(survivors: string[]): HTMLElement {
+    const total = this.data.fate.characters.filter((c) => c.kind === "participant").length;
+    const size = survivors.length > 24 ? "tiny" : survivors.length > 12 ? "small" : "normal";
+    const strip = el(
+      "div",
+      { class: `survivor-strip strip-${size}`, "data-testid": "survivor-strip", "data-survivors": survivors.join(" ") },
+      el("strong", { class: "strip-count" }, survivors.length === 1 ? "1 remains" : `${survivors.length} of ${total} remain`),
+      el("span", { class: "strip-names" }, survivors.map((id) => this.cast.name(id)).join(" · ")),
+    );
+    return px(strip, { x: MARGIN, y: PAGE_H - MARGIN - FOOTER - STRIP + 1.5 * MM, w: INNER_W, h: STRIP - 1.5 * MM });
+  }
+
+  private scenesPage(blocks: SceneBlock[], survivors: string[]): HTMLElement {
+    const available = PAGE_H - 2 * MARGIN - FOOTER - STRIP;
     const weights = blocks.map((b) => b.rows.reduce((t, r) => t + r.weight, 0));
     const total = weights.reduce((a, b) => a + b, 0);
     let y = MARGIN;
@@ -251,7 +270,7 @@ export class ComicRenderer {
       children.push(this.sceneBlock(block, y, height));
       y += height;
     });
-    return this.page("scenes", ...children);
+    return this.page("scenes", ...children, this.survivorStrip(survivors));
   }
 
   private sceneBlock(block: SceneBlock, top: number, height: number): HTMLElement {
@@ -297,24 +316,30 @@ export class ComicRenderer {
       }
       const spot = panel.shot.placements.find((p) => p.id === text.speaker && p.layer === "fore");
       const at = spot ? (spot.x - view.x) / view.width : null;
+      const who = this.cast.name(text.speaker ?? "");
       const balloon = el(
         "div",
-        { class: "balloon", "data-speaker": text.speaker ?? "" },
-        el("span", { class: "who" }, this.cast.name(text.speaker ?? "")),
+        { class: `balloon${text.ghost ? " ghost" : ""}`, "data-speaker": text.speaker ?? "" },
+        el("span", { class: "who" }, text.ghost ? `Ghost of ${who}` : who),
         el("span", { class: "said" }, text.text),
       );
       if (at !== null && at > 0.02 && at < 0.98) balloon.dataset.tail = at.toFixed(3);
       column.append(balloon);
     }
+    for (const stamp of panel.stamps) column.append(stampCaption(stamp));
     const sounds = panel.sounds.map((s, i) => el("div", { class: `sound sound-${i % 2}` }, s));
     return px(el("div", { class: `c-panel${splash ? " splash" : ""}`, "data-panel": id, "data-framing": panel.shot.framing }, art, column, ...sounds), box);
   }
 
-  private montagePage(beat: number, victims: { id: string; mode: string }[]): HTMLElement {
+  private montagePage(beat: number, victims: { id: string; mode: string }[], survivors: string[]): HTMLElement {
     const columns = victims.length <= 4 ? 2 : 3;
+    const story = this.data.storyline?.beats[beat];
+    const outOf = (id: string) => story?.announcements.find((a) => a.kind === "out" && a.character === id) ?? null;
+    const summary = story?.announcements.find((a) => a.kind === "summary") ?? null;
     return this.page(
       "montage",
       el("h2", { class: "page-title" }, `${this.beat(beat).title}: the fallen`),
+      summary ? stampCaption(summary, "c-montage-summary") : null,
       el(
         "div",
         { class: `montage-grid cols-${columns}${victims.length <= 2 ? " few" : ""}` },
@@ -324,11 +349,15 @@ export class ComicRenderer {
             { class: "c-tile" },
             svg("-120 -350 240 340", "c-tile-art", puppetNode(this.cast, v.id, "terrified", false).node),
             el("div", { class: "c-tile-name" }, this.cast.name(v.id)),
-            el("div", { class: "c-tile-mode" }, MODE_LABEL[v.mode] ?? v.mode),
+            ((out) =>
+              out
+                ? el("div", { class: "c-tile-mode c-tile-cause", "data-stamp": `${out.headline} | ${out.cause}` }, `Out: ${out.cause}`)
+                : el("div", { class: "c-tile-mode" }, MODE_LABEL[v.mode] ?? v.mode))(outOf(v.id)),
             el("div", { class: "c-x-stamp" }, "✕"),
           ),
         ),
       ),
+      this.survivorStrip(survivors),
     );
   }
 
@@ -423,6 +452,15 @@ export class ComicRenderer {
   /** After layout: fit every panel's lettering and point balloon tails at their speakers. */
   layout(root: HTMLElement): { panels: number; unfit: string[] } {
     const unfit: string[] = [];
+    for (const strip of root.querySelectorAll<HTMLElement>('[data-testid="survivor-strip"]')) {
+      const names = strip.querySelector<HTMLElement>(".strip-names");
+      let size = parseFloat(getComputedStyle(strip).fontSize);
+      while (names && names.scrollHeight > strip.clientHeight && size > STRIP_MIN_PX) {
+        size -= 0.5;
+        strip.style.fontSize = `${size}px`;
+      }
+      if (strip.scrollHeight > strip.clientHeight + 1) unfit.push(`strip-${strip.closest(".page")?.getAttribute("data-page") ?? "?"}`);
+    }
     const panels = [...root.querySelectorAll<HTMLElement>(".c-panel")];
     for (const panel of panels) {
       if (!fitPanel(panel, LETTERING_PX).fits) unfit.push(panel.dataset.panel ?? "?");
@@ -439,8 +477,21 @@ export class ComicRenderer {
   }
 }
 
+/** A stamp box in the comic, with the same headline and cause as the stage stamp. */
+function stampCaption(stamp: Announcement, extra = ""): HTMLElement {
+  return el(
+    "div",
+    { class: `c-stamp c-stamp-${stamp.kind} ${extra}`.trim(), "data-stamp": `${stamp.headline} | ${stamp.cause}` },
+    el("strong", {}, stamp.headline),
+    ` ${stamp.cause}`,
+  );
+}
+
 /** Render every page into `root`, then fit lettering and convert textures to vectors for print. */
-export async function renderComic(root: HTMLElement, data: ComicData): Promise<{ pages: number; panels: number; unfit: string[] }> {
+export async function renderComic(
+  root: HTMLElement,
+  data: ComicData,
+): Promise<{ pages: number; panels: number; unfit: string[]; stampsMissing: string[] }> {
   ensureDefs("print");
   const renderer = new ComicRenderer(data);
   const pages = renderer.render();
@@ -452,5 +503,7 @@ export async function renderComic(root: HTMLElement, data: ComicData): Promise<{
   );
   const result = renderer.layout(book);
   vectorizeTextures(book);
-  return { pages: pages.length, ...result };
+  const shown = renderedStamps(book);
+  const stampsMissing = data.storyline ? expectedStamps(data.storyline).filter((s) => !shown.includes(s)) : [];
+  return { pages: pages.length, ...result, stampsMissing };
 }

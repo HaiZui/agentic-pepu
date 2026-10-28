@@ -14,6 +14,8 @@ export interface StageLayers {
   bubbles: HTMLDivElement;
   proscenium: SVGSVGElement;
   panels: HTMLDivElement;
+  /** Survivor tracker: above panels and montages, below full-stage overlays such as title cards. */
+  tracker: HTMLDivElement;
   overlays: HTMLDivElement;
   letterbox: HTMLDivElement;
 }
@@ -67,6 +69,7 @@ export function createStage(host: HTMLElement): StageLayers & { fit(): void; des
     bubbles: div("layer layer-bubbles"),
     proscenium,
     panels: div("layer layer-panels"),
+    tracker: div("layer layer-tracker"),
     overlays: div("layer layer-overlays"),
     letterbox: div("layer layer-letterbox"),
   };
@@ -83,6 +86,7 @@ export function createStage(host: HTMLElement): StageLayers & { fit(): void; des
     layers.letterbox,
     layers.bubbles,
     layers.panels,
+    layers.tracker,
     layers.overlays,
   );
   viewport.append(stage);

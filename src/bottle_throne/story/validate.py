@@ -4,7 +4,7 @@ import re
 
 from bottle_throne.fate.state import TimelineState
 from bottle_throne.models.fate import Beat, FateScript
-from bottle_throne.models.story import SceneDraft, SceneScript
+from bottle_throne.models.story import BeatStory, SceneDraft, SceneScript
 from bottle_throne.story.catalog import (
     ACTIONS,
     BUDGET_TOLERANCE,
@@ -19,6 +19,8 @@ from bottle_throne.story.catalog import (
 
 MIN_PANELS, MAX_PANELS = 3, 6
 MAX_ONOMATOPOEIA_CHARS = 14
+MAX_BYSTANDERS = 2
+LEAVING_ACTIONS = frozenset({"fall", "exit", "enter"})
 ELIMINATION_ACTION = {"killed": "fall", "forfeited": "exit", "exiled": "exit"}
 DEATH_WORDS = re.compile(
     r"\b(dies|died|is dead|lies dead|falls dead|was slain|was killed|has been killed|perishes|perished|"
@@ -62,13 +64,30 @@ def repair_scene(scene: SceneScript) -> SceneScript:
     return fixed
 
 
+def strip_speaker_labels(scene: SceneScript, names: dict[str, str]) -> SceneScript:
+    """Drops a leading "Aino:" (or "Aino's ghost:") label that repeats the speaker's own name inside the line text."""
+    fixed = scene.model_copy(deep=True)
+    for line in fixed.lines:
+        name = names.get(line.speaker)
+        if not name:
+            continue
+        label = re.match(rf"\s*{re.escape(name)}(?:['’]s ghost)?\s*:\s*", line.text, re.IGNORECASE)
+        if label and line.text[label.end():].strip():
+            line.text = line.text[label.end():]
+    return fixed
+
+
 def validate_scene(
     scene: SceneDraft,
     beat: Beat,
     fate: FateScript,
     alive_at_start: frozenset[str] | None = None,
+    plan: BeatStory | None = None,
 ) -> list[str]:
-    """Returns 'code: message' errors; an empty list means the scene may be shown."""
+    """Returns 'code: message' errors; an empty list means the scene may be shown.
+
+    `plan` is the beat's storyline entry (planned bystanders and ghost); None means compute it from the fate.
+    """
     errors: list[str] = []
 
     def err(code: str, message: str) -> None:
@@ -77,6 +96,11 @@ def validate_scene(
     names = {c.id: c.name for c in fate.characters}
     alive = alive_at_start if alive_at_start is not None else alive_before_each_beat(fate)[beat.index]
     risen = set(beat.resurrections)
+    if plan is None:
+        from bottle_throne.story.storyline import storyline
+
+        plan = storyline(fate).beats[beat.index]
+    bystanders, planned_ghost = plan.bystanders, plan.ghost
 
     if isinstance(scene, SceneScript):
         if scene.setting != beat.setting:
@@ -156,8 +180,48 @@ def validate_scene(
     for character, mode in eliminated.items():
         if ELIMINATION_ACTION[mode] not in performed.get(character, set()):
             err("missing_elimination", f"{names.get(character, character)} must {ELIMINATION_ACTION[mode]}")
+
+    # Who is in the scene: role holders, bystanders (contestants without a role) and the planned ghost, if any.
+    participants = {c.id for c in fate.characters if c.kind == "participant"}
+    in_roles = {r.character for r in beat.roles}
+    ghosts = {
+        line.speaker
+        for line in scene.lines
+        if line.emotion == "dead" and line.speaker in names and line.speaker not in alive and line.speaker not in risen
+    }
+    present = [line.speaker for line in scene.lines] + [d.character for d in scene.stage_directions]
+    extras = [p for p in dict.fromkeys(present) if p in participants and p not in in_roles and p not in ghosts and p in alive]
+    if len(extras) > MAX_BYSTANDERS:
+        err("too_many_bystanders", f"{len(extras)} contestants without a role appear; at most {MAX_BYSTANDERS}")
+    speakers = {line.speaker for line in scene.lines}
+    for planned in bystanders:
+        if planned not in speakers:
+            err("missing_bystander", f"{names.get(planned, planned)} must speak at least one line (planned bystander)")
+    for character in extras:
+        for action in sorted(performed.get(character, set()) & LEAVING_ACTIONS):
+            err("bystander_leaves", f"bystander {names[character]} must not {action}")
+    for ghost in sorted(ghosts - {planned_ghost}):
+        err("unplanned_ghost", f"{names[ghost]} is out of the story and is not this scene's planned ghost")
+    texts_all = [line.text for line in scene.lines] + [c.text for c in scene.captions]
+    if planned_ghost is not None:
+        if planned_ghost not in ghosts:
+            err("missing_ghost", f"the ghost of {names[planned_ghost]} must speak at least one line with emotion 'dead'")
+        elif not any("ghost" in text.lower() for text in texts_all):
+            err("unannounced_ghost", f"a line or caption must call {names[planned_ghost]} a ghost")
+    for ghost in ghosts:
+        for action in sorted(performed.get(ghost, set()) & LEAVING_ACTIONS):
+            err("ghost_action", f"the ghost of {names[ghost]} must not {action}")
+    for character in sorted(performed):
+        if character in names and character not in alive and character not in risen and character not in ghosts:
+            err("dead_actor", f"{names[character]} is out of the story and cannot act")
+    for character in risen:
+        if any(line.speaker == character and line.emotion == "dead" for line in scene.lines):
+            err("risen_as_ghost", f"{names[character]} returns to life in this beat and must not use the 'dead' emotion")
+        if "enter" not in performed.get(character, set()):
+            err("risen_entrance", f"{names[character]} returns to life and must 'enter'")
+
     for character, actions in performed.items():
-        if character in eliminated:
+        if character in eliminated or character in extras or character in ghosts:
             continue
         for action in actions & {"fall", "exit"}:
             if action == "exit" and character in npc_extras_here:
@@ -168,6 +232,10 @@ def validate_scene(
     still_in = [cid for cid in alive | risen if cid not in eliminated and cid in names]
     gone_names = [names[cid] for cid in eliminated if cid in names]
     texts = [line.text for line in scene.lines] + [c.text for c in scene.captions]
+    if len(eliminated) == 1:
+        (gone,) = eliminated
+        if not any(names.get(gone, gone).lower() in text.lower() for text in texts):
+            err("unnamed_elimination", f"no line or caption names {names.get(gone, gone)}, who leaves the story here")
     for text in texts:
         for sentence in re.split(r"(?<=[.!?])\s+", text):
             if not DEATH_WORDS.search(sentence) or any(name in sentence for name in gone_names):

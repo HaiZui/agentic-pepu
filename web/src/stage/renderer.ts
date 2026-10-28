@@ -13,7 +13,8 @@ import { Particles, presetsFor } from "./particles";
 import type { Renderer } from "./player";
 import { SceneryLayers } from "./scenery-layer";
 import "./stage.css";
-import { MOMENT } from "./timing";
+import { montageSummaryAt, MOMENT, STAMP_LAND } from "./timing";
+import { Tracker } from "./tracker";
 import type { FateScript, StageState, Step } from "./types";
 
 const IMPACT = new Set<string>(IMPACT_CUES);
@@ -30,6 +31,7 @@ export class StageRenderer implements Renderer {
   private readonly panels: PanelView;
   private readonly scenery: SceneryLayers;
   private readonly proscenium: Proscenium;
+  readonly tracker: Tracker;
   private readonly curtain = { open: 0 };
   private tl: gsap.core.Timeline | null = null;
 
@@ -48,6 +50,7 @@ export class StageRenderer implements Renderer {
     this.panels = new PanelView(l.panels, this.cast);
     this.scenery = new SceneryLayers(l.backRaster, l.back, l.mid, l.front);
     this.particles = new Particles(l.particles);
+    this.tracker = new Tracker(l.tracker, fate, this.cast);
     this.proscenium = renderProscenium();
     l.proscenium.append(this.proscenium.root);
 
@@ -83,6 +86,23 @@ export class StageRenderer implements Renderer {
     return [...houses].slice(0, 4);
   }
 
+  /** Shows the survivor tracker and keeps bubbles, narration and captions below it. */
+  private showTracker(survivors: string[] | null, animate = false): void {
+    this.tracker.set(survivors, animate);
+    const bottom = survivors === null ? null : this.tracker.bottom;
+    this.lettering.reserveTop(bottom);
+    const style = this.layers.stage.style;
+    if (bottom === null) {
+      for (const name of ["--top-reserve", "--panel-shift", "--panel-scale"]) style.removeProperty(name);
+    } else {
+      // Panel grids and montages shrink into the space below the tracker, so it never hides their balloons.
+      const reserve = bottom + 10;
+      style.setProperty("--top-reserve", `${reserve}px`);
+      style.setProperty("--panel-shift", `${reserve}px`);
+      style.setProperty("--panel-scale", String((1080 - reserve) / 1080));
+    }
+  }
+
   private particlesFor(state: StageState, step?: Step): void {
     const beat = state.beat !== null ? this.fate.beats[state.beat] : undefined;
     if (state.section === "credits" || state.curtain === "closed") return this.particles.set([]);
@@ -103,6 +123,7 @@ export class StageRenderer implements Renderer {
     this.cast.crowned = state.crowned !== null;
     const credits = state.section === "credits";
     this.overlays.apply({ seal: state.seal, rollHouse: state.rollCall ? state.rollCall.house : undefined, credits });
+    this.showTracker(state.tracker);
     this.scenery.set(state.setting, this.banners(state));
     this.curtain.open = state.curtain === "open" ? 1 : 0;
     this.setCurtain();
@@ -143,6 +164,14 @@ export class StageRenderer implements Renderer {
     this.tl = tl;
     const d = step.durationAt1x;
     const next = step.stateAfter;
+    // The tracker changes when a stamp lands or a montage sums up; otherwise it simply follows the state.
+    const trackerAt = step.kind === "stamp" ? STAMP_LAND : step.kind === "montage" ? (step.summary ? montageSummaryAt(d) : d - 0.3) : 0;
+    if (trackerAt > 0) {
+      this.showTracker(previous.tracker);
+      tl.call(() => this.showTracker(next.tracker, true), undefined, trackerAt);
+    } else {
+      this.showTracker(next.tracker);
+    }
 
     switch (step.kind) {
       case "curtain":
@@ -209,9 +238,14 @@ export class StageRenderer implements Renderer {
         this.camera.shake(tl, 0, 10, 0.3);
         this.panels.panelBreak(tl, 0, d, step.panels, step.sounds);
         break;
+      case "stamp":
+        this.lettering.hideBubble(tl, 0);
+        this.overlays.stamp(tl, 0, d, step.announcement);
+        this.camera.shake(tl, STAMP_LAND, 10, 0.25);
+        break;
       case "montage":
         this.lettering.hideBubble(tl, 0);
-        this.panels.montage(tl, 0, d, step.victims);
+        this.panels.montage(tl, 0, d, step.victims, step.summary);
         tl.call(() => this.actors.apply(next.onStage), undefined, d - 0.3);
         break;
       case "tableau":
@@ -284,7 +318,8 @@ export class StageRenderer implements Renderer {
     }
     for (const gesture of step.gestures) this.actors.gesture(tl, at, gesture.character, gesture.action, d);
     this.lettering.line(tl, at, {
-      name: this.cast.name(step.speaker),
+      name: step.ghost ? `Ghost of ${this.cast.name(step.speaker)}` : this.cast.name(step.speaker),
+      ghost: step.ghost,
       text: step.text,
       anchor: narrator ? null : () => {
         const head = this.actors.head(step.speaker);

@@ -59,7 +59,8 @@
 }
 .audio-banner {
   position: absolute;
-  top: 18px;
+  /* Bottom corner, so it never hides the survivor count along the top edge. */
+  bottom: 96px;
   right: 18px;
   padding: 10px 18px;
   border: 3px solid #1b130b;
@@ -210,7 +211,7 @@
 }
 .bubble.narration {
   left: 50% !important;
-  top: 112px !important;
+  top: max(112px, var(--top-reserve, 0px)) !important;
   translate: -50% 0;
   max-width: 1100px;
   border-radius: 4px;
@@ -235,7 +236,7 @@
 .caption-box {
   position: absolute;
   left: 70px;
-  top: 120px;
+  top: max(120px, var(--top-reserve, 0px));
   max-width: 760px;
   padding: 14px 22px;
   background: var(--bt-yellow);
@@ -773,4 +774,180 @@
   color: #e3241a;
   text-shadow: 6px 6px 0 var(--bt-ink);
   opacity: 0;
+}
+
+/* Survivor tracker (top strip) ---------------------------------------------------------------- */
+.tracker {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  border: 3px solid var(--bt-ink);
+  border-radius: 10px;
+  background: rgba(242, 228, 196, 0.92);
+  box-shadow: 4px 5px 0 rgba(27, 19, 11, 0.4);
+  font-family: var(--bt-font-lettering);
+  pointer-events: none;
+}
+.tracker-chips {
+  flex: 1;
+  display: grid;
+  gap: 6px;
+  align-content: center;
+  justify-content: start;
+}
+.tracker-chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 0 8px 0 4px;
+  border: 2px solid var(--bt-ink);
+  border-radius: 8px;
+  background: #fffaf0;
+  overflow: hidden;
+}
+.tracker-sigil {
+  flex: none;
+  width: 34px;
+  height: 34px;
+}
+.tracker-name {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--bt-ink);
+}
+.tracker.compact .tracker-chip {
+  justify-content: center;
+  gap: 2px;
+  padding: 0 4px 0 2px;
+}
+.tracker.compact .tracker-sigil {
+  width: 26px;
+  height: 26px;
+}
+.tracker.compact .tracker-name {
+  font-size: 16px;
+}
+.tracker-x {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  line-height: 1;
+  color: #c41f16;
+  text-shadow: 2px 2px 0 var(--bt-ink);
+}
+.tracker-chip.out {
+  background: #b9ab92;
+}
+.tracker-chip.out .tracker-sigil,
+.tracker-chip.out .tracker-name {
+  opacity: 0.4;
+}
+.tracker-chip.out .tracker-x {
+  display: flex;
+}
+.tracker-count {
+  flex: none;
+  width: 170px;
+  text-align: center;
+  font-family: var(--bt-font-display);
+  font-size: 34px;
+  line-height: 1;
+  color: var(--bt-ink);
+}
+
+/* OUT / RETURNS stamps ------------------------------------------------------------------------ */
+.stamp {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  translate: -50% -50%;
+  max-width: 1300px;
+  padding: 22px 46px 26px;
+  border: 10px double #c41f16;
+  border-radius: 12px;
+  background: rgba(255, 250, 240, 0.94);
+  box-shadow: 10px 12px 0 rgba(27, 19, 11, 0.45);
+  text-align: center;
+  color: #c41f16;
+}
+.stamp-headline {
+  font-family: var(--bt-font-display);
+  font-size: 92px;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.stamp-cause {
+  margin-top: 10px;
+  font-family: var(--bt-font-lettering);
+  font-weight: 700;
+  font-size: 34px;
+  color: var(--bt-ink);
+}
+.stamp.stamp-return {
+  border-color: #b8860b;
+  color: #8a5a00;
+}
+
+/* Crowd montage: causes on tiles and the closing summary ------------------------------------- */
+.montage-tile:has([data-testid="tile-cause"]) .tile-name {
+  bottom: 74px;
+}
+.tile-mode[data-testid="tile-cause"] {
+  left: 10px;
+  right: 10px;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+.montage-summary {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  padding: 18px 44px;
+  border: 8px double #c41f16;
+  border-radius: 10px;
+  background: #fffaf0;
+  box-shadow: 10px 12px 0 rgba(0, 0, 0, 0.5);
+  font-family: var(--bt-font-lettering);
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--bt-ink);
+  white-space: nowrap;
+  opacity: 0;
+}
+.montage-summary strong {
+  font-family: var(--bt-font-display);
+  font-weight: 400;
+  font-size: 64px;
+  color: #c41f16;
+  text-transform: uppercase;
+}
+
+/* Ghosts speak in a pale, dashed bubble whose name tag says so ------------------------------- */
+.bubble.ghost {
+  background: rgba(225, 236, 245, 0.95);
+  border-style: dashed;
+}
+.bubble.ghost .bubble-name {
+  font-style: italic;
+}
+
+/* While the tracker is shown, panel grids and montages fit underneath it. */
+.layer-panels {
+  transform-origin: 50% 0;
+  transform: translateY(var(--panel-shift, 0px)) scale(var(--panel-scale, 1));
 }

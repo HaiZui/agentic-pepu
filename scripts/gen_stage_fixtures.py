@@ -8,6 +8,7 @@ from pathlib import Path
 
 from bottle_throne.fate.solver import generate_fate
 from bottle_throne.story.fallback import fallback_bible, fallback_chronicle, fallback_scene
+from bottle_throne.story.storyline import storyline
 
 OUT_DIR = Path(__file__).resolve().parents[1] / "tests" / "fixtures" / "stage"
 
@@ -28,6 +29,7 @@ def build(size: int) -> dict:
     return {
         "seed": seed,
         "fate": fate.model_dump(mode="json"),
+        "storyline": storyline(fate).model_dump(mode="json"),
         "scenes": [fallback_scene(fate, beat, seed).model_dump(mode="json") for beat in fate.beats],
         "bible": fallback_bible(fate, seed).model_dump(mode="json"),
         "chronicle": fallback_chronicle(fate, seed).model_dump(mode="json"),
@@ -57,6 +59,7 @@ def shape(size: int) -> dict:
                     "kind": b.kind,
                     "dramatic": b.dramatic,
                     "eliminations": [{"character": e.character, "mode": e.mode} for e in b.eliminations],
+                    "resurrections": list(b.resurrections),
                 }
                 for b in fate.beats
             ],

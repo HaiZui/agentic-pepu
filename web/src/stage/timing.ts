@@ -23,6 +23,10 @@ export const DURATION = {
   exit: 1.8,
   montageBase: 1.6,
   montagePerVictim: 1.3,
+  /** Closing banner of a crowd montage: how many are out, and in what. */
+  montageSummary: 1.6,
+  /** OUT / RETURNS stamp after an elimination or a return (the spec asks for at least 2.5 s). */
+  stamp: 2.6,
   panelBreakBase: 2.4,
   panelBreakPerPanel: 1.9,
   coronation: 9,
@@ -54,3 +58,14 @@ export function montageStamps(duration: number, count: number): number[] {
   const per = (duration - 1.2) / Math.max(count, 1);
   return Array.from({ length: count }, (_, i) => 0.3 + i * per + per * 0.5 + 0.25);
 }
+
+/** Montage X-stamp moments; with a crowd summary they all land before the closing summary banner. */
+export function montageStampTimes(duration: number, count: number, withSummary: boolean): number[] {
+  return montageStamps(withSummary ? duration - DURATION.montageSummary : duration, count);
+}
+
+/** When the closing summary banner of a montage appears. */
+export const montageSummaryAt = (duration: number) => duration - DURATION.montageSummary - 0.1;
+
+/** When an OUT / RETURNS stamp lands; the survivor tracker updates at this moment. */
+export const STAMP_LAND = 0.35;

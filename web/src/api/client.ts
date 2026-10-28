@@ -13,6 +13,7 @@ export type ChronicleTexts = components["schemas"]["ChronicleTexts"];
 export type GenerationStatus = components["schemas"]["GenerationStatus"];
 export type Catalog = components["schemas"]["Catalog"];
 export type ComicInfo = components["schemas"]["ComicInfo"];
+export type Storyline = components["schemas"]["Storyline"];
 
 export class ApiError extends Error {
   constructor(
@@ -59,6 +60,7 @@ export const revealSeed = (id: string) =>
 const showPath = (id: string) => `/api/shows/${encodeURIComponent(id)}`;
 
 export const getScene = (id: string, beat: number) => request<SceneScript>(`${showPath(id)}/scenes/${beat}`);
+export const getStoryline = (id: string) => request<Storyline>(`${showPath(id)}/storyline`);
 export const getBible = (id: string) => request<ShowBible>(`${showPath(id)}/bible`);
 export const getChronicleTexts = (id: string) => request<ChronicleTexts>(`${showPath(id)}/chronicle-texts`);
 export const getStoryStatus = (id: string) => request<GenerationStatus>(`${showPath(id)}/story`);

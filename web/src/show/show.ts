@@ -1,4 +1,4 @@
-import { ApiError, getFate, getShow, revealSeed, type FateScript, type ShowSession } from "../api/client";
+import { ApiError, getFate, getShow, getStoryline, revealSeed, type FateScript, type ShowSession, type Storyline } from "../api/client";
 import { unlockAudio } from "../audio/context";
 import { el } from "../dom";
 import { ComicLink } from "../stage/comic-link";
@@ -26,8 +26,9 @@ export async function renderShow(
 
   let show: ShowSession;
   let fate: FateScript;
+  let storyline: Storyline;
   try {
-    [show, fate] = await Promise.all([getShow(showId), getFate(showId)]);
+    [show, fate, storyline] = await Promise.all([getShow(showId), getFate(showId), getStoryline(showId)]);
   } catch (error) {
     const message =
       error instanceof ApiError && error.status === 404 ? "This show does not exist." : "Could not load the show.";
@@ -40,6 +41,7 @@ export async function renderShow(
   const comic = new ComicLink(showId);
   const stage = mountStage(page, {
     fate,
+    storyline,
     texts: { reveal: () => revealSeed(showId).catch(() => null), comic },
     speed: testSpeed(),
     maxSpeed: 10,

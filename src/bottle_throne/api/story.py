@@ -7,7 +7,7 @@ from fastapi.responses import StreamingResponse
 
 from bottle_throne.api.shows import show_record
 from bottle_throne.comic.job import FINAL
-from bottle_throne.models.story import ChronicleTexts, GenerationStatus, SceneScript, ShowBible
+from bottle_throne.models.story import ChronicleTexts, GenerationStatus, SceneScript, ShowBible, Storyline
 
 router = APIRouter(prefix="/shows", tags=["story"])
 
@@ -16,6 +16,12 @@ POLL_SECONDS = 0.25
 
 def _not_ready(what: str) -> HTTPException:
     return HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f"{what} is not ready yet")
+
+
+@router.get("/{show_id}/storyline", response_model=Storyline)
+def get_storyline(show_id: str, request: Request) -> Storyline:
+    """Survivors, stamps and bystander plan for every beat, derived from the fate script. Ready at creation."""
+    return show_record(request, show_id).story.storyline
 
 
 @router.get("/{show_id}/story", response_model=GenerationStatus)

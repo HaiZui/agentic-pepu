@@ -68,7 +68,8 @@ export function puppetNode(cast: CastSheet, id: string, emotion: Emotion, label 
   const node = document.createElementNS(SVG_NS, "g");
   node.append(viewport);
   if (label && member) {
-    const card = renderNameCard(member.name, member.house);
+    // A figure that enters as a ghost (the dead emotion) is labelled as one.
+    const card = renderNameCard(emotion === "dead" ? `Ghost of ${member.name}` : member.name, member.house);
     card.setAttribute("transform", "translate(0 52) scale(1.1)");
     card.classList.add("actor-label");
     node.append(card);

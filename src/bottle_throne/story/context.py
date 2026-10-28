@@ -6,6 +6,7 @@ from bottle_throne.fate.catalog import ARCHETYPE_LABELS
 from bottle_throne.fate.state import TimelineState
 from bottle_throne.models.fate import Beat, FateScript
 from bottle_throne.story.catalog import reading_seconds
+from bottle_throne.story.causes import out_cause, statement
 
 SECTION_NAMES = {
     "cold_open": "Cold open",
@@ -48,6 +49,7 @@ def beat_facts(fate: FateScript, beat: Beat) -> dict[str, Any]:
         "index": beat.index,
         "section": SECTION_NAMES[beat.section],
         "event": beat.title,
+        "what_happens": statement(fate, beat),
         "setting": beat.setting.replace("_", " "),
         "roles": [{"role": r.role, "id": r.character, "name": names[r.character]} for r in beat.roles],
         "eliminated": [
@@ -56,22 +58,24 @@ def beat_facts(fate: FateScript, beat: Beat) -> dict[str, Any]:
         "returns_from_death": [{"id": r, "name": names[r]} for r in beat.resurrections],
         "alliances_formed": [[names[a.a], names[a.b]] for a in beat.alliances_formed],
         "alliances_broken": [[names[a.a], names[a.b]] for a in beat.alliances_broken],
-        "notes": beat.facts,
         "seconds": beat.budget_seconds,
     }
+    if beat.eliminations:
+        facts["cause"] = out_cause(fate, beat)
     if beat.prophecy_hints:
         facts["prophecy_hints"] = [h.text for h in beat.prophecy_hints]
     return facts
 
 
 def outline(fate: FateScript) -> list[dict[str, Any]]:
+    """The whole timeline as role-aware statements, so who acts on whom cannot be confused."""
     names = {c.id: c.name for c in fate.characters}
     return [
         {
             "index": b.index,
             "section": SECTION_NAMES[b.section],
             "event": b.title,
-            "who": sorted({names[r.character] for r in b.roles}),
+            "what_happens": statement(fate, b),
             "out": [f"{names[e.character]} ({e.mode})" for e in b.eliminations],
             "returns": [names[r] for r in b.resurrections],
         }
@@ -79,8 +83,14 @@ def outline(fate: FateScript) -> list[dict[str, Any]]:
     ]
 
 
-def persona_cards(fate: FateScript, beat: Beat) -> list[dict[str, Any]]:
-    """Persona cards for everyone in the beat, built only from earlier beats of the fate script."""
+def persona_cards(
+    fate: FateScript, beat: Beat, bystanders: list[str] | tuple[str, ...] = (), ghost: str | None = None
+) -> list[dict[str, Any]]:
+    """Persona cards for everyone in the beat, built only from earlier beats of the fate script.
+
+    Bystanders are contestants still in the contest who have no role in this beat; they may not leave it.
+    The ghost is the show's one planned ghost, out of the contest, who only watches and speaks.
+    """
     names = {c.id: c.name for c in fate.characters}
     sheet = {entry["id"]: entry for entry in cast_sheet(fate)}
     participants = [c.id for c in fate.characters if c.kind == "participant"]
@@ -95,9 +105,20 @@ def persona_cards(fate: FateScript, beat: Beat) -> list[dict[str, Any]]:
         state.apply(earlier)
 
     cards = []
-    for cid in dict.fromkeys(r.character for r in beat.roles):
+    in_beat = list(dict.fromkeys(r.character for r in beat.roles))
+    extra = [b for b in bystanders if b not in in_beat] + ([ghost] if ghost and ghost not in in_beat else [])
+    for cid in in_beat + extra:
         card = dict(sheet[cid])
-        card["status"] = "alive" if state.is_alive(cid) else "dead (speaks only as a ghost)"
+        if cid in beat.resurrections:
+            card["status"] = "returning to life in this beat: alive again, not a ghost"
+        elif state.is_alive(cid):
+            card["status"] = "alive"
+        else:
+            card["status"] = "dead (speaks only as a ghost)"
+        if cid == ghost:
+            card["status"] = "ghost: out of the contest, speaks only with emotion 'dead', never acts"
+        elif cid not in in_beat:
+            card["bystander"] = "in the contest, has no role in this event, must not leave the story"
         allies = [names[a] for a in state.allies_of(cid)]
         if allies:
             card["allies"] = allies
@@ -112,8 +133,11 @@ def max_lines(beat: Beat) -> int:
     return max(2, min(9, int(beat.budget_seconds / 4.5)))
 
 
-def line_budget_note(beat: Beat) -> str:
-    return (
+def line_budget_note(beat: Beat, bystanders: int = 0) -> str:
+    note = (
         f"The scene must be readable in {beat.budget_seconds} seconds: at most {max_lines(beat)} lines plus captions, "
         f"each line under 100 characters (a line takes about {reading_seconds('x' * 60):.1f}s for 60 characters)."
     )
+    if bystanders:
+        note += f" That includes one short line (under 60 characters) for each of the {bystanders} bystander(s)."
+    return note

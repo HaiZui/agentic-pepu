@@ -4,8 +4,8 @@ import { SVG_NS } from "../render/svg";
 import { FLOOR, FORE_SCALE, frame, panelGrid, STAGE_H, STAGE_W } from "../shared/panels";
 import { puppetNode } from "./actors";
 import type { CastSheet } from "./cast";
-import { montageStamps } from "./timing";
-import type { EliminationMode, PanelShot } from "./types";
+import { montageStampTimes, montageSummaryAt } from "./timing";
+import type { Announcement, EliminationMode, PanelShot } from "./types";
 
 const GUTTER = 26;
 
@@ -120,13 +120,19 @@ export class PanelView {
     tl.call(() => root.remove(), undefined, at + duration);
   }
 
-  montage(tl: gsap.core.Timeline, at: number, duration: number, victims: { id: string; mode: EliminationMode }[]): void {
+  montage(
+    tl: gsap.core.Timeline,
+    at: number,
+    duration: number,
+    victims: { id: string; mode: EliminationMode; cause: string | null }[],
+    summary: Announcement | null = null,
+  ): void {
     const root = el("div", { class: "montage", "data-testid": "montage" });
     const columns = Math.min(victims.length, victims.length > 6 ? 4 : 3);
     const rows = Math.ceil(victims.length / columns);
     const w = (STAGE_W - GUTTER * (columns + 1)) / columns;
     const h = (STAGE_H - GUTTER * (rows + 1)) / rows;
-    const stamps = montageStamps(duration, victims.length);
+    const stamps = montageStampTimes(duration, victims.length, summary !== null);
     victims.forEach((victim, i) => {
       const col = i % columns;
       const row = Math.floor(i / columns);
@@ -137,13 +143,24 @@ export class PanelView {
       const { node } = puppetNode(this.cast, victim.id, "terrified", false);
       art.append(node);
       const stamp = el("div", { class: "x-stamp" }, "✕");
-      box.append(art, el("div", { class: "tile-name" }, this.cast.name(victim.id)), el("div", { class: "tile-mode" }, MODE_LABEL[victim.mode]), stamp);
+      const cause = victim.cause ? `OUT: ${victim.cause}` : MODE_LABEL[victim.mode];
+      box.append(art, el("div", { class: "tile-name" }, this.cast.name(victim.id)), el("div", { class: "tile-mode", "data-testid": "tile-cause" }, cause), stamp);
       root.append(box);
       const land = at + stamps[i];
       tl.fromTo(box, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3 }, at + 0.1 + i * 0.08);
       tl.fromTo(stamp, { scale: 3.5, opacity: 0, rotation: -40 }, { scale: 1, opacity: 1, rotation: -12, duration: 0.25, ease: "power4.in" }, land - 0.25);
       tl.to(box, { x: 6, duration: 0.05, yoyo: true, repeat: 3 }, land);
     });
+    if (summary) {
+      const banner = el(
+        "div",
+        { class: "montage-summary", "data-testid": "montage-summary" },
+        el("strong", {}, summary.headline),
+        ` ${summary.cause}`,
+      );
+      root.append(banner);
+      tl.fromTo(banner, { opacity: 0, scale: 2.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power4.in" }, at + montageSummaryAt(duration));
+    }
     tl.call(() => this.layer.append(root), undefined, at);
     tl.to(root, { opacity: 0, duration: 0.35 }, at + duration - 0.4);
     tl.call(() => root.remove(), undefined, at + duration);

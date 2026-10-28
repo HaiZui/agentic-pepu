@@ -27,5 +27,6 @@ export async function renderComicDev(root: HTMLElement): Promise<void> {
     reveal: { seed: fixture.seed, seed_mode: fixture.fate.seed_mode, engine_version: fixture.fate.engine_version, seal: fixture.fate.seal },
     createdAt: "2026-10-30T15:04:00",
     attributions: params.get("attribution") ? ['"Raven" by A. Recordist, CC BY 4.0'] : [],
+    storyline: params.get("nostory") ? null : fixture.storyline,
   });
 }

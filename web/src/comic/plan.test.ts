@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import shapes from "../../../tests/fixtures/stage/comic-shapes.json";
 import { FIXTURES } from "../stage/fixtures";
 import type { FateScript, SceneScript } from "../stage/types";
-import { castGroups, MAX_PAGES, MIN_PAGES, planComic, sceneRows, type ComicPage } from "./plan";
+import { castGroups, MAX_PAGES, MIN_PAGES, planComic, sceneRows, survivorsAfter, type ComicPage } from "./plan";
 
 interface Shape {
   size: number;
@@ -110,5 +110,40 @@ describe("page count", () => {
       expect(beatsOf(pages)).toEqual(shape.fate.beats.map((b) => b.index));
       expect(pages.filter((p) => p.kind === "cast").length).toBe(shape.size > 20 ? 2 : 1);
     }
+  });
+});
+
+
+describe("survivor strip", () => {
+  const lastBeat = (page: ComicPage) => (page.kind === "scenes" ? page.blocks.at(-1)!.beat : page.kind === "montage" ? page.beat : -1);
+
+  it.each([6, 15, 40] as const)("every scene and montage page carries the survivors after its last scene (%i)", (size) => {
+    const { fate, scenes, storyline } = FIXTURES[size];
+    const pages = planComic(fate, scenes);
+    const story = pages.filter((p) => p.kind === "scenes" || p.kind === "montage");
+    expect(story.length).toBeGreaterThan(0);
+    for (const page of story) {
+      if (page.kind !== "scenes" && page.kind !== "montage") continue;
+      expect(page.survivors).toEqual(storyline.beats[lastBeat(page)].survivors_after);
+    }
+  });
+
+  it("marks the fallen out on the page of their scene", () => {
+    const { fate, scenes } = FIXTURES[15];
+    const pages = planComic(fate, scenes);
+    const beat = fate.beats.find((b) => b.kind !== "crowd" && b.eliminations.length === 1)!;
+    const page = pages.find((p) => p.kind === "scenes" && p.blocks.at(-1)!.beat === beat.index);
+    if (page?.kind !== "scenes") return;
+    expect(page.survivors).not.toContain(beat.eliminations[0].character);
+  });
+
+  it("works on reduced fates without resurrection data and ends with the winner", () => {
+    for (const shape of shapes as unknown as Shape[]) {
+      const after = survivorsAfter(shape.fate);
+      expect(after).toHaveLength(shape.fate.beats.length);
+      expect(after.at(-1)).toHaveLength(1);
+    }
+    const { fate } = FIXTURES[15];
+    expect(survivorsAfter(fate).at(-1)).toEqual([fate.winner]);
   });
 });

@@ -343,7 +343,8 @@
 }
 .c-tile {
   position: relative;
-  aspect-ratio: 3 / 4;
+  /* Squat enough that two rows (or three of three) fit above the survivor strip. */
+  aspect-ratio: 6 / 7;
   border: 2.5px solid var(--ink);
   background: radial-gradient(circle, #a3241c 0 30%, #5a120d 100%);
   overflow: hidden;
@@ -529,4 +530,90 @@
 .attributions,
 .page-back .c-hint {
   color: #5a4a36;
+}
+
+/* Survivor strip at the foot of scene and montage pages ------------------------------------- */
+.survivor-strip {
+  position: absolute;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 2.5mm;
+  padding: 0.8mm 2.5mm;
+  overflow: hidden;
+  border: 0.6mm solid var(--ink);
+  border-radius: 1.5mm;
+  background: #fffaf0;
+  font-size: 10px;
+  line-height: 1.2;
+}
+.strip-count {
+  flex: none;
+  font-family: var(--bt-font-display);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #a3241c;
+}
+.strip-names {
+  min-width: 0;
+}
+.survivor-strip.strip-small {
+  font-size: 9px;
+}
+.survivor-strip.strip-tiny {
+  font-size: 7.5px;
+  line-height: 1.15;
+}
+
+/* OUT / RETURNS stamps in panels and on montage pages --------------------------------------- */
+.c-stamp {
+  align-self: center;
+  margin-top: auto;
+  padding: 1mm 2.5mm;
+  border: 0.8mm double #c41f16;
+  border-radius: 1mm;
+  background: #fffaf0;
+  transform: rotate(-3deg);
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: 700;
+  color: var(--ink);
+}
+.c-stamp strong {
+  display: block;
+  font-family: var(--bt-font-display);
+  font-weight: 400;
+  font-size: 1.35em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #c41f16;
+}
+.c-stamp.c-stamp-return {
+  border-color: #b8860b;
+}
+.c-stamp.c-stamp-return strong {
+  color: #8a5a00;
+}
+.c-stamp.c-montage-summary {
+  display: block;
+  width: max-content;
+  margin: 0 auto 3mm;
+  font-size: 14px;
+}
+.c-tile-cause {
+  font-size: 9px;
+  line-height: 1.15;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Ghost balloons ----------------------------------------------------------------------------- */
+.balloon.ghost {
+  border-style: dashed;
+  background: #e8f0f6;
+}
+.balloon.ghost .who {
+  font-style: italic;
 }

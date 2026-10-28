@@ -77,6 +77,7 @@ def show_record(record: "SessionRecord") -> dict:
         "reveal": record.reveal().model_dump(mode="json"),
         "roster": record.canonical_roster,
         "fate": record.fate.model_dump(mode="json"),
+        "storyline": story.storyline.model_dump(mode="json"),
         "bible": story.bible.model_dump(mode="json") if story.bible else None,
         "scenes": [story.scenes[i].model_dump(mode="json") for i in sorted(story.scenes)],
         "chronicle": story.chronicle.model_dump(mode="json") if story.chronicle else None,

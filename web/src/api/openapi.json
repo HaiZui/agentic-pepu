@@ -211,6 +211,49 @@
         }
       }
     },
+    "/api/shows/{show_id}/storyline": {
+      "get": {
+        "tags": [
+          "story"
+        ],
+        "summary": "Get Storyline",
+        "description": "Survivors, stamps and bystander plan for every beat, derived from the fate script. Ready at creation.",
+        "operationId": "get_storyline_api_shows__show_id__storyline_get",
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Show Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Storyline"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/shows/{show_id}/story": {
       "get": {
         "tags": [
@@ -622,6 +665,50 @@
         ],
         "title": "Alliance"
       },
+      "Announcement": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "out",
+              "return",
+              "summary"
+            ],
+            "title": "Kind"
+          },
+          "character": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Character",
+            "description": "Character id, or null for a crowd summary."
+          },
+          "headline": {
+            "type": "string",
+            "title": "Headline",
+            "description": "For example 'Davido is OUT' or 'Davido RETURNS'."
+          },
+          "cause": {
+            "type": "string",
+            "title": "Cause",
+            "description": "For example 'poisoned by the goblet meant for Caesar'."
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "character",
+          "headline",
+          "cause"
+        ],
+        "title": "Announcement",
+        "description": "A stamp built from the fate script alone; the stage and the comic show the same words."
+      },
       "Beat": {
         "properties": {
           "index": {
@@ -751,6 +838,73 @@
           "dramatic"
         ],
         "title": "Beat"
+      },
+      "BeatStory": {
+        "properties": {
+          "index": {
+            "type": "integer",
+            "title": "Index"
+          },
+          "statement": {
+            "type": "string",
+            "title": "Statement",
+            "description": "Plain-language, role-aware description of what happens in the beat."
+          },
+          "announcements": {
+            "items": {
+              "$ref": "#/components/schemas/Announcement"
+            },
+            "type": "array",
+            "title": "Announcements"
+          },
+          "survivors_before": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Survivors Before",
+            "description": "Participant ids in the contest at the start of the beat."
+          },
+          "survivors_after": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Survivors After",
+            "description": "Participant ids in the contest at the end of the beat."
+          },
+          "bystanders": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Bystanders",
+            "description": "Participant ids planned to appear without a role in this scene."
+          },
+          "ghost": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ghost",
+            "description": "The one planned ghost of the show, if it appears in this beat, else null."
+          }
+        },
+        "type": "object",
+        "required": [
+          "index",
+          "statement",
+          "announcements",
+          "survivors_before",
+          "survivors_after",
+          "bystanders",
+          "ghost"
+        ],
+        "title": "BeatStory"
       },
       "BeatSynopsis": {
         "properties": {
@@ -1142,6 +1296,32 @@
         ],
         "title": "Elimination"
       },
+      "ExitReason": {
+        "properties": {
+          "character": {
+            "type": "string",
+            "title": "Character",
+            "description": "Id of the eliminated participant."
+          },
+          "beat": {
+            "type": "integer",
+            "title": "Beat",
+            "description": "Index of the beat that eliminates them."
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason",
+            "description": "One sentence: why they leave, consistent with the beat facts. Names them."
+          }
+        },
+        "type": "object",
+        "required": [
+          "character",
+          "beat",
+          "reason"
+        ],
+        "title": "ExitReason"
+      },
       "FateScript": {
         "properties": {
           "engine_version": {
@@ -1390,6 +1570,26 @@
           "text"
         ],
         "title": "Line"
+      },
+      "Motivation": {
+        "properties": {
+          "character": {
+            "type": "string",
+            "title": "Character",
+            "description": "Participant id."
+          },
+          "want": {
+            "type": "string",
+            "title": "Want",
+            "description": "One line: what this character wants in the story, from archetype and house only."
+          }
+        },
+        "type": "object",
+        "required": [
+          "character",
+          "want"
+        ],
+        "title": "Motivation"
       },
       "OldKing": {
         "properties": {
@@ -1722,6 +1922,30 @@
             "type": "array",
             "title": "Beats",
             "description": "One-sentence synopsis for every beat index."
+          },
+          "threads": {
+            "items": {
+              "$ref": "#/components/schemas/StoryThread"
+            },
+            "type": "array",
+            "title": "Threads",
+            "description": "One to four story threads linking setups to payoffs."
+          },
+          "motivations": {
+            "items": {
+              "$ref": "#/components/schemas/Motivation"
+            },
+            "type": "array",
+            "title": "Motivations",
+            "description": "One line per participant."
+          },
+          "exit_reasons": {
+            "items": {
+              "$ref": "#/components/schemas/ExitReason"
+            },
+            "type": "array",
+            "title": "Exit Reasons",
+            "description": "One per participant elimination."
           }
         },
         "type": "object",
@@ -1729,7 +1953,10 @@
           "title",
           "prophecy",
           "motifs",
-          "beats"
+          "beats",
+          "threads",
+          "motivations",
+          "exit_reasons"
         ],
         "title": "ShowBible"
       },
@@ -1853,6 +2080,60 @@
           "line"
         ],
         "title": "StageDirection"
+      },
+      "StoryThread": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "Short name of the thread, e.g. 'The Faceless contract on Aino'."
+          },
+          "beats": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Beats",
+            "description": "Beat indexes the thread runs through, ascending: setup first, payoff last."
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary",
+            "description": "One sentence linking the setup to its payoff."
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "beats",
+          "summary"
+        ],
+        "title": "StoryThread"
+      },
+      "Storyline": {
+        "properties": {
+          "beats": {
+            "items": {
+              "$ref": "#/components/schemas/BeatStory"
+            },
+            "type": "array",
+            "title": "Beats"
+          },
+          "thread_seeds": {
+            "items": {
+              "$ref": "#/components/schemas/StoryThread"
+            },
+            "type": "array",
+            "title": "Thread Seeds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "beats",
+          "thread_seeds"
+        ],
+        "title": "Storyline",
+        "description": "Deterministic story facts derived from the fate script: no LLM, never changes for a show."
       },
       "ValidationError": {
         "properties": {

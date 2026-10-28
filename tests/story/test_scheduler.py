@@ -38,6 +38,7 @@ class ScriptedLLM:
                 return ShowBible(
                     title="T", prophecy="A crown, a goat.", motifs=["goat"],
                     beats=[BeatSynopsis(index=b.index, synopsis="x") for b in self.fate.beats],
+                    threads=[], motivations=[], exit_reasons=[],
                 )
             if kind == "ChronicleTexts":
                 winner = next(c.name for c in self.fate.characters if c.id == self.fate.winner)

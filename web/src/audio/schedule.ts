@@ -1,4 +1,4 @@
-import { montageStamps, MOMENT } from "../stage/timing";
+import { montageStampTimes, MOMENT, STAMP_LAND } from "../stage/timing";
 import type { MusicMood, SfxCue, StageState, Step } from "../stage/types";
 
 /** Runtime lists of the catalog ids (checked against the API contract by the asset test). */
@@ -44,7 +44,9 @@ export function stingersFor(step: Step, previous: StageState): Scheduled[] {
       return [{ key: "stingers/elimination", at: step.action === "fall" ? MOMENT.rodSnap : MOMENT.actionStart }];
     }
     case "montage":
-      return montageStamps(step.durationAt1x, step.victims.length).map((at) => ({ key: "stingers/elimination", at }));
+      return montageStampTimes(step.durationAt1x, step.victims.length, step.summary !== null).map((at) => ({ key: "stingers/elimination", at }));
+    case "stamp":
+      return [{ key: step.announcement.kind === "return" ? "sfx/choir" : "sfx/thud", at: STAMP_LAND }];
     case "coronation":
       return [{ key: "stingers/coronation", at: MOMENT.coronationName - 0.5 }];
     default:

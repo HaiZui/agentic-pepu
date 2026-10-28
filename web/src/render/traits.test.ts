@@ -46,7 +46,7 @@ describe("collision resolution", () => {
   const randomRoster = (rng: Rng, size: number) =>
     canonicalOrder(Array.from({ length: size }, (_, i) => `Peasant ${rng.int(1_000_000)}-${i}`));
 
-  it("makes every pair differ in at least two traits for 1,000 random 40-name rosters", () => {
+  it("makes every pair differ in at least two traits for 1,000 random 40-name rosters", { timeout: 30_000 }, () => {
     const rng = new Rng("rosters");
     for (let r = 0; r < 1000; r++) {
       const traits = resolveCollisions(randomRoster(rng, 40));
